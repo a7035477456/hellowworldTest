@@ -9,7 +9,7 @@ const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')))
 const VettedSingles = Loadable(lazy(() => import('views/dashboard/VettedSingles')));
 const AllSingles = Loadable(lazy(() => import('views/dashboard/AllSingles')));
 const NewSingles = Loadable(lazy(() => import('views/dashboard/NewSingles')));
-const Friends = Loadable(lazy(() => import('views/dashboard/Friends')));
+const Favorites = Loadable(lazy(() => import('views/dashboard/Favorites')));
 const RequestAboutMe = Loadable(lazy(() => import('views/dashboard/RequestAboutMe')));
 const RequestIveSent = Loadable(lazy(() => import('views/dashboard/RequestIveSent')));
 
@@ -48,8 +48,8 @@ const MainRoutes = {
           element: <NewSingles />
         },
         {
-          path: 'friends',
-          element: <Friends />
+          path: 'favorites',
+          element: <Favorites />
         },
         {
           path: 'request-about-me',

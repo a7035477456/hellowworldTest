@@ -39,15 +39,20 @@ export default function NavCollapse({ menu, level, parentId }) {
   const { menuMaster } = useGetMenuMaster();
   const drawerOpen = menuMaster.isDashboardDrawerOpened;
 
-  const [open, setOpen] = useState(false);
+  // Always keep "Singles" menu (vetted-singles) expanded
+  const isAlwaysExpanded = menu.id === 'vetted-singles';
+  const [open, setOpen] = useState(isAlwaysExpanded);
   const [selected, setSelected] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClickMini = (event) => {
     setAnchorEl(null);
     if (drawerOpen) {
-      setOpen(!open);
-      setSelected(!selected ? menu.id : null);
+      // Don't toggle if this menu should always be expanded
+      if (!isAlwaysExpanded) {
+        setOpen(!open);
+        setSelected(!selected ? menu.id : null);
+      }
     } else {
       setAnchorEl(event?.currentTarget);
     }
@@ -60,7 +65,10 @@ export default function NavCollapse({ menu, level, parentId }) {
   };
 
   const handleClosePopper = () => {
-    setOpen(false);
+    // Don't close if this menu should always be expanded
+    if (!isAlwaysExpanded) {
+      setOpen(false);
+    }
     if (!openMini) {
       if (!menu.url) {
         setSelected(null);
@@ -93,7 +101,11 @@ export default function NavCollapse({ menu, level, parentId }) {
       setAnchorEl(null);
       setOpen(true);
     }
-  }, [pathname, menu]);
+    // Ensure always expanded menus stay open
+    if (isAlwaysExpanded) {
+      setOpen(true);
+    }
+  }, [pathname, menu, isAlwaysExpanded]);
 
   // menu collapse & item
   const menus = menu.children?.map((item) => {

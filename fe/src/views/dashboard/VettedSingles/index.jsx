@@ -47,8 +47,8 @@ export default function VettedSingles() {
   };
 
   const handleSaveAsFriend = (id) => {
-    console.log('Save as Friend clicked for:', id);
-    // Add save as friend functionality here
+    console.log('Save to Favorites clicked for:', id);
+    // Add save to favorites functionality here
   };
 
   const handleAgeRangeChange = (event, newValue) => {
@@ -73,24 +73,15 @@ export default function VettedSingles() {
         />
       }
     >
-      {/* Purple Banner */}
-      <Box
-        sx={{
-          backgroundColor: 'secondary.main',
-          color: 'common.white',
-          p: 2,
-          mb: 3,
-          borderRadius: 1,
-          textAlign: 'center'
-        }}
-      >
-        <Typography variant="body1" sx={{ fontWeight: 500 }}>
-          Access to this list is reserved for singles who have verified their photo, age, location, and career.
-        </Typography>
-        <Typography variant="body1" sx={{ fontWeight: 500, mt: 1 }}>
-          You may complete verification under My Vetting Info.
-        </Typography>
-      </Box>
+      {/* First Informational Banner */}
+      <Alert severity="info" sx={{ mb: 2 }}>
+        All singles on this page, Vetted Singles page, have verified their photo, age, location, and career. If you have not done so, you can complete the verification under "My Vetting info page".
+      </Alert>
+
+      {/* Second Informational Banner */}
+      <Alert severity="info" sx={{ mb: 3 }}>
+        When you Mark Interested someone, you then can visit the "Interested" page and request vetted information to learn more about them.
+      </Alert>
 
       {/* Singles Discovery Search Block */}
       <SubCard
@@ -295,7 +286,7 @@ export default function VettedSingles() {
                   color="primary"
                   onClick={() => handleSaveAsFriend(person.id)}
                 >
-                  Save as Friend
+                  Mark Interested
                 </Button>
               </CardActions>
             </Card>

@@ -46,9 +46,9 @@ export default function AllSingles() {
     // Add message functionality here
   };
 
-  const handleAddToVetList = (id) => {
-    console.log('Add to Vet List clicked for:', id);
-    // Add to vet list functionality here
+  const handleMarkInterested = (id) => {
+    console.log('Mark Interested clicked for:', id);
+    // Add mark interested functionality here
   };
 
   const handleAgeRangeChange = (event, newValue) => {
@@ -73,6 +73,21 @@ export default function AllSingles() {
         />
       }
     >
+      {/* Instructional Message */}
+      <Alert 
+        severity="info" 
+        sx={{ 
+          mb: 3,
+          backgroundColor: 'secondary.light',
+          color: 'secondary.dark',
+          '& .MuiAlert-icon': {
+            color: 'secondary.main'
+          }
+        }}
+      >
+        When you Mark Interested someone, you then can visit the "Interested" page and request vetted information to learn more about them.
+      </Alert>
+
       {/* Singles Discovery Search Block */}
       <SubCard
         sx={{
@@ -274,9 +289,9 @@ export default function AllSingles() {
                   fullWidth
                   variant="contained"
                   color="primary"
-                  onClick={() => handleAddToVetList(person.id)}
+                  onClick={() => handleMarkInterested(person.id)}
                 >
-                  Add to Vet List
+                  Mark Interested
                 </Button>
               </CardActions>
             </Card>

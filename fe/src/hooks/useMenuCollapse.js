@@ -45,7 +45,11 @@ function setParentOpenedMenu(items, pathname, menuId, setSelected, setOpen) {
 
 export default function useMenuCollapse(menu, pathname, miniMenuOpened, setSelected, setOpen, setAnchorEl) {
   useEffect(() => {
-    setOpen(false); // Close the menu initially
+    // Always keep "Singles" menu expanded
+    const isAlwaysExpanded = menu.id === 'vetted-singles';
+    if (!isAlwaysExpanded) {
+      setOpen(false); // Close the menu initially
+    }
     !miniMenuOpened ? setSelected(null) : setAnchorEl(null); // Reset selection based on menu state
 
     // If menu has children, determine which should be opened

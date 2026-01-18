@@ -39,10 +39,10 @@ const dashboard = {
       ]
     },
     {
-      id: 'friends',
-      title: 'Friends',
+      id: 'favorites',
+      title: 'Interested',
       type: 'item',
-      url: '/dashboard/friends',
+      url: '/dashboard/favorites',
       icon: icons.IconUsers,
       breadcrumbs: false,
       customStyle: {
