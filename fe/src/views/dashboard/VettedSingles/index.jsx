@@ -13,20 +13,26 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import InputAdornment from '@mui/material/InputAdornment';
 import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
+import Slider from '@mui/material/Slider';
 
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
+import SubCard from 'ui-component/cards/SubCard';
 import { gridSpacing } from 'store/constant';
 import { useGetSingles } from 'api/singles';
 
 // assets
-import { IconSearch } from '@tabler/icons-react';
+import { IconSearch, IconChevronRight } from '@tabler/icons-react';
 import UserRound from 'assets/images/users/user-round.svg';
 
 // ==============================|| VETTED SINGLES ||============================== //
 
 export default function VettedSingles() {
   const [searchQuery, setSearchQuery] = useState('');
+  const [location, setLocation] = useState('22003');
+  const [maxDistance, setMaxDistance] = useState(19);
+  const [gender, setGender] = useState('Men');
+  const [ageRange, setAgeRange] = useState([21, 35]);
   const { singles, singlesLoading, singlesError } = useGetSingles();
 
   const filteredSingles = (singles || []).filter((person) => {
@@ -45,9 +51,13 @@ export default function VettedSingles() {
     // Add save as friend functionality here
   };
 
+  const handleAgeRangeChange = (event, newValue) => {
+    setAgeRange(newValue);
+  };
+
   return (
     <MainCard
-      title="Vetted Singles Index Cards"
+      title="Vetted Singles"
       secondary={
         <OutlinedInput
           id="input-search-cards"
@@ -63,6 +73,162 @@ export default function VettedSingles() {
         />
       }
     >
+      {/* Purple Banner */}
+      <Box
+        sx={{
+          backgroundColor: 'secondary.main',
+          color: 'common.white',
+          p: 2,
+          mb: 3,
+          borderRadius: 1,
+          textAlign: 'center'
+        }}
+      >
+        <Typography variant="body1" sx={{ fontWeight: 500 }}>
+          Access to this list is reserved for singles who have verified their photo, age, location, and career.
+        </Typography>
+        <Typography variant="body1" sx={{ fontWeight: 500, mt: 1 }}>
+          You may complete verification under My Vetting Info.
+        </Typography>
+      </Box>
+
+      {/* Singles Discovery Search Block */}
+      <SubCard
+        sx={{
+          mb: 3,
+          backgroundColor: 'secondary.light',
+          border: 'none'
+        }}
+      >
+        <Typography
+          variant="h5"
+          sx={{
+            color: 'secondary.main',
+            mb: 3,
+            fontWeight: 600
+          }}
+        >
+          Singles Discovery
+        </Typography>
+        
+        <Grid container spacing={3}>
+          {/* Location */}
+          <Grid item xs={12} sm={6} md={3}>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                cursor: 'pointer',
+                '&:hover': {
+                  opacity: 0.8
+                }
+              }}
+            >
+              <Box>
+                <Typography variant="body2" color="text.secondary">
+                  My current location
+                </Typography>
+                <Typography variant="h6" sx={{ color: 'text.primary', mt: 0.5 }}>
+                  {location}
+                </Typography>
+              </Box>
+              <IconChevronRight stroke={1.5} size={20} />
+            </Box>
+          </Grid>
+
+          {/* Maximum Distance */}
+          <Grid item xs={12} sm={6} md={3}>
+            <Box>
+              <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
+                <Typography variant="body2" color="text.secondary">
+                  Maximum distance
+                </Typography>
+                <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 600 }}>
+                  {maxDistance} km
+                </Typography>
+              </Box>
+              <Slider
+                value={maxDistance}
+                onChange={(e, newValue) => setMaxDistance(newValue)}
+                min={1}
+                max={100}
+                step={1}
+                sx={{
+                  color: 'error.main',
+                  '& .MuiSlider-thumb': {
+                    backgroundColor: 'common.white',
+                    border: '2px solid',
+                    borderColor: 'error.main'
+                  },
+                  '& .MuiSlider-track': {
+                    backgroundColor: 'error.main'
+                  }
+                }}
+              />
+            </Box>
+          </Grid>
+
+          {/* Show Me */}
+          <Grid item xs={12} sm={6} md={3}>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                cursor: 'pointer',
+                '&:hover': {
+                  opacity: 0.8
+                }
+              }}
+            >
+              <Box>
+                <Typography variant="body2" color="text.secondary">
+                  Show me
+                </Typography>
+                <Typography variant="h6" sx={{ color: 'text.primary', mt: 0.5 }}>
+                  {gender}
+                </Typography>
+              </Box>
+              <IconChevronRight stroke={1.5} size={20} />
+            </Box>
+          </Grid>
+
+          {/* Age Range */}
+          <Grid item xs={12} sm={6} md={3}>
+            <Box>
+              <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
+                <Typography variant="body2" color="text.secondary">
+                  Age range
+                </Typography>
+                <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 600 }}>
+                  {ageRange[0]}-{ageRange[1]}
+                </Typography>
+              </Box>
+              <Slider
+                value={ageRange}
+                onChange={handleAgeRangeChange}
+                min={18}
+                max={100}
+                step={1}
+                valueLabelDisplay="auto"
+                sx={{
+                  color: 'error.main',
+                  '& .MuiSlider-thumb': {
+                    backgroundColor: 'common.white',
+                    border: '2px solid',
+                    borderColor: 'error.main'
+                  },
+                  '& .MuiSlider-track': {
+                    backgroundColor: 'error.main'
+                  }
+                }}
+              />
+            </Box>
+          </Grid>
+        </Grid>
+      </SubCard>
+
       {singlesLoading && (
         <Box sx={{ display: 'flex', justifyContent: 'center', p: 4 }}>
           <CircularProgress />

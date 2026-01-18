@@ -18,13 +18,6 @@ const dashboard = {
       icon: icons.IconUsers,
       children: [
         {
-          id: 'vetted-singles-list',
-          title: 'Vetted Singles',
-          type: 'item',
-          url: '/dashboard/vetted-singles',
-          breadcrumbs: false
-        },
-        {
           id: 'all-singles',
           title: 'All Singles',
           type: 'item',
@@ -37,16 +30,11 @@ const dashboard = {
           }
         },
         {
-          id: 'new-singles',
-          title: 'New Singles',
+          id: 'vetted-singles-list',
+          title: 'Vetted Singles',
           type: 'item',
-          url: '/dashboard/new-singles',
-          breadcrumbs: false,
-          customStyle: {
-            fontFamily: 'Comic Sans MS',
-            color: '#744DBC',
-            fontWeight: 600
-          }
+          url: '/dashboard/vetted-singles',
+          breadcrumbs: false
         }
       ]
     },
