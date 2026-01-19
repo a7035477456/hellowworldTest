@@ -8,7 +8,7 @@ const __dirname = dirname(__filename);
 
 const seedData = [
   {
-    name: "Phoebe",
+    firstname: "Phoebe",
     job_title: "Dynamic Operations Officer",
     description: "Experienced operations professional with a track record of driving efficiency and excellence.",
     email: "claudia_kuhn@yahoo.com",
@@ -17,7 +17,7 @@ const seedData = [
     profile_image_url: "user-round.svg"
   },
   {
-    name: "Gaetano",
+    firstname: "Gaetano",
     job_title: "Investor Division Strategist",
     description: "Strategic thinker specializing in investment analysis and portfolio optimization.",
     email: "alia_shields25@yahoo.com",
@@ -26,7 +26,7 @@ const seedData = [
     profile_image_url: "user-round.svg"
   },
   {
-    name: "Elisabeth",
+    firstname: "Elisabeth",
     job_title: "Future Markets Associate",
     description: "Forward-looking professional focused on emerging market trends and opportunities.",
     email: "kieran.mertz87@hotmail.com",
@@ -35,7 +35,7 @@ const seedData = [
     profile_image_url: "user-round.svg"
   },
   {
-    name: "Rosalia",
+    firstname: "Rosalia",
     job_title: "Global Brand Planner",
     description: "Creative strategist with expertise in global brand development and market positioning.",
     email: "luis.nader30@hotmail.com",
@@ -44,7 +44,7 @@ const seedData = [
     profile_image_url: "user-round.svg"
   },
   {
-    name: "Lizeth",
+    firstname: "Lizeth",
     job_title: "District Intranet Executive",
     description: "Technology leader specializing in internal systems and digital transformation.",
     email: "alicia.ohara@company.com",
@@ -53,7 +53,7 @@ const seedData = [
     profile_image_url: "user-round.svg"
   },
   {
-    name: "Jessyca",
+    firstname: "Jessyca",
     job_title: "Future Accountability Liaison",
     description: "Dedicated professional ensuring transparency and accountability across organizations.",
     email: "titus.kunde76@hotmail.com",
@@ -77,9 +77,9 @@ async function seedDatabase() {
     // Insert seed data
     for (const single of seedData) {
       await pool.query(
-        `INSERT INTO singles (name, job_title, description, email, phone, location, profile_image_url)
+        `INSERT INTO singles (firstname, job_title, description, email, phone, location, profile_image_url)
          VALUES ($1, $2, $3, $4, $5, $6, $7)`,
-        [single.name, single.job_title, single.description, single.email, single.phone, single.location, single.profile_image_url]
+        [single.firstname, single.job_title, single.description, single.email, single.phone, single.location, single.profile_image_url]
       );
     }
 

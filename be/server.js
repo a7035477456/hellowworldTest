@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { getSingles } from './routes/singles.js';
+import { getSingles_BBBBBBBB } from './routes/singles.js';
 
 dotenv.config();
 
@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-app.get('/api/singles', getSingles);
+app.get('/api/singles', getSingles_BBBBBBBB);
 
 // Health check
 app.get('/health', (req, res) => {

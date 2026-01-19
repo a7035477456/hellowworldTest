@@ -1,7 +1,7 @@
 -- Create singles table
 CREATE TABLE IF NOT EXISTS singles (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
+    firstname VARCHAR(255) NOT NULL,
     job_title VARCHAR(255),
     description TEXT,
     email VARCHAR(255),

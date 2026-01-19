@@ -54,7 +54,7 @@ npm run dev
 
 The server expects a `singles` table with the following columns:
 - `id` (integer)
-- `name` (varchar)
+- `firstname` (varchar)
 - `job_title` (varchar)
 - `description` (text)
 - `email` (varchar)
