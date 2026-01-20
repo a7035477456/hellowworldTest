@@ -1,0 +1,32 @@
+# Project Preferences - Remember Forever
+
+## File Naming Conventions
+
+1. **Use camelCase for ALL file names and API endpoints**
+   - Example: `allSinglesIndex.jsx`, `allSinglesFe.js`
+   - This enables global search to find all related files
+   - API endpoints: `/api/allSingles` (not `/api/all-singles`)
+
+2. **NO index.jsx files - use descriptive names with path context**
+   - Instead of: `views/dashboard/allSingles/index.jsx`
+   - Use: `views/dashboard/allSingles/allSinglesIndex.jsx`
+   - The path should be part of the filename (camelCase)
+
+3. **Backend server file naming**
+   - Use: `serverBe.js` (NOT `server.js`)
+
+4. **Frontend server file naming**
+   - Use: `serverFe.js` (NOT `server.js`)
+
+5. **Variable name suffixes (_AAAAA, _BBBBB, etc.)**
+   - DO NOT remove or modify variable suffixes like `_AAAAA`, `_BBBBB`, `_CCCCC`, `_XXXXX`, `_11111`, `_22222`
+   - These are INTENTIONAL - they help the developer's eyes see variables easier in the code
+   - Leave them alone - they will be removed for production by the developer
+   - Examples: `allSingles_AAAAAAAAA`, `person_CCCCCCCC`, `filteredAllSingles_XXXXXXX`
+
+## Summary
+- camelCase for files and APIs
+- No index.jsx - use descriptive names with path context
+- Backend: serverBe.js
+- Frontend: serverFe.js
+- DO NOT touch variable suffixes (_AAAAA, _BBBBB, etc.) - they are intentional

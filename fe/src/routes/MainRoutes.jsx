@@ -5,11 +5,11 @@ import MainLayout from 'layout/MainLayout';
 import Loadable from 'ui-component/Loadable';
 
 // dashboard routing
-const AllSingles = Loadable(lazy(() => import('views/dashboard/allSingles/index')));
+const AllSingles = Loadable(lazy(() => import('views/dashboard/allSingles/allSinglesIndex')));
 // utilities routing
 const VerifySelf = Loadable(lazy(() => import('views/utilities/VerifySelf')));
-const RequestsAboutMe = Loadable(lazy(() => import('views/utilities/RequestsAboutMe')));
-const RequestsSent = Loadable(lazy(() => import('views/utilities/RequestsSent')));
+const RequestsAboutMe = Loadable(lazy(() => import('views/utilities/requestsAboutMeIndex')));
+const RequestsSent = Loadable(lazy(() => import('views/utilities/requestsSentIndex')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
