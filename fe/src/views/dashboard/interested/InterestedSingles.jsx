@@ -24,38 +24,39 @@ import { gridSpacing } from 'store/constant';
 // assets
 import { IconSearch, IconChevronRight } from '@tabler/icons-react';
 import UserRound from 'assets/images/users/user-round.svg';
-import { useGetVettedSingles } from '../../../api/vettedSinglesFe';
+import VettedCheck from 'assets/images/vettedCheck.jpg';
+import { useGetInterestedSingles } from '../../../api/interestedSinglesFe';
 
 // ==============================|| ALL SINGLES ||============================== //
 
-export default function VettedSingles() {
+export default function InterestedSingles() {
   const [searchQuery, setSearchQuery] = useState('');
   const [location, setLocation] = useState('22003');
   const [maxDistance, setMaxDistance] = useState(19);
   const [gender, setGender] = useState('Men');
   const [ageRange, setAgeRange] = useState([21, 35]);
-  const {vettedSingles, vettedSinglesLoading, vettedSinglesError } = useGetVettedSingles();
+  const { interestedSingles, interestedSinglesLoading, interestedSinglesError } = useGetInterestedSingles();
 
-  const filteredVettedSingles_XXXXXXX = vettedSingles;
-  // const filteredVettedSingles_XXXXXXX = (vettedSingles || []).filter((person_CCCCCCCC) => {
+  const filteredInterestedSingles_XXXXXXX = interestedSingles;
+  // const filteredInterestedSingles_XXXXXXX = (interestedSingles || []).filter((person_CCCCCCCC) => {
   //   const query = searchQuery.toLowerCase();
   //   const memberId = `member ${String(person_CCCCCCCC.singles_id).padStart(5, '0')}`;
   //   return memberId.includes(query);
   // });
 
-  const handleMessage = (vettedSingles_id) => {
-    console.log('Message clicked for:', vettedSingles_id);
+  const handleMessage = (interestedSingles_id) => {
+    console.log('Message clicked for:', interestedSingles_id);
     // Add message functionality here
   };
 
-  const handleMarkInterested = (vettedSingles_id) => {
-    console.log('Mark Interested clicked for:', vettedSingles_id);
+  const handleMarkInterested = (interestedSingles_id) => {
+    console.log('Mark Interested clicked for:', interestedSingles_id);
     // Add mark interested functionality here
   };
 
   return (
     <MainCard
-      title="Vetted Singles x2"
+      title="Interested Singles v2"
       secondary={
         <OutlinedInput
           id="input-search-cards"
@@ -72,9 +73,9 @@ export default function VettedSingles() {
       }
     >
       {/* Instructional Message */}
-      <Alert 
-        severity="info" 
-        sx={{ 
+      <Alert
+        severity="info"
+        sx={{
           mb: 3,
           backgroundColor: 'secondary.light',
           color: 'secondary.dark',
@@ -104,7 +105,7 @@ export default function VettedSingles() {
         >
           Singles Discovery
         </Typography>
-        
+
         <Grid container spacing={3}>
           {/* Location */}
           <Grid item xs={12} sm={6} md={3}>
@@ -223,78 +224,109 @@ export default function VettedSingles() {
         </Grid>
       </SubCard>
 
-      {vettedSinglesLoading && (
+      {interestedSinglesLoading && (
         <Box sx={{ display: 'flex', justifyContent: 'center', p: 4 }}>
           <CircularProgress />
         </Box>
       )}
-      
-      {vettedSinglesError && (
+
+      {interestedSinglesError && (
         <Alert severity="error" sx={{ mb: 2 }}>
           Failed to load singles. Please try again later.
         </Alert>
       )}
-      
-      {!vettedSinglesLoading && !vettedSinglesError && (
+
+      {!interestedSinglesLoading && !interestedSinglesError && (
         <Grid container spacing={gridSpacing}>
-          {filteredVettedSingles_XXXXXXX.map((vettedPersonIndex_DDDDDDD) => (
-          <Grid key={vettedPersonIndex_DDDDDDD.singles_id} size={{ xs: 12, sm: 6, md: 4 }}>
-            <Card
-              sx={{
-                height: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-                '&:hover': {
-                  boxShadow: 6
-                }
-              }}
-            >
-              <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
-                  <Avatar
-                    src={vettedPersonIndex_DDDDDDD.profile_image_url && vettedPersonIndex_DDDDDDD.profile_image_url !== 'user-round.svg' ? vettedPersonIndex_DDDDDDD.profile_image_url : UserRound}
-                    alt={`Member ${String(vettedPersonIndex_DDDDDDD.vettedSingles_id).padStart(5, '0')}`}
-                    sx={{
-                      width: 80,
-                      height: 80
-                    }}
-                  />
-                </Box>
-                <Typography 
-                  variant="h4" 
-                  component="div"
-                  sx={{ 
-                    color: 'secondary.main',
-                    textAlign: 'center',
-                    fontWeight: 500
+          {filteredInterestedSingles_XXXXXXX.map((personIndex_DDDDDDD, index_GGGGGGG) => {
+            const singlesId = personIndex_DDDDDDD?.singles_id_to ?? personIndex_DDDDDDD?.singles_id ?? `unknown_${index_GGGGGGG}`;
+            const displayId = singlesId != null ? String(singlesId).padStart(5, '0') : `0000${index_GGGGGGG}`;
+            const keyValue = singlesId != null ? String(singlesId) : `key_${index_GGGGGGG}`;
+            
+            return (
+              <Grid key={keyValue} size={{ xs: 12, sm: 6, md: 4 }}>
+                <Card
+                  sx={{
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    '&:hover': {
+                      boxShadow: 6
+                    }
                   }}
                 >
-                  Member {String(vettedPersonIndex_DDDDDDD.singles_id).padStart(5, '0')}
-                </Typography>
-              </CardContent>
+                  <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
+                      <Avatar
+                        src={
+                          personIndex_DDDDDDD.profile_image_url && personIndex_DDDDDDD.profile_image_url !== 'user-round.svg'
+                            ? personIndex_DDDDDDD.profile_image_url
+                            : UserRound
+                        }
+                        alt={`Member ${displayId}`}
+                        sx={{
+                          width: 80,
+                          height: 80
+                        }}
+                      />
+                    </Box>
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: 1
+                      }}
+                    >
+                      <Typography
+                        variant="h4"
+                        component="div"
+                        sx={{
+                          color: 'secondary.main',
+                          textAlign: 'center',
+                          fontWeight: 500
+                        }}
+                      >
+                        Member {displayId}
+                      </Typography>
+                      {personIndex_DDDDDDD?.vetted_status === true && (
+                        <Box
+                          component="img"
+                          src={VettedCheck}
+                          alt="Vetted"
+                          sx={{
+                            width: 24,
+                            height: 24,
+                            objectFit: 'contain'
+                          }}
+                        />
+                      )}
+                    </Box>
+                  </CardContent>
 
-              <CardActions sx={{ p: 2, pt: 0 }}>
-                <Button
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  onClick={() => handleMessage(vettedPersonIndex_DDDDDDD.vettedSingles_id)}
-                  sx={{ mr: 1 }}
-                >
-                  Message
-                </Button>
-                <Button
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  onClick={() => handleMarkInterested(vettedPersonIndex_DDDDDDD.vettedSingles_id)}
-                >
-                  Mark Interested
-                </Button>
-              </CardActions>
-            </Card>
-          </Grid>
-        ))}
+                  <CardActions sx={{ p: 2, pt: 0 }}>
+                    <Button
+                      fullWidth
+                      variant="contained"
+                      color="primary"
+                      onClick={() => handleMessage(singlesId)}
+                      sx={{ mr: 1 }}
+                    >
+                      Message
+                    </Button>
+                    <Button
+                      fullWidth
+                      variant="contained"
+                      color="primary"
+                      onClick={() => handleMarkInterested(singlesId)}
+                    >
+                      Mark Interested
+                    </Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+            );
+          })}
         </Grid>
       )}
     </MainCard>

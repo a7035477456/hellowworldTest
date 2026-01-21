@@ -50,6 +50,10 @@ CREATE TABLE public.requests (
     requests_id bigint DEFAULT nextval('public.requests_id_seq'::regclass) NOT NULL,
     singles_id_from bigint NOT NULL,
     singles_id_to bigint NOT NULL,
+
+    interested boolean DEFAULT false,
+    interested_date date NULL,
+
     profilephoto_request boolean DEFAULT false,
     profilephoto_requestapproval boolean DEFAULT false,
     age_request boolean DEFAULT false,
@@ -62,7 +66,7 @@ CREATE TABLE public.requests (
     countryofbirth_requestapproval boolean DEFAULT false,
     created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
     updated_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
-    interested date NULL,
+
     CONSTRAINT chk_not_self_request CHECK ((singles_id_from <> singles_id_to))
 );
 
@@ -117,24 +121,30 @@ CREATE TABLE public.singles (
     email character varying(255) NOT NULL,
     email_verified character(10) DEFAULT 'n/a'::bpchar,
     phone character varying(50),
+
     vetted_status boolean DEFAULT false,
     vetted_description character varying(500) DEFAULT 'n/a'::character varying,
     optoutadvertise boolean DEFAULT false,
+    interested boolean DEFAULT false,
+
     profile_image_url character varying(500),
     profilephoto_vetted character(10) DEFAULT 'n/a'::bpchar,
     profilephoto_vetted_date timestamp without time zone,
     profilephoto_vetted_by_userid bigint,
     profilephoto_vetted_note character varying(255) DEFAULT 'n/a'::character varying,
+
     age smallint,
     age_vetted character(10) DEFAULT 'n/a'::bpchar,
     age_vetted_date timestamp without time zone,
     age_vetted_by_userid bigint,
     age_vetted_note character varying(255) DEFAULT 'n/a'::character varying,
+
     job_title character varying(255),
     job_vetted character(10) DEFAULT 'n/a'::bpchar,
     job_vetted_date timestamp without time zone,
     job_vetted_by_userid bigint,
     job_vetted_note character varying(255) DEFAULT 'new'::character varying,
+
     current_city character varying(255),
     current_city_vetted character(10) DEFAULT 'n/a'::bpchar,
     current_city_vetted_date timestamp without time zone,

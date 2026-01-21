@@ -5,6 +5,7 @@ import MainLayout from 'layout/MainLayout';
 import Loadable from 'ui-component/Loadable';
 import AllSingles from '../views/dashboard/allSingles/AllSingles';
 import VettedSingles from '../views/dashboard/vettedSingles/VettedSingles';
+import InterestedSingles from '../views/dashboard/interested/InterestedSingles';
 
 // dashboard routing
 const DashboardDefault = Loadable(lazy(() => import('views/dashboard/default/defaultIndex')));
@@ -39,14 +40,10 @@ const MainRoutes = {
           path: 'allSingles',
           element: <AllSingles />
         },
-        // {
-        //   path: 'new-singles',
-        //   element: <NewSingles />
-        // },
-        // {
-        //   path: 'favorites',
-        //   element: <Favorites />
-        // },
+        {
+          path: 'interestedSingles',
+          element: <InterestedSingles />
+        }
         // {
         //   path: 'request-about-me',
         //   element: <RequestAboutMe />
