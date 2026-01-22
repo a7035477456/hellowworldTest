@@ -1,3 +1,4 @@
+--
 -- Sequence for id
 CREATE SEQUENCE personVerificationInfo_seq
     START WITH 1
