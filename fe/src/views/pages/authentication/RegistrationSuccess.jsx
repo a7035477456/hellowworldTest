@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Stack from '@mui/material/Stack';
@@ -18,12 +18,23 @@ import AnimateButton from 'ui-component/extended/AnimateButton';
 
 export default function RegistrationSuccess() {
   const navigate = useNavigate();
+  const location = useLocation();
   const downMD = useMediaQuery((theme) => theme.breakpoints.down('md'));
+  
+  // Get email from navigation state
+  const email = location.state?.email || '';
 
   const handleClose = () => {
-    // Close the browser tab/window or redirect to login
-    // In a web app context, we'll redirect to login page
-    navigate('/pages/login');
+    // Close the browser window/tab
+    window.close();
+    
+    // If window.close() doesn't work (e.g., window wasn't opened by script),
+    // fallback to navigating away
+    setTimeout(() => {
+      if (!document.hidden) {
+        navigate('/pages/login');
+      }
+    }, 100);
   };
 
   return (
@@ -36,14 +47,6 @@ export default function RegistrationSuccess() {
                 <Box sx={{ mb: 3 }}>
                   <Logo />
                 </Box>
-                <Stack sx={{ alignItems: 'center', justifyContent: 'center', gap: 1 }}>
-                  <Typography variant={downMD ? 'h4' : 'h3'} sx={{ color: 'secondary.main', fontFamily: 'Comic Sans MS' }}>
-                    Congratulation, registration done.
-                  </Typography>
-                  <Typography variant="body1" sx={{ color: 'secondary.main', textAlign: 'center', mt: 1 }}>
-                    Please open your email and click &quot;Create Password&quot; to continue.
-                  </Typography>
-                </Stack>
                 <Box sx={{ width: 1, display: 'flex', flexDirection: 'column', gap: 2 }}>
                   <AnimateButton>
                     <Button

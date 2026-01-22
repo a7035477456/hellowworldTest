@@ -30,8 +30,8 @@ export const registerUser_FFFFFFFF = async (req, res) => {
         }
       });
 
-      // Email content
-      const createPasswordLink = 'http://localhost:3000/createPassword';
+      // Email content - include email as query parameter
+      const createPasswordLink = `http://localhost:3000/free/pages/createPassword?email=${encodeURIComponent(email)}`;
       const mailOptions = {
         from: smtpUser,
         to: email,
@@ -272,5 +272,200 @@ export const getSinglesRequest_EEEEEEEE = async (req, res) => {
   } catch (error) {
     console.error('Error fetching singles:', error);
     res.status(500).json({ error: 'Failed to fetch singles from database' });
+  }
+};
+
+// In-memory storage for verification codes
+// Format: { email_phone: { code, password, expiresAt } }
+const verificationCodes = new Map();
+
+// Helper function to generate random 6-digit code
+const generateVerificationCode = () => {
+  return Math.floor(100000 + Math.random() * 900000).toString();
+};
+
+// Helper function to send SMS (using Twilio or mock)
+const sendSMS = async (phone, code) => {
+  const twilioAccountSid = process.env.TWILIO_ACCOUNT_SID;
+  const twilioAuthToken = process.env.TWILIO_AUTH_TOKEN;
+  const twilioPhoneNumber = process.env.TWILIO_PHONE_NUMBER;
+  const isTwilioConfigured = twilioAccountSid && twilioAuthToken && twilioPhoneNumber;
+
+  console.log('=== SMS SEND ATTEMPT ===');
+  console.log('Phone:', phone);
+  console.log('Code:', code);
+  console.log('Twilio configured:', isTwilioConfigured);
+  if (isTwilioConfigured) {
+    console.log('Twilio Account SID:', twilioAccountSid ? 'Set' : 'Not set');
+    console.log('Twilio Auth Token:', twilioAuthToken ? 'Set' : 'Not set');
+    console.log('Twilio Phone Number:', twilioPhoneNumber);
+  }
+  console.log('========================');
+
+  if (isTwilioConfigured) {
+    try {
+      // Dynamic import of twilio
+      const twilio = (await import('twilio')).default;
+      const client = twilio(twilioAccountSid, twilioAuthToken);
+
+      const message = await client.messages.create({
+        body: `Your Vetted Singles verification code is: ${code}`,
+        from: twilioPhoneNumber,
+        to: phone
+      });
+
+      console.log(`✅ SMS sent successfully to ${phone} with code: ${code}`);
+      console.log('Twilio Message SID:', message.sid);
+      return true;
+    } catch (error) {
+      console.error('❌ Error sending SMS via Twilio:', error);
+      console.error('Error details:', {
+        message: error.message,
+        code: error.code,
+        status: error.status,
+        moreInfo: error.moreInfo
+      });
+      throw new Error(`Failed to send SMS: ${error.message || 'Please check Twilio configuration.'}`);
+    }
+  } else {
+    // Mock SMS for development - just log it
+    console.log('⚠️  === MOCK SMS (Twilio not configured) ===');
+    console.log(`To: ${phone}`);
+    console.log(`Message: Your Vetted Singles verification code is: ${code}`);
+    console.log('⚠️  NOTE: No actual SMS was sent. Configure Twilio to send real SMS.');
+    console.log('⚠️  ========================================');
+    // Still return true for development, but log a warning
+    return true;
+  }
+};
+
+export const createPassword_GGGGGGGG = async (req, res) => {
+  try {
+    const { email, password, phone } = req.body;
+
+    if (!email || !password || !phone) {
+      return res.status(400).json({ error: 'Email, password, and phone are required' });
+    }
+
+    // Validate phone format (remove formatting)
+    const phoneDigits = phone.replace(/\D/g, '');
+    if (phoneDigits.length !== 10) {
+      return res.status(400).json({ error: 'Phone number must be 10 digits' });
+    }
+
+    // Format phone as +1XXXXXXXXXX for Twilio (US numbers)
+    const formattedPhone = `+1${phoneDigits}`;
+
+    // Generate 6-digit verification code
+    const verificationCode = generateVerificationCode();
+
+    // Store verification code with email and password (expires in 10 minutes)
+    const key = `${email}_${formattedPhone}`;
+    const expiresAt = Date.now() + 10 * 60 * 1000; // 10 minutes
+    verificationCodes.set(key, {
+      code: verificationCode,
+      password: password,
+      email: email,
+      phone: formattedPhone,
+      expiresAt: expiresAt
+    });
+
+    // Send SMS with verification code
+    try {
+      await sendSMS(formattedPhone, verificationCode);
+      console.log(`✅ SMS sending completed for ${email} to ${formattedPhone}`);
+    } catch (smsError) {
+      console.error(`❌ SMS sending failed for ${email} to ${formattedPhone}:`, smsError);
+      // Remove stored code if SMS fails
+      verificationCodes.delete(key);
+      return res.status(500).json({ 
+        error: 'Failed to send verification SMS',
+        details: smsError.message || 'SMS service unavailable. Please check server logs.'
+      });
+    }
+
+    res.json({ 
+      success: true, 
+      message: 'Verification code sent to your phone' 
+    });
+  } catch (error) {
+    console.error('Error in createPassword:', error);
+    res.status(500).json({ error: 'Failed to process password creation' });
+  }
+};
+
+export const verifyPhone_HHHHHHHH = async (req, res) => {
+  try {
+    const { email, phone, verificationCode } = req.body;
+
+    if (!email || !phone || !verificationCode) {
+      return res.status(400).json({ error: 'Email, phone, and verification code are required' });
+    }
+
+    // Format phone
+    const phoneDigits = phone.replace(/\D/g, '');
+    if (phoneDigits.length !== 10) {
+      return res.status(400).json({ error: 'Phone number must be 10 digits' });
+    }
+    const formattedPhone = `+1${phoneDigits}`;
+
+    // Look up verification code
+    const key = `${email}_${formattedPhone}`;
+    const storedData = verificationCodes.get(key);
+
+    if (!storedData) {
+      return res.status(400).json({ error: 'Verification code not found or expired. Please request a new code.' });
+    }
+
+    // Check if code has expired
+    if (Date.now() > storedData.expiresAt) {
+      verificationCodes.delete(key);
+      return res.status(400).json({ error: 'Verification code has expired. Please request a new code.' });
+    }
+
+    // Verify code matches
+    if (storedData.code !== verificationCode) {
+      return res.status(400).json({ error: 'Invalid verification code' });
+    }
+
+    // Code is valid - create user in database
+    try {
+      // Check if user already exists
+      const existingUser = await pool.query(
+        'SELECT singles_id FROM public.singles WHERE email = $1',
+        [email]
+      );
+
+      if (existingUser.rows.length > 0) {
+        // User already exists - update password and phone
+        await pool.query(
+          `UPDATE public.singles 
+           SET password_hash = $1, phone = $2, updated_at = CURRENT_TIMESTAMP 
+           WHERE email = $3`,
+          [storedData.password, formattedPhone, email]
+        );
+      } else {
+        // Insert new user
+        await pool.query(
+          `INSERT INTO public.singles (email, password_hash, phone, user_status, created_at, updated_at)
+           VALUES ($1, $2, $3, 'active', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`,
+          [email, storedData.password, formattedPhone]
+        );
+      }
+
+      // Remove verification code after successful verification
+      verificationCodes.delete(key);
+
+      res.json({ 
+        success: true, 
+        message: 'Phone verified successfully. Account created.' 
+      });
+    } catch (dbError) {
+      console.error('Database error in verifyPhone:', dbError);
+      res.status(500).json({ error: 'Failed to create account. Please try again.' });
+    }
+  } catch (error) {
+    console.error('Error in verifyPhone:', error);
+    res.status(500).json({ error: 'Failed to verify phone' });
   }
 };

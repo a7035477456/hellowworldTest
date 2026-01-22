@@ -34,8 +34,8 @@ export default function AuthRegister() {
       // Call the registration API to send email
       await registerUser(email);
       
-      // Navigate to registration success page after email is sent
-      navigate('/pages/registrationSuccess');
+      // Navigate to registration success page after email is sent, passing email in state
+      navigate('/pages/registrationSuccess', { state: { email } });
     } catch (err) {
       console.error('Registration error:', err);
       setError(err.message || 'Failed to register. Please try again.');

@@ -7,6 +7,8 @@ import { getAllSingles_BBBBBBBB } from './routes/singles_be.js';
 import { getVettedSingles_CCCCCCCC } from './routes/singles_be.js';
 import { getSinglesInterested_DDDDDDD } from './routes/singles_be.js';
 import { getSinglesRequest_EEEEEEEE } from './routes/singles_be.js';
+import { createPassword_GGGGGGGG } from './routes/singles_be.js';
+import { verifyPhone_HHHHHHHH } from './routes/singles_be.js';
 
 dotenv.config();
 
@@ -20,6 +22,8 @@ app.use(express.json());
 // Routes
 app.post('/api/verifyPassword', verifyLoginPassword);
 app.post('/api/register', registerUser_FFFFFFFF);
+app.post('/api/createPassword', createPassword_GGGGGGGG);
+app.post('/api/verifyPhone', verifyPhone_HHHHHHHH);
 app.get('/api/allSingles', getAllSingles_BBBBBBBB);
 app.get('/api/vettedSingles', getVettedSingles_CCCCCCCC);
 app.get('/api/interestedSingles', getSinglesInterested_DDDDDDD);

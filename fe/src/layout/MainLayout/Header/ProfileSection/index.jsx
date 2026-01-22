@@ -61,6 +61,11 @@ export default function ProfileSection() {
     setOpen(false);
   };
 
+  const handleLogout = () => {
+    // Redirect to http://localhost:3000
+    window.location.href = 'http://localhost:3000';
+  };
+
   const prevOpen = useRef(open);
   useEffect(() => {
     if (prevOpen.current === true && open === false) {
@@ -206,7 +211,7 @@ export default function ProfileSection() {
                             }
                           />
                         </ListItemButton>
-                        <ListItemButton sx={{ borderRadius: `${borderRadius}px` }}>
+                        <ListItemButton sx={{ borderRadius: `${borderRadius}px` }} onClick={handleLogout}>
                           <ListItemIcon>
                             <IconLogout stroke={1.5} size="20px" />
                           </ListItemIcon>
