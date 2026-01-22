@@ -56,7 +56,7 @@ export default function VettedSingles() {
 
   return (
     <MainCard
-      title="Vetted Singles x2"
+      title={<Typography sx={{ fontFamily: 'Comic Sans MS', fontSize: '1.5rem' }}>Vetted Singles</Typography>}
       secondary={
         <OutlinedInput
           id="input-search-cards"

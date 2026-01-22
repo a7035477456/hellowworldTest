@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // material-ui
 import Button from '@mui/material/Button';
@@ -24,7 +24,10 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 // ===============================|| JWT - LOGIN ||=============================== //
 
 export default function AuthLogin() {
+  const navigate = useNavigate();
   const [checked, setChecked] = useState(true);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => {
@@ -35,11 +38,31 @@ export default function AuthLogin() {
     event.preventDefault();
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    
+    // Check credentials
+    if (email === 'a@b.com' && password === 'ccc') {
+      // Successful login - redirect to AllSingles
+      navigate('/dashboard/allSingles');
+    } else {
+      // Failed login - redirect to Register
+      navigate('/pages/register');
+    }
+  };
+
   return (
-    <>
+    <form onSubmit={handleSubmit}>
       <CustomFormControl fullWidth>
         <InputLabel htmlFor="outlined-adornment-email-login">Email Address / Username</InputLabel>
-        <OutlinedInput id="outlined-adornment-email-login" type="email" value="info@codedthemes.com" name="email" />
+        <OutlinedInput
+          id="outlined-adornment-email-login"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          name="email"
+          required
+        />
       </CustomFormControl>
 
       <CustomFormControl fullWidth>
@@ -47,8 +70,10 @@ export default function AuthLogin() {
         <OutlinedInput
           id="outlined-adornment-password-login"
           type={showPassword ? 'text' : 'password'}
-          value="123456"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           name="password"
+          required
           endAdornment={
             <InputAdornment position="end">
               <IconButton
@@ -86,6 +111,6 @@ export default function AuthLogin() {
           </Button>
         </AnimateButton>
       </Box>
-    </>
+    </form>
   );
 }

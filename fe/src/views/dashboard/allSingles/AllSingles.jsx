@@ -55,7 +55,7 @@ export default function AllSingles() {
 
   return (
     <MainCard
-      title="All Singles"
+      title={<Typography sx={{ fontFamily: 'Comic Sans MS', fontSize: '1.5rem' }}>All Singles</Typography>}
       secondary={
         <OutlinedInput
           id="input-search-cards"

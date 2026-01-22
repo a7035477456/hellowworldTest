@@ -56,7 +56,7 @@ export default function InterestedSingles() {
 
   return (
     <MainCard
-      title="Interested Singles v2"
+      title={<Typography sx={{ fontFamily: 'Comic Sans MS', fontSize: '1.5rem' }}>Interested Singles</Typography>}
       secondary={
         <OutlinedInput
           id="input-search-cards"
