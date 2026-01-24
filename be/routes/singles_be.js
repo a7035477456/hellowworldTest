@@ -275,69 +275,9 @@ export const getSinglesRequest_EEEEEEEE = async (req, res) => {
   }
 };
 
-// In-memory storage for verification codes
-// Format: { email_phone: { code, password, expiresAt } }
-const verificationCodes = new Map();
-
-// Helper function to generate random 6-digit code
-const generateVerificationCode = () => {
-  return Math.floor(100000 + Math.random() * 900000).toString();
-};
-
-// Helper function to send SMS (using Twilio or mock)
-const sendSMS = async (phone, code) => {
-  const twilioAccountSid = process.env.TWILIO_ACCOUNT_SID;
-  const twilioAuthToken = process.env.TWILIO_AUTH_TOKEN;
-  const twilioPhoneNumber = process.env.TWILIO_PHONE_NUMBER;
-  const isTwilioConfigured = twilioAccountSid && twilioAuthToken && twilioPhoneNumber;
-
-  console.log('=== SMS SEND ATTEMPT ===');
-  console.log('Phone:', phone);
-  console.log('Code:', code);
-  console.log('Twilio configured:', isTwilioConfigured);
-  if (isTwilioConfigured) {
-    console.log('Twilio Account SID:', twilioAccountSid ? 'Set' : 'Not set');
-    console.log('Twilio Auth Token:', twilioAuthToken ? 'Set' : 'Not set');
-    console.log('Twilio Phone Number:', twilioPhoneNumber);
-  }
-  console.log('========================');
-
-  if (isTwilioConfigured) {
-    try {
-      // Dynamic import of twilio
-      const twilio = (await import('twilio')).default;
-      const client = twilio(twilioAccountSid, twilioAuthToken);
-
-      const message = await client.messages.create({
-        body: `Your Vetted Singles verification code is: ${code}`,
-        from: twilioPhoneNumber,
-        to: phone
-      });
-
-      console.log(`✅ SMS sent successfully to ${phone} with code: ${code}`);
-      console.log('Twilio Message SID:', message.sid);
-      return true;
-    } catch (error) {
-      console.error('❌ Error sending SMS via Twilio:', error);
-      console.error('Error details:', {
-        message: error.message,
-        code: error.code,
-        status: error.status,
-        moreInfo: error.moreInfo
-      });
-      throw new Error(`Failed to send SMS: ${error.message || 'Please check Twilio configuration.'}`);
-    }
-  } else {
-    // Mock SMS for development - just log it
-    console.log('⚠️  === MOCK SMS (Twilio not configured) ===');
-    console.log(`To: ${phone}`);
-    console.log(`Message: Your Vetted Singles verification code is: ${code}`);
-    console.log('⚠️  NOTE: No actual SMS was sent. Configure Twilio to send real SMS.');
-    console.log('⚠️  ========================================');
-    // Still return true for development, but log a warning
-    return true;
-  }
-};
+// In-memory storage for user data during verification
+// Format: { email_phone: { password, email, phone } }
+const pendingVerifications = new Map();
 
 export const createPassword_GGGGGGGG = async (req, res) => {
   try {
@@ -356,38 +296,73 @@ export const createPassword_GGGGGGGG = async (req, res) => {
     // Format phone as +1XXXXXXXXXX for Twilio (US numbers)
     const formattedPhone = `+1${phoneDigits}`;
 
-    // Generate 6-digit verification code
-    const verificationCode = generateVerificationCode();
+    // Get Twilio credentials
+    const twilioAccountSid = process.env.TWILIO_ACCOUNT_SID;
+    const twilioAuthToken = process.env.TWILIO_AUTH_TOKEN;
+    const twilioServiceSid = process.env.TWILIO_ServiceSID;
+    const isTwilioConfigured = twilioAccountSid && twilioAuthToken && twilioServiceSid;
 
-    // Store verification code with email and password (expires in 10 minutes)
-    const key = `${email}_${formattedPhone}`;
-    const expiresAt = Date.now() + 10 * 60 * 1000; // 10 minutes
-    verificationCodes.set(key, {
-      code: verificationCode,
-      password: password,
-      email: email,
-      phone: formattedPhone,
-      expiresAt: expiresAt
-    });
+    console.log('=== CREATE PASSWORD - TWILIO VERIFY ===');
+    console.log('Email:', email);
+    console.log('Phone:', formattedPhone);
+    console.log('Twilio Service SID:', twilioServiceSid);
+    console.log('Twilio configured:', isTwilioConfigured);
+    console.log('========================================');
 
-    // Send SMS with verification code
-    try {
-      await sendSMS(formattedPhone, verificationCode);
-      console.log(`✅ SMS sending completed for ${email} to ${formattedPhone}`);
-    } catch (smsError) {
-      console.error(`❌ SMS sending failed for ${email} to ${formattedPhone}:`, smsError);
-      // Remove stored code if SMS fails
-      verificationCodes.delete(key);
+    if (!isTwilioConfigured) {
+      console.error('❌ Twilio Verify not configured. Missing TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, or TWILIO_ServiceSID');
       return res.status(500).json({ 
-        error: 'Failed to send verification SMS',
-        details: smsError.message || 'SMS service unavailable. Please check server logs.'
+        error: 'SMS service not configured',
+        details: 'Please configure TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, and TWILIO_ServiceSID in your .env file'
       });
     }
 
-    res.json({ 
-      success: true, 
-      message: 'Verification code sent to your phone' 
-    });
+    try {
+      // Dynamic import of twilio
+      const twilio = (await import('twilio')).default;
+      const client = twilio(twilioAccountSid, twilioAuthToken);
+
+
+
+      // ***********************************************************
+      // Send verification code using Twilio Verify API (Red Box code)
+      // ***********************************************************
+      const verification = await client.verify.v2.services(twilioServiceSid).verifications.create({
+        to: formattedPhone,
+        channel: 'sms'
+      });
+      // ***********************************************************
+
+
+      console.log(`✅ Twilio Verify SMS sent to ${formattedPhone}`);
+      console.log('Verification SID:', verification.sid);
+      console.log('Verification Status:', verification.status);
+
+      // Store user data for later use in verification
+      const key = `${email}_${formattedPhone}`;
+      pendingVerifications.set(key, {
+        password: password,
+        email: email,
+        phone: formattedPhone
+      });
+
+      res.json({ 
+        success: true, 
+        message: 'Verification code sent to your phone' 
+      });
+    } catch (error) {
+      console.error('❌ Error sending verification via Twilio Verify:', error);
+      console.error('Error details:', {
+        message: error.message,
+        code: error.code,
+        status: error.status,
+        moreInfo: error.moreInfo
+      });
+      return res.status(500).json({ 
+        error: 'Failed to send verification SMS',
+        details: error.message || 'Please check Twilio configuration.'
+      });
+    }
   } catch (error) {
     console.error('Error in createPassword:', error);
     res.status(500).json({ error: 'Failed to process password creation' });
@@ -409,60 +384,119 @@ export const verifyPhone_HHHHHHHH = async (req, res) => {
     }
     const formattedPhone = `+1${phoneDigits}`;
 
-    // Look up verification code
+    // Get Twilio credentials
+    const twilioAccountSid = process.env.TWILIO_ACCOUNT_SID;
+    const twilioAuthToken = process.env.TWILIO_AUTH_TOKEN;
+    const twilioServiceSid = process.env.TWILIO_ServiceSID;
+    const isTwilioConfigured = twilioAccountSid && twilioAuthToken && twilioServiceSid;
+
+    console.log('=== VERIFY PHONE - TWILIO VERIFY ===');
+    console.log('Email:', email);
+    console.log('Phone:', formattedPhone);
+    console.log('Verification Code:', verificationCode);
+    console.log('Twilio Service SID:', twilioServiceSid);
+    console.log('====================================');
+
+    if (!isTwilioConfigured) {
+      console.error('❌ Twilio Verify not configured');
+      return res.status(500).json({ 
+        error: 'SMS service not configured',
+        details: 'Please configure Twilio Verify in your .env file'
+      });
+    }
+
+    // Look up stored user data
     const key = `${email}_${formattedPhone}`;
-    const storedData = verificationCodes.get(key);
+    const storedData = pendingVerifications.get(key);
 
     if (!storedData) {
-      return res.status(400).json({ error: 'Verification code not found or expired. Please request a new code.' });
+      return res.status(400).json({ error: 'Verification session not found. Please start the verification process again.' });
     }
 
-    // Check if code has expired
-    if (Date.now() > storedData.expiresAt) {
-      verificationCodes.delete(key);
-      return res.status(400).json({ error: 'Verification code has expired. Please request a new code.' });
-    }
-
-    // Verify code matches
-    if (storedData.code !== verificationCode) {
-      return res.status(400).json({ error: 'Invalid verification code' });
-    }
-
-    // Code is valid - create user in database
     try {
-      // Check if user already exists
-      const existingUser = await pool.query(
-        'SELECT singles_id FROM public.singles WHERE email = $1',
-        [email]
-      );
+      // Dynamic import of twilio
+      const twilio = (await import('twilio')).default;
+      const client = twilio(twilioAccountSid, twilioAuthToken);
 
-      if (existingUser.rows.length > 0) {
-        // User already exists - update password and phone
-        await pool.query(
-          `UPDATE public.singles 
-           SET password_hash = $1, phone = $2, updated_at = CURRENT_TIMESTAMP 
-           WHERE email = $3`,
-          [storedData.password, formattedPhone, email]
-        );
-      } else {
-        // Insert new user
-        await pool.query(
-          `INSERT INTO public.singles (email, password_hash, phone, user_status, created_at, updated_at)
-           VALUES ($1, $2, $3, 'active', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`,
-          [email, storedData.password, formattedPhone]
-        );
-      }
-
-      // Remove verification code after successful verification
-      verificationCodes.delete(key);
-
-      res.json({ 
-        success: true, 
-        message: 'Phone verified successfully. Account created.' 
+      // ***********************************************************
+      // Check verification code using Twilio Verify API (Green Box code)
+      // ***********************************************************
+      const check = await client.verify.v2.services(twilioServiceSid).verificationChecks.create({
+        to: formattedPhone,
+        code: verificationCode
       });
-    } catch (dbError) {
-      console.error('Database error in verifyPhone:', dbError);
-      res.status(500).json({ error: 'Failed to create account. Please try again.' });
+
+      console.log('Verification Check Status:', check.status);
+      console.log('Verification Check SID:', check.sid);
+
+      // Check if verification was approved
+      if (check.status === 'approved') {
+        // Verification successful - create user in database
+        try {
+          // Check if user already exists
+          const existingUser = await pool.query(
+            'SELECT singles_id FROM public.singles WHERE email = $1',
+            [email]
+          );
+
+          if (existingUser.rows.length > 0) {
+            // User already exists - update password and phone
+            await pool.query(
+              `UPDATE public.singles 
+               SET password_hash = $1, phone = $2, updated_at = CURRENT_TIMESTAMP 
+               WHERE email = $3`,
+              [storedData.password, formattedPhone, email]
+            );
+          } else {
+            // Insert new user
+            await pool.query(
+              `INSERT INTO public.singles (email, password_hash, phone, user_status, created_at, updated_at)
+               VALUES ($1, $2, $3, 'active', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`,
+              [email, storedData.password, formattedPhone]
+            );
+          }
+
+          // Remove stored data after successful verification
+          pendingVerifications.delete(key);
+
+          console.log('✅ Phone verified successfully. Account created.');
+          res.json({ 
+            success: true, 
+            message: 'Phone verified successfully. Account created.' 
+          });
+        } catch (dbError) {
+          console.error('Database error in verifyPhone:', dbError);
+          res.status(500).json({ error: 'Failed to create account. Please try again.' });
+        }
+      } else {
+        // Verification failed
+        console.log('❌ Verification code check failed. Status:', check.status);
+        res.status(400).json({ 
+          error: 'Invalid verification code',
+          details: 'The verification code is incorrect. Please try again.'
+        });
+      }
+    } catch (error) {
+      console.error('❌ Error checking verification via Twilio Verify:', error);
+      console.error('Error details:', {
+        message: error.message,
+        code: error.code,
+        status: error.status,
+        moreInfo: error.moreInfo
+      });
+      
+      // If it's an invalid code error, return specific error
+      if (error.code === 20404 || error.message?.includes('not found') || error.message?.includes('invalid')) {
+        return res.status(400).json({ 
+          error: 'Invalid verification code',
+          details: 'The verification code is incorrect or expired. Please try again.'
+        });
+      }
+      
+      return res.status(500).json({ 
+        error: 'Failed to verify phone',
+        details: error.message || 'Please try again.'
+      });
     }
   } catch (error) {
     console.error('Error in verifyPhone:', error);
