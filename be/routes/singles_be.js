@@ -396,10 +396,21 @@ export const createPassword_GGGGGGGG = async (req, res) => {
 
 export const verifyPhone_HHHHHHHH = async (req, res) => {
   try {
-    const { email, phone, verificationCode } = req.body;
+    const { email, phone, verificationCode: verificationCodeRaw } = req.body;
 
-    if (!email || !phone || !verificationCode) {
+    if (!email || !phone) {
       return res.status(400).json({ error: 'Email, phone, and verification code are required' });
+    }
+
+    // Normalize verification code: string, trim, digits only (Twilio expects plain digits)
+    const verificationCode = String(verificationCodeRaw ?? '')
+      .trim()
+      .replace(/\D/g, '');
+    if (!verificationCode || verificationCode.length !== 6) {
+      return res.status(400).json({
+        error: 'Invalid verification code',
+        details: 'The verification code must be exactly 6 digits.'
+      });
     }
 
     // Format phone
