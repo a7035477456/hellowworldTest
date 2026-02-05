@@ -1,4 +1,5 @@
 import crypto from 'crypto';
+import bcrypt from 'bcrypt';
 import pool from '../db/connection.js';
 import nodemailer from 'nodemailer';
 
@@ -118,7 +119,7 @@ export const verifyLoginPassword = async (req, res) => {
       return res.status(400).json({ error: 'Email and password are required' });
     }
 
-    // First, get the user by email along with their password (stored as plain text)
+    // Query singles table (same DB as in be/.env: DB_NAME must match where your data lives, e.g. vsingles)
     const result = await pool.query(
       `SELECT 
         singles_id, 
@@ -126,44 +127,26 @@ export const verifyLoginPassword = async (req, res) => {
         password_hash
       FROM public.singles s 
       WHERE s.email = $1
-      ORDER BY s.lastLoginTime DESC
+      ORDER BY COALESCE(s.updated_at, s.created_at) DESC
       LIMIT 1`,
       [email]
     );
 
     if (result.rows.length === 0) {
-      // User doesn't exist
       return res.status(401).json({ 
         error: 'Login or Password fail'
       });
     }
 
     const user = result.rows[0];
-    
-    // Debug logging to see what we're comparing
-    console.log('=== LOGIN DEBUG ===');
-    console.log('Email provided:', email);
-    console.log('Password provided:', password);
-    console.log('Password provided length:', password?.length);
-    console.log('Password provided charCodes:', password?.split('').map(c => c.charCodeAt(0)));
-    console.log('Password from DB:', user.password_hash);
-    console.log('Password from DB length:', user.password_hash?.length);
-    console.log('Password from DB charCodes:', user.password_hash?.split('').map(c => c.charCodeAt(0)));
-    console.log('Password from DB is null/undefined?', user.password_hash == null);
-    console.log('Are they equal (before trim)?', password === user.password_hash);
-    console.log('Type of provided:', typeof password);
-    console.log('Type of DB:', typeof user.password_hash);
-    
-    // Compare the provided password with the stored plain text password
-    // Trim both values to handle any whitespace issues
-    const providedPassword = password?.trim() || '';
-    const storedPassword = user.password_hash?.trim() || '';
-    const isPasswordValid = providedPassword === storedPassword;
-    
-    console.log('Provided (trimmed):', `"${providedPassword}"`);
-    console.log('Stored (trimmed):', `"${storedPassword}"`);
-    console.log('Are they equal (after trim)?', isPasswordValid);
-    console.log('==================');
+    const providedPassword = (password && typeof password === 'string') ? password.trim() : '';
+    const storedHash = user.password_hash?.trim() || '';
+
+    // Support both bcrypt hashes ($2a$, $2b$) and plain text (e.g. dev/test)
+    const looksLikeBcrypt = /^\$2[aby]\$\d{2}\$/.test(storedHash);
+    const isPasswordValid = looksLikeBcrypt
+      ? await bcrypt.compare(providedPassword, storedHash)
+      : providedPassword === storedHash;
 
     if (!isPasswordValid) {
       // Password is wrong

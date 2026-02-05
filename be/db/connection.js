@@ -4,6 +4,12 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+console.log ('DB_HOST:', process.env.DB_HOST);
+console.log('DB_PORT:', process.env.DB_PORT);
+console.log('DB_NAME:', process.env.DB_NAME);
+console.log('DB_USER:', process.env.DB_USER);
+console.log('DB_PASSWORD:', process.env.DB_PASSWORD);
+
 const pool = new Pool({
   host: process.env.DB_HOST || 'localhost',
   port: process.env.DB_PORT || 5432,
@@ -23,14 +29,15 @@ pool.on('error', (err) => {
   process.exit(-1);
 });
 
-// Test connection on startup
+// Test connection on startup (uses DB_* from be/.env)
 pool.query('SELECT NOW()')
   .then(() => {
     console.log('Database connection test successful');
   })
   .catch((err) => {
     console.error('Database connection test failed:', err.message);
-    console.error('Please ensure PostgreSQL is running and .env file is configured correctly');
+    console.error('Using: host=%s port=%s database=%s user=%s', process.env.DB_HOST || 'localhost', process.env.DB_PORT || 5432, process.env.DB_NAME || 'postgres', process.env.DB_USER || 'postgres');
+    console.error('Fix: ensure PostgreSQL is running and be/.env has correct DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD (e.g. port 50010, database vsingles)');
   });
 
 export default pool;
