@@ -22,7 +22,8 @@ import CustomFormControl from 'ui-component/extended/Form/CustomFormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:40000';
+// Same origin in browser (vsingles.club or localhost:40000); fallback for build
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || (typeof window !== 'undefined' ? window.location.origin : 'http://localhost:40000');
 
 // ===============================|| JWT - LOGIN ||=============================== //
 

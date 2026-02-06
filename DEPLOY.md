@@ -30,6 +30,8 @@ alias febeprod='cleancompilebuildfeprod; cleancompileresetrunbeprod'
 
 **Flow:** Pull code → `febedev` (or `febeprod`) → app runs under PM2 on port 40000. HAProxy on xbox2 load-balances vsingles.club to these backends.
 
+**Production (vsingles.club) – API URL:** The frontend uses the **current page origin** for API calls when `VITE_API_BASE_URL` is not set. So when users open https://vsingles.club, login and other API requests go to https://vsingles.club/api/... (same host). You no longer need to set `VITE_API_BASE_URL` in `fe/.env` for production; the same build works for Mac (localhost:40000) and Ubuntu (vsingles.club).
+
 ## Mac: febemac / runmac
 
 currentProject2 uses **`server_be.js`** (no `bin/www`). Point aliases at this repo and start the backend with `npm start` (or `node server_be.js`).
