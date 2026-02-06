@@ -5,7 +5,7 @@ import MainCard from 'ui-component/cards/MainCard';
 
 export default function RequestsAboutMe() {
   return (
-    <MainCard title="Requests About Me">
+    <MainCard title="Others Request About Me">
       {/* Blank page - content to be added later */}
     </MainCard>
   );

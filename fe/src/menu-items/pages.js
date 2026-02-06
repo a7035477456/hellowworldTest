@@ -51,7 +51,7 @@ const pages = {
     },
     {
       id: 'util-requests-about-me',
-      title: 'Requests About Me',
+      title: 'Others Request About Me',
       type: 'item',
       url: '/dashboard/request-about-me',
       icon: icons.IconTypography,

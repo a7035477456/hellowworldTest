@@ -22,15 +22,15 @@ import CustomFormControl from 'ui-component/extended/Form/CustomFormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3005';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:40000';
 
 // ===============================|| JWT - LOGIN ||=============================== //
 
 export default function AuthLogin() {
   const navigate = useNavigate();
   const [checked, setChecked] = useState(true);
-  const [email, setEmail] = useState('a@b.com');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('a7035477456@gmail.com');
+  const [password, setPassword] = useState('passworda');
   const [isLoading, setIsLoading] = useState(false);
 
   const [showPassword, setShowPassword] = useState(false);
