@@ -3,14 +3,16 @@ import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
-import { verifyLoginPassword } from './routes/singles_be.js';
-import { registerUser_FFFFFFFF } from './routes/singles_be.js';
-import { getAllSingles_BBBBBBBB } from './routes/singles_be.js';
-import { getVettedSingles_CCCCCCCC } from './routes/singles_be.js';
-import { getSinglesInterested_DDDDDDD } from './routes/singles_be.js';
-import { getSinglesRequest_EEEEEEEE } from './routes/singles_be.js';
-import { createPassword_GGGGGGGG } from './routes/singles_be.js';
-import { verifyPhone_HHHHHHHH } from './routes/singles_be.js';
+import {
+  verifyLoginPassword,
+  registerUser_FFFFFFFF,
+  getAllSingles_BBBBBBBB,
+  getVettedSingles_CCCCCCCC,
+  getSinglesInterested_DDDDDDD,
+  getSinglesRequest_EEEEEEEE,
+  createPassword_GGGGGGGG,
+  verifyPhone_HHHHHHHH,
+} from './routes/singles/index.js';
 
 dotenv.config();
 
