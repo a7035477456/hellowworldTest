@@ -1,8 +1,12 @@
 import pkg from 'pg';
 const { Pool } = pkg;
 import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-dotenv.config();
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+// Load be/.env so DB_* are set even when process cwd is not be/
+dotenv.config({ path: path.join(__dirname, '..', '.env') });
 
 console.log ('DB_HOST:', process.env.DB_HOST);
 console.log('DB_PORT:', process.env.DB_PORT);
@@ -10,12 +14,13 @@ console.log('DB_NAME:', process.env.DB_NAME);
 console.log('DB_USER:', process.env.DB_USER);
 console.log('DB_PASSWORD:', process.env.DB_PASSWORD);
 
+const dbPassword = process.env.DB_PASSWORD;
 const pool = new Pool({
   host: process.env.DB_HOST || 'localhost',
-  port: process.env.DB_PORT || 50010,
+  port: parseInt(process.env.DB_PORT, 10) || 50010,
   database: process.env.DB_NAME || 'postgres',
   user: process.env.DB_USER || 'postgres',
-  password: process.env.DB_PASSWORD || '',
+  password: dbPassword != null && dbPassword !== '' ? String(dbPassword) : '',
 });
 
 // Test connection
