@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import os from 'os';
 import dotenv from 'dotenv';
 import {
   verifyLoginPassword,
@@ -26,7 +27,9 @@ const allowedOrigins = [
   'http://localhost:3000',
   'https://vsingles.club',
   'http://vsingles.club',
-  /^https:\/\/.*\.vsingles\.club$/
+  'https://www.vsingles.club',
+  'http://www.vsingles.club',
+  /^https?:\/\/.*\.vsingles\.club$/
 ];
 app.use(cors({
   origin: (origin, cb) => {
@@ -44,6 +47,20 @@ app.get('/health', (req, res) => {
   res.status(200).json({ status: 'ok' });
 });
 
+// Server info: internal IP of this machine (for footer display)
+function getInternalIp() {
+  const ifaces = os.networkInterfaces();
+  for (const name of Object.keys(ifaces)) {
+    for (const iface of ifaces[name]) {
+      if (iface.family === 'IPv4' && !iface.internal) return iface.address;
+    }
+  }
+  return null;
+}
+app.get('/api/serverInfo', (req, res) => {
+  res.status(200).json({ internalIp: getInternalIp() || req.socket?.localAddress || '' });
+});
+
 // API routes
 app.post('/api/verifyPassword', verifyLoginPassword);
 app.post('/api/register', registerUser_FFFFFFFF);
@@ -54,10 +71,11 @@ app.get('/api/vettedSingles', getVettedSingles_CCCCCCCC);
 app.get('/api/interestedSingles', getSinglesInterested_DDDDDDD);
 app.get('/api/requestedSingles', getSinglesRequest_EEEEEEEE);
 
-// Serve built frontend (fe/dist) – run fe build first (febedev/febeprod)
-app.use(express.static(path.join(__dirname, '../fe/dist')));
+// Serve built frontend (fe/dist) – run fe build first (febedev/febeprod).
+// On Ubuntu: ensure both vsingles.club and www.vsingles.club route to this app so /assets/* (e.g. Login-*.js) are served.
+app.use(express.static(path.join(__dirname, '../fe/dist'), { index: false }));
 
-// SPA: all other routes serve index.html
+// SPA: all other GET routes serve index.html
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../fe/dist/index.html'));
 });
