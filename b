@@ -60,7 +60,7 @@ mygrep() {
 ####### BUILD UBUNTU and MAC ###########################################################################################
 ####### BUILD UBUNTU and MAC ###########################################################################################
 ####### BUILD UBUNTU and MAC ###########################################################################################
-alias cdcurrent='cd ~/code/adaptCurrentToOrig/hellowworldTest'
+alias cdcurrent='cd ~/code/hellowworldTest'
 
 alias savepwd='export CURRENT="$PWD"'
 
@@ -77,7 +77,7 @@ alias cleancompileresetrunbedev='beclean;cdcurrent && cd ./be && npm i && pm2 ki
 #----- USE THIS----
 alias febedev='cleancompilebuildfedev;cleancompileresetrunbedev'
 alias rundev='clear;cdcurrent; cd ./be; pm2 kill && rm -rf ~/.pm2 && pm2 list && npm run pm2:start && pm2 save'
-
+alias deploydev='pm2 delete vsingles;pm2 start ecosystem.config.cjs --env production;pm2 save'
 #========= PROD ============
 alias cleancompilebuildfeprod='feclean;cdcurrent && cd ./fe && npm i && npm run buildprod'
 alias cleancompileresetrunbeprod='beclean;cdcurrent && cd ./be && npm i && pm2 kill && rm -rf ~/.pm2 && pm2 list && npm run pm2:start && pm2 save'
@@ -284,7 +284,8 @@ updatepassword() {
     -c "UPDATE users SET password = '${newpassword}' WHERE last_name='CEO';"
 }
 getusers(){
-  psql -h 127.0.0.1 -p 50010 -U postgres -d vsingles -c "SELECT * FROM users;"
+  #psql -h 127.0.0.1 -p 50010 -U postgres -d vsingles -c "SELECT * FROM users;"
+  psql -h 127.0.0.1 -p 50010 -U postgres -d vsingles -c "select * FROM user_summary;"
 }
 ################################################################
 ################################################################
@@ -302,7 +303,7 @@ alias synclog='clear;sudo tail -n 50 /var/log/postgresql/postgresql-16-main.log'
 
 alias pg='sudo -u postgres psql'
 alias pglisten='sudo ss -tulnp | grep 50010'
-alias pgstatus='systemctl status "postgresql@*";pglisten'
+alias pgstatus='showpgmain;systemctl status "postgresql@*";pglisten;'
 alias pgstart='sudo systemctl start postgresql;pgstatus'
 alias pgstop='sudo systemctl stop postgresql;pgstatus'
 alias pgrestart='sudo systemctl restart postgresql;pgstatus'
@@ -338,39 +339,6 @@ alias hitdb='echo "nc x.x.230.x now" ; \
 nc -zv 192.168.230.204 50010 ; \
 echo "nc x.x.222.x now" ; \
 nc -zv 192.168.222.204 50010'
-######## build vsingles on Mac, URL:localhost:4000 ########
-alias gitclonelg='git clone git@github.com:a7035477456/latestgreatest.git'
-alias gitclonehw='git clone git@github.com:a7035477456/hellowworldTest.git'
-
-alias feclean='cd ~/code/latestgreatest/fe && rm -rf node_modules && rm -rf package-lock.json'
-alias beclean='cd ~/code/latestgreatest/be && rm -rf node_modules && rm -rf package-lock.json'
-alias fe='cd ~/code/latestgreatest/be && npm i && npm run builddev'
-
-alias febe='cd ~/code/latestgreatest/fe ; \
-npm i ; echo "*** Step 1/4: Done compile fe" ; \
-npm run builddev ; echo "*** Step 2/4: Done build fe" ; \
-cd ~/code/latestgreatest/fe ; \
-npm i ; echo "*** Step 3/4: Done compile be" ; \
-resetpm2 ; echo "*** Step 4/4: Done reset pm2" ; \
-npm run startdev ; echo "*** Step 5/5: Done start dev"'
-
-alias be='cd ~/code/latestgreatest/be && npm i && resetpm2 ; npm run startdev'
-alias run='cd ~/code/latestgreatest/be && resetpm2 ; npm run startdev'
-alias resetpm2='pm2 stop all; pm2 delete all'
-
-alias fixnpm='
-echo "🔍 Checking ownership..." && \
-ls -ld ~/.npm ~/.npm/_cacache ~/code/latestgreatest/fe && \
-echo "🧹 Fixing ownership..." && \
-sudo chown -R "$USER":staff ~/.npm && \
-sudo chown -R "$USER":staff ~/code/latestgreatest/fe && \
-echo "🗑️    Clearing npm cache..." && \
-rm -rf ~/.npm/_cacache/* && \
-npm cache verify || true && \
-npm cache clean --force && \
-echo "✅ Done. Now run: npm i"
-'
-
 ##### tuning ######
 ##### tuning #####
 alias removealltuning="\
@@ -628,11 +596,11 @@ alias revertgit='git reset --hard HEAD~1 && git push origin +HEAD'
 alias vip='vi package.json'
 alias gitclonelg='git clone git@github.com:a7035477456/latestgreatest.git'
 alias gb='git branch'
+alias ga='git add .'
 alias gba='git branch -a'
 alias gs='git status'
 alias gp='git push'
 alias gc='git commit -m "whatever"'
-
 ######## PGCheck #########
 alias pgcheck='~/2009_corruptLogFiles/xbox3/pgverify_primary.sh'
 alias pgcheckh='TRY_IDENTIFY=1 ~/2009_corruptLogFiles/xbox3/pgverify_primary.sh'
@@ -877,7 +845,7 @@ archive() {
 }
 
 alias gitall='git add . -f && git commit -m "update" && git push'
-alias go='cd ~/2009_corruptLogFiles/xbox4;ls -latr'
+alias go='cd ~/2009_corruptLogFiles/xbox3;ls -latr'
 alias chmodall='sudo chown -R $USER:$USER . && sudo find . -type f -exec chmod 644 {} \; && sudo find . -type d -exec chmod 755 {} \;'
 
 superarchive() {
