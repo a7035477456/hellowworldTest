@@ -4,7 +4,7 @@
  */
 
 export { registerUser, registerUser as registerUser_FFFFFFFF } from './register.js';
-export { verifyLoginPassword } from './login.js';
+export { beVerifyLoginPassword } from './beVerifyLoginPassword.js';
 export { getAllSingles, getAllSingles as getAllSingles_BBBBBBBB } from './getAllSingles.js';
 export { getVettedSingles, getVettedSingles as getVettedSingles_CCCCCCCC } from './getVettedSingles.js';
 export { getSinglesInterested, getSinglesInterested as getSinglesInterested_DDDDDDD } from './getSinglesInterested.js';

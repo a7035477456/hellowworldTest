@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url';
 import os from 'os';
 import dotenv from 'dotenv';
 import {
-  verifyLoginPassword,
+  beVerifyLoginPassword,
   registerUser_FFFFFFFF,
   getAllSingles_BBBBBBBB,
   getVettedSingles_CCCCCCCC,
@@ -62,7 +62,7 @@ app.get('/api/serverInfo', (req, res) => {
 });
 
 // API routes
-app.post('/api/verifyPassword', verifyLoginPassword);
+app.post('/api/verifyPassword', beVerifyLoginPassword);
 app.post('/api/register', registerUser_FFFFFFFF);
 app.post('/api/createPassword', createPassword_GGGGGGGG);
 app.post('/api/verifyPhone', verifyPhone_HHHHHHHH);
