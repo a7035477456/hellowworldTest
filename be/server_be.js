@@ -1,9 +1,9 @@
+import './loadEnv.js'; // load be/.env first so DB_* etc. are set regardless of cwd
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import os from 'os';
-import dotenv from 'dotenv';
 import {
   beVerifyLoginPassword,
   registerUser_FFFFFFFF,
@@ -14,8 +14,6 @@ import {
   createPassword_GGGGGGGG,
   verifyPhone_HHHHHHHH,
 } from './routes/singles/index.js';
-
-dotenv.config();
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
