@@ -28,13 +28,13 @@ export default function AuthFooter() {
             {internalIp}
           </Typography>
         )}
-        <Typography variant="subtitle2" component={Link} href="https://berrydashboard.com" target="_blank" underline="hover">
+        {/* <Typography variant="subtitle2" component={Link} href="https://berrydashboard.com" target="_blank" underline="hover">
           berrydashboard.com
-        </Typography>
+        </Typography> */}
       </Stack>
-      <Typography variant="subtitle2" component={Link} href="https://codedthemes.com" target="_blank" underline="hover">
+      {/* <Typography variant="subtitle2" component={Link} href="https://codedthemes.com" target="_blank" underline="hover">
         &copy; codedthemes.com
-      </Typography>
+      </Typography> */}
     </Stack>
   );
 }
