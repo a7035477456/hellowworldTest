@@ -4,6 +4,7 @@ import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import os from 'os';
+import pool from './db/connection.js';
 import {
   beVerifyLoginPassword,
   registerUser_FFFFFFFF,
@@ -43,6 +44,17 @@ app.use(express.json());
 // Health check for HAProxy (httpchk GET /health)
 app.get('/health', (req, res) => {
   res.status(200).json({ status: 'ok' });
+});
+
+// DB health check for frontend – verifies DB before any API use
+app.get('/api/health', async (req, res) => {
+  try {
+    await pool.query('SELECT NOW()');
+    res.status(200).json({ status: 'ok', dbConnected: true });
+  } catch (err) {
+    console.error('Database connection check failed:', err.message);
+    res.status(503).json({ error: 'E3', message: 'Database connection failed' });
+  }
 });
 
 // Server info: internal IP of this machine (for footer display)

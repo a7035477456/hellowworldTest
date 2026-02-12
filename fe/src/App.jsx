@@ -5,7 +5,7 @@ import router from 'routes';
 
 // project imports
 import NavigationScroll from 'layout/NavigationScroll';
-
+import DatabaseConnectionGuard from 'ui-component/DatabaseConnectionGuard';
 import ThemeCustomization from 'themes';
 
 // auth provider
@@ -15,11 +15,13 @@ import ThemeCustomization from 'themes';
 export default function App() {
   return (
     <ThemeCustomization>
-      <NavigationScroll>
-        <>
-          <RouterProvider router={router} />
-        </>
-      </NavigationScroll>
+      <DatabaseConnectionGuard>
+        <NavigationScroll>
+          <>
+            <RouterProvider router={router} />
+          </>
+        </NavigationScroll>
+      </DatabaseConnectionGuard>
     </ThemeCustomization>
   );
 }
