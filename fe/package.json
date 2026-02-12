@@ -7,8 +7,9 @@
     "start": "vite",
     "build": "vite build",
     "build:mac": "VITE_API_BASE_URL=http://localhost:40000 vite build",
-    "builddev": "VITE_API_BASE_URL=https://vsingles.club vite build",
-    "buildprod": "VITE_API_BASE_URL=https://vsingles.club vite build",
+    "builddev": "VITE_API_BASE_URL=https://vsingles.club vite build --minify false --sourcemap true",
+    "buildprod": "VITE_API_BASE_URL=https://vsingles.club vite build --minify --sourcemap false && npm run obfuscate",
+    "obfuscate": "javascript-obfuscator dist/assets --output dist/assets --compact true --self-defending true",
     "build:ubuntu": "VITE_API_BASE_URL=https://vsingles.club vite build",
     "preview": "vite preview",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
@@ -63,6 +64,7 @@
     ]
   },
   "devDependencies": {
+    "javascript-obfuscator": "4.1.1",
     "@eslint/compat": "2.0.0",
     "@eslint/eslintrc": "3.3.3",
     "@eslint/js": "9.39.1",
