@@ -62,8 +62,14 @@ export default function ProfileSection() {
   };
 
   const handleLogout = () => {
-    // Redirect to http://localhost:3000
-    window.location.href = 'http://localhost:3000';
+    // Clear session so next load is truly logged out
+    sessionStorage.clear();
+    // Clear any auth-related localStorage keys (add more here if you store tokens)
+    try {
+      const authKeys = ['vsingles-auth', 'token', 'authToken', 'user'];
+      authKeys.forEach((key) => localStorage.removeItem(key));
+    } catch (_) {}
+    window.location.href = 'https://vsingles.club';
   };
 
   const prevOpen = useRef(open);

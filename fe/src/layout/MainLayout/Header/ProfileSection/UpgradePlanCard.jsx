@@ -57,7 +57,7 @@ export default function UpgradePlanCard() {
             subscriptions.
           </Typography>
           <Stack direction="row">
-            <Link sx={{ textDecoration: 'none' }} href="https://links.codedthemes.com/hsqll" target="_blank">
+            <Link sx={{ textDecoration: 'none' }} href="https://vsingles.club" target="_blank">
               <AnimateButton>
                 <Button variant="contained" color="warning" sx={{ boxShadow: 'none' }}>
                   Go Premium
