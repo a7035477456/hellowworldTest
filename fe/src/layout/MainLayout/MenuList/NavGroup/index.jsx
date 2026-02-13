@@ -3,6 +3,8 @@ import { Activity, useEffect, useState } from 'react';
 import { matchPath, useLocation } from 'react-router-dom';
 
 // material-ui
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
@@ -16,6 +18,8 @@ import { useGetMenuMaster } from 'api/menu';
 // ==============================|| SIDEBAR MENU LIST GROUP ||============================== //
 
 export default function NavGroup({ item, lastItem, remItems, lastItemId, setSelectedID }) {
+  const theme = useTheme();
+  const downSM = useMediaQuery(theme.breakpoints.down('sm'));
   const { pathname } = useLocation();
 
   const { menuMaster } = useGetMenuMaster();
@@ -101,12 +105,12 @@ export default function NavGroup({ item, lastItem, remItems, lastItemId, setSele
               gutterBottom
               sx={{
                 display: 'block',
-                fontSize: '0.875rem',
+                fontSize: downSM ? '0.75rem' : '0.875rem',
                 fontWeight: 500,
                 color: 'text.heading',
-                padding: 0.75,
+                padding: downSM ? 0.5 : 0.75,
                 textTransform: 'capitalize',
-                marginTop: 1.25
+                marginTop: downSM ? 0.5 : 1.25
               }}
             >
               {currentItem.title}

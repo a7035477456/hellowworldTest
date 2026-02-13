@@ -30,16 +30,20 @@ function Sidebar() {
 
   const logo = useMemo(
     () => (
-      <Box sx={{ display: 'flex', p: 2 }}>
+      <Box sx={{ display: 'flex', p: downSM ? 1 : 2 }}>
         <LogoSection />
       </Box>
     ),
-    []
+    [downSM]
   );
 
   const drawer = useMemo(() => {
     let drawerSX = { paddingLeft: '0px', paddingRight: '0px', marginTop: '20px' };
-    if (drawerOpen) drawerSX = { paddingLeft: '16px', paddingRight: '16px', marginTop: '0px' };
+    if (drawerOpen) {
+      drawerSX = downSM
+        ? { paddingLeft: 6, paddingRight: 6, marginTop: 0 }
+        : { paddingLeft: '16px', paddingRight: '16px', marginTop: '0px' };
+    }
 
     return (
       <>
@@ -54,7 +58,7 @@ function Sidebar() {
         )}
       </>
     );
-  }, [downMD, drawerOpen]);
+  }, [downMD, drawerOpen, downSM]);
 
   return (
     <Box component="nav" sx={{ flexShrink: { md: 0 }, width: { xs: 'auto', md: drawerWidth } }} aria-label="mailbox folders">

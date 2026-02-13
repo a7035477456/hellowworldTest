@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import Collapse from '@mui/material/Collapse';
 import List from '@mui/material/List';
@@ -30,6 +31,7 @@ import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 
 export default function NavCollapse({ menu, level, parentId }) {
   const theme = useTheme();
+  const downSM = useMediaQuery(theme.breakpoints.down('sm'));
   const ref = useRef(null);
 
   const {
@@ -151,8 +153,9 @@ export default function NavCollapse({ menu, level, parentId }) {
           zIndex: 1201,
           borderRadius: `${borderRadius}px`,
           mb: 0.5,
-          ...(drawerOpen && level !== 1 && { ml: `${level * 18}px` }),
+          ...(drawerOpen && level !== 1 && { ml: downSM ? `${level * 8}px` : `${level * 18}px` }),
           ...(!drawerOpen && { pl: 1.25 }),
+          ...(downSM && drawerOpen && { py: 0.25, minHeight: 'auto' }),
           ...((!drawerOpen || level !== 1) && {
             py: level === 1 ? 0 : 1,
             '&:hover': { bgcolor: 'transparent' },
@@ -167,7 +170,7 @@ export default function NavCollapse({ menu, level, parentId }) {
         <Activity mode={menuIcon ? 'visible' : 'hidden'}>
           <ListItemIcon
             sx={{
-              minWidth: level === 1 ? 36 : 18,
+              minWidth: downSM && drawerOpen ? (level === 1 ? 28 : 14) : level === 1 ? 36 : 18,
               color: isSelected ? 'secondary.main' : 'text.primary',
               ...(!drawerOpen &&
                 level === 1 && {
@@ -194,13 +197,15 @@ export default function NavCollapse({ menu, level, parentId }) {
               primary={
                 <Typography
                   ref={ref}
-                  noWrap
+                  noWrap={!downSM}
                   variant={isSelected || anchorEl ? 'h5' : 'body1'}
                   sx={{
                     color: 'inherit',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                    width: 120
+                    overflow: downSM ? 'visible' : 'hidden',
+                    textOverflow: downSM ? 'clip' : 'ellipsis',
+                    width: downSM ? '100%' : 120,
+                    maxWidth: '100%',
+                    ...(downSM && drawerOpen && { fontSize: '0.75rem', lineHeight: 1.3 })
                   }}
                 >
                   {menu.title}

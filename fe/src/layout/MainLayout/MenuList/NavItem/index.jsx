@@ -24,6 +24,7 @@ import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 export default function NavItem({ item, level, isParents = false, setSelectedID }) {
   const theme = useTheme();
   const downMD = useMediaQuery(theme.breakpoints.down('md'));
+  const downSM = useMediaQuery(theme.breakpoints.down('sm'));
   const ref = useRef(null);
 
   const { pathname } = useLocation();
@@ -80,8 +81,9 @@ export default function NavItem({ item, level, isParents = false, setSelectedID 
           zIndex: 1201,
           borderRadius: `${borderRadius}px`,
           mb: 0.5,
-          ...(drawerOpen && level !== 1 && { ml: `${level * 18}px` }),
+          ...(drawerOpen && level !== 1 && { ml: downSM ? `${level * 8}px` : `${level * 18}px` }),
           ...(!drawerOpen && { pl: 1.25 }),
+          ...(downSM && drawerOpen && { py: 0.25, minHeight: 'auto' }),
           ...((!drawerOpen || level !== 1) && {
             py: level === 1 ? 0 : 1,
             '&:hover': { bgcolor: 'transparent' },
@@ -97,7 +99,7 @@ export default function NavItem({ item, level, isParents = false, setSelectedID 
         <ButtonBase aria-label="theme-icon" sx={{ borderRadius: `${borderRadius}px` }} disableRipple={drawerOpen}>
           <ListItemIcon
             sx={{
-              minWidth: level === 1 ? 36 : 18,
+              minWidth: downSM && drawerOpen ? (level === 1 ? 28 : 14) : level === 1 ? 36 : 18,
               color: isSelected ? 'secondary.main' : 'text.primary',
               ...(!drawerOpen &&
                 level === 1 && {
@@ -124,13 +126,14 @@ export default function NavItem({ item, level, isParents = false, setSelectedID 
               primary={
                 <Typography
                   ref={ref}
-                  noWrap
+                  noWrap={!downSM}
                   variant={isSelected ? 'h5' : 'body1'}
                   sx={{
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
+                    overflow: downSM ? 'visible' : 'hidden',
+                    textOverflow: downSM ? 'clip' : 'ellipsis',
                     maxWidth: '100%',
                     color: 'inherit',
+                    ...(downSM && drawerOpen && { fontSize: '0.75rem', lineHeight: 1.3 }),
                     ...(item.customStyle && item.customStyle)
                   }}
                 >
