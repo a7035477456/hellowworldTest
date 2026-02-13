@@ -33,14 +33,14 @@ export default function AboutUs() {
                   At <strong>vsingles.club</strong>, we believe that real love is the most meaningful journey you will ever embark on. As a trailblazing community dedicated to the art of connection, our mission is to help single adults find not just a partner, but their perfect match. By focusing on shared core values and the key dimensions of personality that predict long-term success, we champion deeper connections and more authentic dates.
                 </Typography>
                 <Typography variant="body1" paragraph>
-                  We are committed to providing a best-in-class experience that evolves alongside technology to ensure a trusted, inclusive, and customer-first environment. Whether you are seeking a kindred spirit or a life-long partner, we provide a welcoming space for our diverse and dynamic community to flourish.
+                  We are committed to providing a best-in-class experience that evolves alongside technology to ensure a trusted, inclusive, and customer-first environment. Unlike traditional platforms, we have pioneered a unique vetting infrastructure specifically for the dating world—a level of rigorous verification that does not exist on other dating websites. Whether you are seeking a kindred spirit or a life-long partner, we provide a welcoming space for our diverse and dynamic community to flourish.
                 </Typography>
                 <Box sx={{ width: '100%', borderTop: 1, borderColor: 'divider', pt: 2, mt: 1 }}>
                   <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>
                     Why Choose vsingles.club?
                   </Typography>
                   <Typography variant="body1" paragraph>
-                    We understand that opening your heart requires a foundation of trust. That is why we go beyond the standard profile; <strong>vsingles.club</strong> provides a dedicated vetting service for every member. By prioritizing your peace of mind through our thoughtful screening process, we ensure a safer, more intentional environment where you can focus on what truly matters: finding the right love.
+                    We understand that opening your heart requires a foundation of trust. That is why we go beyond the standard profile; <strong>vsingles.club</strong> provides a dedicated vetting service for every member. This process is comprehensive, unique, offering a layer of security and authenticity that you simply won&apos;t find on other dating websites. By prioritizing your peace of mind through our thoughtful screening process, we ensure a safer, more intentional environment where you can focus on what truly matters: finding the right love.
                   </Typography>
                   <Stack component="ul" sx={{ pl: 2.5, m: 0 }}>
                     <Typography component="li" variant="body1" sx={{ mb: 1 }}>
