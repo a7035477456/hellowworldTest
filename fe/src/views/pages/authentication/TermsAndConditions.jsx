@@ -27,77 +27,77 @@ export default function TermsAndConditions() {
                   </Link>
                 </Box>
                 <Typography variant="h4" sx={{ fontWeight: 700 }}>
-                  Terms and Conditions of Service
+                  Conditions générales du service
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Print or Save as PDF
+                  Imprimer ou enregistrer en PDF
                 </Typography>
                 <Typography variant="body1" paragraph>
-                  This Agreement between you and <strong>vsingles.club</strong> applies to the vsingles.club website, our mobile applications (iOS and Android), and all related services (collectively, the &quot;Services&quot;). By accessing or using our Services, you acknowledge that you have read, understood, and agree to be bound by these terms (including our Privacy Policy) for the duration of your use. Specific features may have additional rules; we may update this agreement and will post a revised version on this page.
+                  Le présent accord entre vous et <strong>vsingles.club</strong> s&apos;applique au site vsingles.club, à nos applications mobiles (iOS et Android) et à tous les services associés (les « Services »). En accédant ou en utilisant nos Services, vous reconnaissez avoir lu, compris et accepté d&apos;être lié par ces conditions (y compris notre Politique de confidentialité) pendant la durée de votre utilisation. Certaines fonctionnalités peuvent avoir des règles supplémentaires ; nous pouvons mettre à jour cet accord et publier une version révisée sur cette page.
                 </Typography>
-                <Typography variant="subtitle2" sx={{ fontWeight: 700, mt: 2 }}>Summary Table of Sections</Typography>
+                <Typography variant="subtitle2" sx={{ fontWeight: 700, mt: 2 }}>Tableau récapitulatif des sections</Typography>
                 <Box component="ul" sx={{ pl: 2.5, m: 0 }}>
-                  <Typography component="li" variant="body2">1. Eligibility</Typography>
-                  <Typography component="li" variant="body2">2. Use of the Services</Typography>
-                  <Typography component="li" variant="body2">3. Proprietary Rights</Typography>
-                  <Typography component="li" variant="body2">4. User Information</Typography>
-                  <Typography component="li" variant="body2">5. Risk and Safety</Typography>
-                  <Typography component="li" variant="body2">6. Disclaimer of Warranties</Typography>
-                  <Typography component="li" variant="body2">7. Limitation of Liability</Typography>
-                  <Typography component="li" variant="body2">8. Statutory Cancellation Rights (State-Specific)</Typography>
-                  <Typography component="li" variant="body2">9. Arbitration and Class Action Waiver</Typography>
-                  <Typography component="li" variant="body2">10. Automatic Renewals</Typography>
-                  <Typography component="li" variant="body2">10. Privacy &amp; Communication</Typography>
-                  <Typography component="li" variant="body2">18. Revision Date</Typography>
+                  <Typography component="li" variant="body2">1. Éligibilité</Typography>
+                  <Typography component="li" variant="body2">2. Utilisation des Services</Typography>
+                  <Typography component="li" variant="body2">3. Droits de propriété</Typography>
+                  <Typography component="li" variant="body2">4. Informations utilisateur</Typography>
+                  <Typography component="li" variant="body2">5. Risque et sécurité</Typography>
+                  <Typography component="li" variant="body2">6. Limitation de garantie</Typography>
+                  <Typography component="li" variant="body2">7. Limitation de responsabilité</Typography>
+                  <Typography component="li" variant="body2">8. Droit de rétractation (selon l&apos;État)</Typography>
+                  <Typography component="li" variant="body2">9. Arbitrage et renonciation à l&apos;action collective</Typography>
+                  <Typography component="li" variant="body2">10. Renouvellement automatique</Typography>
+                  <Typography component="li" variant="body2">10. Confidentialité et communication</Typography>
+                  <Typography component="li" variant="body2">18. Date de révision</Typography>
                 </Box>
-                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>1. Eligibility</Typography>
+                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>1. Éligibilité</Typography>
                 <Typography variant="body1" paragraph>
-                  You must be 18 or older and single or legally separated. vsingles.club does not currently perform automated criminal record checks but reserves the right to verify.
+                  Vous devez avoir 18 ans ou plus et être célibataire ou légalement séparé(e). vsingles.club n&apos;effectue pas actuellement de vérifications automatiques du casier judiciaire mais se réserve le droit de le faire.
                 </Typography>
-                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>2. Use of the Services</Typography>
+                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>2. Utilisation des Services</Typography>
                 <Typography variant="body1" paragraph>
-                  Basic Membership is free and includes compatibility assessment, limited profile, and predefined interactions. Premium Membership includes paid features (unblurred photos, advanced filters, match unlocks, virtual goods). Billing is subject to auto-renewal and cancellation policy. Use of mobile apps is also subject to Apple/Google terms.
+                  L&apos;adhésion Basic est gratuite et inclut l&apos;évaluation de compatibilité, un profil limité et des interactions prédéfinies. L&apos;adhésion Premium inclut des fonctionnalités payantes (photos nettes, filtres avancés, déblocage de correspondances, biens virtuels). La facturation est soumise à la politique de renouvellement et d&apos;annulation. L&apos;utilisation des applications mobiles est également soumise aux conditions Apple/Google.
                 </Typography>
-                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>3. Proprietary Rights</Typography>
+                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>3. Droits de propriété</Typography>
                 <Typography variant="body1" paragraph>
-                  vsingles.club retains rights to its technology and content and grants you a limited personal, non-commercial license.
+                  vsingles.club conserve les droits sur sa technologie et son contenu et vous accorde une licence personnelle, non commerciale et limitée.
                 </Typography>
-                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>4. User Information</Typography>
+                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>4. Informations utilisateur</Typography>
                 <Typography variant="body1" paragraph>
-                  We handle your data as described in our Privacy Policy. You are responsible for the content you post. Do not post personal contact details (email, phone, address) in your public profile.
+                  Nous traitons vos données comme décrit dans notre Politique de confidentialité. Vous êtes responsable du contenu que vous publiez. Ne publiez pas de coordonnées personnelles (e-mail, téléphone, adresse) sur votre profil public.
                 </Typography>
-                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>5. Risk and Safety</Typography>
+                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>5. Risque et sécurité</Typography>
                 <Typography variant="body1" paragraph>
-                  Please review our Safety Guidelines.
+                  Veuillez consulter nos Règles de sécurité.
                 </Typography>
-                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>6. Disclaimer of Warranties</Typography>
+                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>6. Limitation de garantie</Typography>
                 <Typography variant="body1" paragraph>
-                  Services are provided &quot;AS IS&quot;.
+                  Les Services sont fournis « en l&apos;état ».
                 </Typography>
-                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>7. Limitation of Liability</Typography>
+                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>7. Limitation de responsabilité</Typography>
                 <Typography variant="body1" paragraph>
-                  Total liability is limited to the amount paid for the account or $25.00.
+                  La responsabilité totale est limitée au montant payé pour le compte ou 25,00 $.
                 </Typography>
-                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>8. Statutory Cancellation Rights (State-Specific)</Typography>
+                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>8. Droit de rétractation (selon l&apos;État)</Typography>
                 <Typography variant="body1" paragraph>
-                  Residents of AZ, CA, CO, CT, IL, IA, MN, NY, NC, OH, RI, WI may have additional cancellation rights. Cancel via email: subscriptions@vsingles.club.
+                  Les résidents de AZ, CA, CO, CT, IL, IA, MN, NY, NC, OH, RI, WI peuvent avoir des droits d&apos;annulation supplémentaires. Annuler par e-mail : subscriptions@vsingles.club.
                 </Typography>
-                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>9. Arbitration and Class Action Waiver</Typography>
+                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>9. Arbitrage et renonciation à l&apos;action collective</Typography>
                 <Typography variant="body1" paragraph>
-                  Binding individual arbitration applies as set forth in the full terms.
+                  L&apos;arbitrage individuel obligatoire s&apos;applique comme indiqué dans les conditions complètes.
                 </Typography>
-                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>10. Automatic Renewals</Typography>
+                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>10. Renouvellement automatique</Typography>
                 <Typography variant="body1" paragraph>
-                  Auto-renewal process and how to disable it are described in the full terms.
+                  Le processus de renouvellement automatique et la procédure pour le désactiver sont décrits dans les conditions complètes.
                 </Typography>
                 <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
-                  Revision Date: This Agreement was last updated on February 12, 2026.
+                  Date de révision : cet accord a été mis à jour le 12 février 2026.
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Copyright © 2026 vsingles.club. All rights reserved.
+                  Copyright © 2026 vsingles.club. Tous droits réservés.
                 </Typography>
                 <Button component={Link} to="/pages/login" variant="contained" color="secondary" sx={{ alignSelf: 'center', mt: 2 }}>
-                  Back to Login
+                  Retour à la connexion
                 </Button>
               </Stack>
             </AuthCardWrapper>

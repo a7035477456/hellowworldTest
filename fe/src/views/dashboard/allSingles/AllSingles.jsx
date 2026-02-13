@@ -37,13 +37,13 @@ export default function AllSingles() {
   const [searchQuery, setSearchQuery] = useState('');
   const [location, setLocation] = useState('22003');
   const [maxDistance, setMaxDistance] = useState(19);
-  const [gender, setGender] = useState('Men');
+  const [gender, setGender] = useState('Hommes');
   const [ageRange, setAgeRange] = useState([21, 35]);
   const { singles, singlesLoading, singlesError } = useGetAllSingles();
 
   const filteredAllSingles_XXXXXXX = (singles || []).filter((person_CCCCCCCC) => {
     const query = searchQuery.toLowerCase();
-    const memberId = `member ${String(person_CCCCCCCC.singles_id).padStart(5, '0')}`;
+    const memberId = `membre ${String(person_CCCCCCCC.singles_id).padStart(5, '0')}`;
     return memberId.includes(query);
   });
 
@@ -66,7 +66,7 @@ export default function AllSingles() {
             fontSize: downSM ? '1.125rem' : '1.5rem'
           }}
         >
-          All Singles
+          Tous les célibataires
         </Typography>
       }
       secondary={
@@ -74,7 +74,7 @@ export default function AllSingles() {
           id="input-search-cards"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search"
+          placeholder="Rechercher"
           startAdornment={
             <InputAdornment position="start">
               <IconSearch stroke={1.5} size="16px" />
@@ -99,7 +99,7 @@ export default function AllSingles() {
           }
         }}
       >
-        When you Mark Interested someone, you then can visit the "Interested" page and request vetted information to learn more about them.
+        Quand vous marquez quelqu&apos;un comme intéressant(e), vous pouvez ensuite aller sur la page « Intéressé(e)s » et demander des informations vérifiées pour en savoir plus.
       </Alert>
 
       {/* Singles Discovery Search Block */}
@@ -120,7 +120,7 @@ export default function AllSingles() {
             fontSize: downSM ? '1rem' : undefined
           }}
         >
-          Singles Discovery
+          Découverte des célibataires
         </Typography>
 
         <Grid container spacing={downSM ? 2 : 3}>
@@ -139,7 +139,7 @@ export default function AllSingles() {
             >
               <Box>
                 <Typography variant="body2" color="text.secondary" sx={downSM ? { fontSize: '0.75rem' } : undefined}>
-                  My current location
+                  Ma position actuelle
                 </Typography>
                 <Typography variant="h6" sx={{ color: 'text.primary', mt: 0.5, ...(downSM && { fontSize: '0.875rem' }) }}>
                   {location}
@@ -154,7 +154,7 @@ export default function AllSingles() {
             <Box>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
                 <Typography variant="body2" color="text.secondary" sx={downSM ? { fontSize: '0.75rem' } : undefined}>
-                  Maximum distance
+                  Distance maximale
                 </Typography>
                 <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 600, ...(downSM && { fontSize: '0.75rem' }) }}>
                   {maxDistance} km
@@ -196,7 +196,7 @@ export default function AllSingles() {
             >
               <Box>
                 <Typography variant="body2" color="text.secondary" sx={downSM ? { fontSize: '0.75rem' } : undefined}>
-                  Show me
+                  Afficher
                 </Typography>
                 <Typography variant="h6" sx={{ color: 'text.primary', mt: 0.5, ...(downSM && { fontSize: '0.875rem' }) }}>
                   {gender}
@@ -211,7 +211,7 @@ export default function AllSingles() {
             <Box>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
                 <Typography variant="body2" color="text.secondary" sx={downSM ? { fontSize: '0.75rem' } : undefined}>
-                  Age range
+                  Tranche d&apos;âge
                 </Typography>
                 <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 600, ...(downSM && { fontSize: '0.75rem' }) }}>
                   {ageRange[0]}-{ageRange[1]}
@@ -249,7 +249,7 @@ export default function AllSingles() {
       
       {singlesError && (
         <Alert severity="error" sx={{ mb: 2 }}>
-          Failed to load singles. Please try again later.
+          Échec du chargement des célibataires. Veuillez réessayer plus tard.
         </Alert>
       )}
       
@@ -281,7 +281,7 @@ export default function AllSingles() {
                   <Box sx={{ display: 'flex', justifyContent: 'center', mb: downSM ? 1 : 2 }}>
                     <Avatar
                       src={personIndex_DDDDDDD.profile_image_url && personIndex_DDDDDDD.profile_image_url !== 'user-round.svg' ? personIndex_DDDDDDD.profile_image_url : UserRound}
-                      alt={`Member ${String(personIndex_DDDDDDD.singles_id).padStart(5, '0')}`}
+                      alt={`Membre ${String(personIndex_DDDDDDD.singles_id).padStart(5, '0')}`}
                       sx={{
                         width: downSM ? 56 : 80,
                         height: downSM ? 56 : 80
@@ -298,7 +298,7 @@ export default function AllSingles() {
                       ...(downSM && { fontSize: '1rem' })
                     }}
                   >
-                    Member {String(personIndex_DDDDDDD.singles_id).padStart(5, '0')}
+                    Membre {String(personIndex_DDDDDDD.singles_id).padStart(5, '0')}
                   </Typography>
                 </CardContent>
 
@@ -324,7 +324,7 @@ export default function AllSingles() {
                     onClick={() => handleMarkInterested(personIndex_DDDDDDD.singles_id)}
                     sx={downSM ? { minWidth: 0, px: 1, fontSize: '0.7rem' } : undefined}
                   >
-                    Mark Interested
+                    Marquer comme intéressant(e)
                   </Button>
                 </CardActions>
               </Card>

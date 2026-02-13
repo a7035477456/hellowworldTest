@@ -32,10 +32,10 @@ export default function CreatePassword() {
                 </Box>
                 <Stack sx={{ alignItems: 'center', justifyContent: 'center', gap: 1 }}>
                   <Typography variant={downMD ? 'h3' : 'h2'} sx={{ color: 'secondary.main' }}>
-                    Sign up continue
+                    Inscription – suite
                   </Typography>
                   <Typography variant="caption" sx={{ fontSize: '16px', textAlign: { xs: 'center', md: 'inherit' } }}>
-                    Please create your passwrod and enter your phone number to continue
+                    Veuillez créer votre mot de passe et entrer votre numéro de téléphone pour continuer
                   </Typography>
                 </Stack>
                 <Box sx={{ width: 1 }}>

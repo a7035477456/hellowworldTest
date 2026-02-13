@@ -38,7 +38,7 @@ export default function PhoneVerificationSuccess() {
                 </Box>
                 <Stack sx={{ alignItems: 'center', justifyContent: 'center', gap: 1 }}>
                   <Typography variant={downMD ? 'h4' : 'h3'} sx={{ color: 'secondary.main', fontFamily: 'Comic Sans MS', textAlign: 'center' }}>
-                    Congratulation, Registration and Phone verification completed. You can login now.
+                    Félicitations, inscription et vérification téléphone terminées. Vous pouvez vous connecter maintenant.
                   </Typography>
                 </Stack>
                 <Box sx={{ width: 1, display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -50,7 +50,7 @@ export default function PhoneVerificationSuccess() {
                       variant="contained"
                       onClick={handleClose}
                     >
-                      Close
+                      Fermer
                     </Button>
                   </AnimateButton>
                 </Box>

@@ -32,7 +32,7 @@ export default function AuthPhoneVerification() {
 
   useEffect(() => {
     if (!email || !phone) {
-      setError('Email and phone number are required.');
+      setError('L\'e-mail et le numéro de téléphone sont requis.');
     }
   }, [email, phone]);
 
@@ -48,17 +48,17 @@ export default function AuthPhoneVerification() {
     
     // Validation
     if (!email || !phone) {
-      setError('Email and phone number are required.');
+      setError('L\'e-mail et le numéro de téléphone sont requis.');
       return;
     }
     
     if (!verificationCode) {
-      setError('Verification code is required.');
+      setError('Le code de vérification est requis.');
       return;
     }
     
     if (verificationCode.length !== 6) {
-      setError('Verification code must be 6 digits.');
+      setError('Le code de vérification doit comporter 6 chiffres.');
       return;
     }
     
@@ -72,7 +72,7 @@ export default function AuthPhoneVerification() {
       navigate('/pages/phoneVerificationSuccess');
     } catch (err) {
       console.error('Phone verification error:', err);
-      setError(err.message || 'Verification failed. Please try again.');
+      setError(err.message || 'Vérification échouée. Veuillez réessayer.');
       setIsSubmitting(false);
       
       // If verification fails, redirect to Page 9 (Phone Verification Failure)
@@ -83,9 +83,9 @@ export default function AuthPhoneVerification() {
   return (
     <form onSubmit={handleSubmit}>
       <Stack sx={{ mb: 2, alignItems: 'center' }}>
-        <Typography variant="subtitle1">Sign up V4</Typography>
+        <Typography variant="subtitle1">Inscription – Vérification téléphone</Typography>
         <Typography variant="body2" sx={{ mt: 0.5 }}>
-          Enter your details to continue.
+          Saisissez vos informations pour continuer.
         </Typography>
       </Stack>
 
@@ -98,14 +98,14 @@ export default function AuthPhoneVerification() {
       )}
 
       <CustomFormControl fullWidth>
-        <InputLabel htmlFor="outlined-adornment-verification-code">Verification Code</InputLabel>
+        <InputLabel htmlFor="outlined-adornment-verification-code">Code de vérification</InputLabel>
         <OutlinedInput 
           id="outlined-adornment-verification-code" 
           type="text"
           value={verificationCode}
           onChange={handleCodeChange}
           name="verificationCode"
-          placeholder="Enter the code sent to your phone"
+          placeholder="Entrez le code envoyé sur votre téléphone"
           required
           inputProps={{
             maxLength: 6,
@@ -119,9 +119,9 @@ export default function AuthPhoneVerification() {
         control={<Checkbox checked={checked} onChange={(event) => setChecked(event.target.checked)} name="checked" color="primary" />}
         label={
           <Typography variant="subtitle1">
-            Agree with &nbsp;
+            J&apos;accepte les &nbsp;
             <Typography variant="subtitle1" component="span" sx={{ color: 'primary.main' }}>
-              Terms & Condition.
+              Conditions générales.
             </Typography>
           </Typography>
         }
@@ -144,14 +144,14 @@ export default function AuthPhoneVerification() {
             color="secondary"
             disabled={isSubmitting || !email || !phone}
           >
-            {isSubmitting ? 'Verifying...' : 'Verify Phone'}
+            {isSubmitting ? 'Vérification…' : 'Vérifier le téléphone'}
           </Button>
         </AnimateButton>
       </Box>
 
       <Box sx={{ mt: 2, textAlign: 'center' }}>
         <Typography component={Link} to="/pages/login" variant="subtitle1" sx={{ textDecoration: 'none' }}>
-          Already have an account?
+          Vous avez déjà un compte ?
         </Typography>
       </Box>
     </form>

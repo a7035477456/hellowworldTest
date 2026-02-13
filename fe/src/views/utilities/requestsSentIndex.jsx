@@ -5,7 +5,7 @@ import MainCard from 'ui-component/cards/MainCard';
 
 export default function RequestsSent() {
   return (
-    <MainCard title="Request I've Sent">
+    <MainCard title="Demandes que j'ai envoyées">
       {/* Blank page - content to be added later */}
     </MainCard>
   );

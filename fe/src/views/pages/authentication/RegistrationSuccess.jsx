@@ -49,13 +49,13 @@ export default function RegistrationSuccess() {
                 </Box>
                 <Stack sx={{ alignItems: 'center', justifyContent: 'center', gap: 1 }}>
                   <Typography variant={downMD ? 'h4' : 'h3'} sx={{ color: 'secondary.main', fontFamily: 'Comic Sans MS' }}>
-                    Congratulation V8,
+                    Félicitations,
                   </Typography>
                   <Typography variant={downMD ? 'h4' : 'h3'} sx={{ color: 'secondary.main', fontFamily: 'Comic Sans MS' }}>
-                    Registration almost done
+                    L&apos;inscription est presque terminée
                   </Typography>
                   <Typography variant="body1" sx={{ color: 'secondary.main', textAlign: 'center', mt: 1 }}>
-                    Please open our emal and click &quot;Create Password V10&quot; to continue.
+                    Ouvrez notre e-mail et cliquez sur « Créer le mot de passe » pour continuer.
                   </Typography>
                 </Stack>
                 <Box sx={{ width: 1, display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -67,7 +67,7 @@ export default function RegistrationSuccess() {
                       variant="contained"
                       onClick={handleClose}
                     >
-                      Close
+                      Fermer
                     </Button>
                   </AnimateButton>
                 </Box>

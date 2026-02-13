@@ -38,7 +38,7 @@ export default function PhoneVerificationFailure() {
                 </Box>
                 <Stack sx={{ alignItems: 'center', justifyContent: 'center', gap: 1 }}>
                   <Typography variant={downMD ? 'h4' : 'h3'} sx={{ color: 'error.main', fontFamily: 'Comic Sans MS', textAlign: 'center' }}>
-                    The phone verification code is incorrect. Please try register again.
+                    Le code de vérification téléphone est incorrect. Veuillez réessayer l&apos;inscription.
                   </Typography>
                 </Stack>
                 <Box sx={{ width: 1, display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -50,7 +50,7 @@ export default function PhoneVerificationFailure() {
                       variant="contained"
                       onClick={handleClose}
                     >
-                      Close
+                      Fermer
                     </Button>
                   </AnimateButton>
                 </Box>

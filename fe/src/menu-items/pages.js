@@ -38,7 +38,7 @@ const pages = {
     // },
     {
       id: 'util-vetself',
-      title: 'My Vetting Info',
+      title: 'Mes infos de vérification',
       type: 'item',
       url: '/verifyself',
       icon: icons.IconTypography,
@@ -51,7 +51,7 @@ const pages = {
     },
     {
       id: 'util-requests-about-me',
-      title: 'Others Request About Me',
+      title: 'Demandes reçues à mon sujet',
       type: 'item',
       url: '/dashboard/request-about-me',
       icon: icons.IconTypography,
@@ -64,7 +64,7 @@ const pages = {
     },
     {
       id: 'util-requests-sent',
-      title: "Request I've Sent",
+      title: "Demandes que j'ai envoyées",
       type: 'item',
       url: '/dashboard/request-ive-sent',
       icon: icons.IconTypography,

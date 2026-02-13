@@ -56,13 +56,13 @@ export default function InterestedSingles() {
 
   return (
     <MainCard
-      title={<Typography sx={{ fontFamily: 'Comic Sans MS', fontSize: '1.5rem' }}>Interested Singles</Typography>}
+      title={<Typography sx={{ fontFamily: 'Comic Sans MS', fontSize: '1.5rem' }}>Célibataires intéressé(e)s</Typography>}
       secondary={
         <OutlinedInput
           id="input-search-cards"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search"
+          placeholder="Rechercher"
           startAdornment={
             <InputAdornment position="start">
               <IconSearch stroke={1.5} size="16px" />
@@ -84,7 +84,7 @@ export default function InterestedSingles() {
           }
         }}
       >
-        When you Mark Interested someone, you then can visit the "Interested" page and request vetted information to learn more about them.
+        Quand vous marquez quelqu&apos;un comme intéressant(e), vous pouvez ensuite aller sur la page « Intéressé(e)s » et demander des informations vérifiées pour en savoir plus.
       </Alert>
 
       {/* Singles Discovery Search Block */}
@@ -103,7 +103,7 @@ export default function InterestedSingles() {
             fontWeight: 600
           }}
         >
-          Singles Discovery
+          Découverte des célibataires
         </Typography>
 
         <Grid container spacing={3}>
@@ -122,7 +122,7 @@ export default function InterestedSingles() {
             >
               <Box>
                 <Typography variant="body2" color="text.secondary">
-                  My current location
+                  Ma position actuelle
                 </Typography>
                 <Typography variant="h6" sx={{ color: 'text.primary', mt: 0.5 }}>
                   {location}
@@ -137,7 +137,7 @@ export default function InterestedSingles() {
             <Box>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
                 <Typography variant="body2" color="text.secondary">
-                  Maximum distance
+                  Distance maximale
                 </Typography>
                 <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 600 }}>
                   {maxDistance} km
@@ -179,7 +179,7 @@ export default function InterestedSingles() {
             >
               <Box>
                 <Typography variant="body2" color="text.secondary">
-                  Show me
+                  Afficher
                 </Typography>
                 <Typography variant="h6" sx={{ color: 'text.primary', mt: 0.5 }}>
                   {gender}
@@ -194,7 +194,7 @@ export default function InterestedSingles() {
             <Box>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
                 <Typography variant="body2" color="text.secondary">
-                  Age range
+                  Tranche d&apos;âge
                 </Typography>
                 <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 600 }}>
                   {ageRange[0]}-{ageRange[1]}
@@ -232,7 +232,7 @@ export default function InterestedSingles() {
 
       {interestedSinglesError && (
         <Alert severity="error" sx={{ mb: 2 }}>
-          Failed to load singles. Please try again later.
+          Échec du chargement des célibataires. Veuillez réessayer plus tard.
         </Alert>
       )}
 
@@ -287,13 +287,13 @@ export default function InterestedSingles() {
                           fontWeight: 500
                         }}
                       >
-                        Member {displayId}
+                        Membre {displayId}
                       </Typography>
                       {personIndex_DDDDDDD?.vetted_status === true && (
                         <Box
                           component="img"
                           src={VettedCheck}
-                          alt="Vetted"
+                          alt="Vérifié"
                           sx={{
                             width: 24,
                             height: 24,
@@ -320,7 +320,7 @@ export default function InterestedSingles() {
                       color="primary"
                       onClick={() => handleMarkInterested(singlesId)}
                     >
-                      Request Vetted Information
+                      Demander les informations vérifiées
                     </Button>
                   </CardActions>
                 </Card>

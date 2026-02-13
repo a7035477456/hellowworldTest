@@ -38,7 +38,7 @@ export default function AuthRegister() {
       navigate('/pages/registrationEmailed', { state: { email } });
     } catch (err) {
       console.error('Registration error:', err);
-      setError(err.message || 'Failed to register. Please try again.');
+      setError(err.message || 'Inscription échouée. Veuillez réessayer.');
       setIsSubmitting(false);
     }
   };
@@ -50,7 +50,7 @@ export default function AuthRegister() {
       </Stack> */}
 
       <CustomFormControl fullWidth>
-        <InputLabel htmlFor="outlined-adornment-email-register">Email Address</InputLabel>
+        <InputLabel htmlFor="outlined-adornment-email-register">Adresse e-mail</InputLabel>
         <OutlinedInput 
           id="outlined-adornment-email-register" 
           type="email" 
@@ -65,9 +65,9 @@ export default function AuthRegister() {
         control={<Checkbox checked={checked} onChange={(event) => setChecked(event.target.checked)} name="checked" color="primary" />}
         label={
           <Typography variant="subtitle1">
-            Agree with &nbsp;
+            J&apos;accepte les &nbsp;
             <Typography variant="subtitle1" component={Link} to="#">
-              Terms & Condition.
+              Conditions générales.
             </Typography>
           </Typography>
         }
@@ -90,7 +90,7 @@ export default function AuthRegister() {
             color="secondary"
             disabled={isSubmitting}
           >
-            {isSubmitting ? 'Sending...' : 'Sign up V7'}
+            {isSubmitting ? 'Envoi en cours…' : 'S&apos;inscrire'}
           </Button>
         </AnimateButton>
       </Box>

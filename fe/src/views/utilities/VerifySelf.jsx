@@ -42,63 +42,63 @@ import { IconX, IconCheck, IconPhone, IconHeart } from '@tabler/icons-react';
 const initialFields = [
   {
     id: 1,
-    field: 'Age',
+    field: 'Âge',
     requestVetted: true,
-    vetStatus: 'Vetted',
+    vetStatus: 'Vérifié',
     comment: '',
     resetChecked: false,
     vettedResult: '56'
   },
   {
     id: 2,
-    field: 'Current city',
+    field: 'Ville actuelle',
     requestVetted: true,
-    vetStatus: 'Vetted',
-    comment: 'Vetted: Annandale, VA',
+    vetStatus: 'Vérifié',
+    comment: 'Vérifié : Annandale, VA',
     resetChecked: false,
     vettedResult: 'Annandale, VA'
   },
   {
     id: 3,
-    field: 'Education',
+    field: 'Formation',
     requestVetted: true,
-    vetStatus: 'Vetted',
-    comment: 'Vetted: Software Engineer',
+    vetStatus: 'Vérifié',
+    comment: 'Vérifié : Ingénieur logiciel',
     resetChecked: false,
     vettedResult: 'Software Engineer'
   },
   {
     id: 4,
-    field: 'Career',
+    field: 'Carrière',
     requestVetted: true,
-    vetStatus: 'Scheduled',
+    vetStatus: 'Planifié',
     comment: '',
     resetChecked: false,
     vettedResult: ''
   },
   {
     id: 5,
-    field: 'Children',
+    field: 'Enfants',
     requestVetted: true,
-    vetStatus: 'In Process',
+    vetStatus: 'En cours',
     comment: '',
     resetChecked: false,
     vettedResult: ''
   },
   {
     id: 6,
-    field: 'Home City',
+    field: 'Ville d\'origine',
     requestVetted: false,
-    vetStatus: 'New',
+    vetStatus: 'Nouveau',
     comment: '',
     resetChecked: false,
     vettedResult: ''
   },
   {
     id: 7,
-    field: 'Country of Birth',
+    field: 'Pays de naissance',
     requestVetted: true,
-    vetStatus: 'Added',
+    vetStatus: 'Ajouté',
     comment: '',
     resetChecked: false,
     vettedResult: ''
@@ -107,34 +107,34 @@ const initialFields = [
     id: 8,
     field: 'Religion',
     requestVetted: true,
-    vetStatus: 'New',
+    vetStatus: 'Nouveau',
     comment: '',
     resetChecked: false,
     vettedResult: ''
   },
   {
     id: 9,
-    field: 'Hobbies',
+    field: 'Loisirs',
     requestVetted: true,
-    vetStatus: 'Vetted',
-    comment: 'Completed. Tennis, Cruise',
+    vetStatus: 'Vérifié',
+    comment: 'Terminé. Tennis, Croisière',
     resetChecked: false,
     vettedResult: 'Tennis, Cruise'
   },
   {
     id: 10,
-    field: 'Top 3 TV Shows',
+    field: 'Top 3 séries',
     requestVetted: true,
-    vetStatus: 'Vetted',
+    vetStatus: 'Vérifié',
     comment: 'AGT, Hawaii Life, Mr Beast',
     resetChecked: false,
     vettedResult: 'AGT, Hawaii Life, Mr Beast'
   },
   {
     id: 11,
-    field: 'Top 3 Favortie Movies',
+    field: 'Top 3 films préférés',
     requestVetted: true,
-    vetStatus: 'Vetted',
+    vetStatus: 'Vérifié',
     comment: 'Aliens, Predator',
     resetChecked: false,
     vettedResult: 'Aliens, Predator'
@@ -183,9 +183,9 @@ export default function VerifySelf() {
     );
   };
 
-  // Determine if reset checkbox should be enabled (only for Vetted status)
+  // Determine if reset checkbox should be enabled (only for Vérifié status)
   const isResetEnabled = (vetStatus) => {
-    return vetStatus === 'Vetted';
+    return vetStatus === 'Vérifié';
   };
 
   const handleOpenDialog = () => {
@@ -293,16 +293,16 @@ export default function VerifySelf() {
 
   return (
     <>
-      <MainCard title={<Typography sx={{ fontFamily: 'Comic Sans MS', fontSize: '1.5rem' }}>Verify Your Information</Typography>}>
+      <MainCard title={<Typography sx={{ fontFamily: 'Comic Sans MS', fontSize: '1.5rem' }}>Vérifier vos informations</Typography>}>
         <Grid container spacing={gridSpacing}>
           <Grid size={12}>
             <Alert severity="info" sx={{ mb: 2 }}>
-              Request verification to earn trusted badges on your Vetted Singles profile
+              Demandez une vérification pour obtenir des badges de confiance sur votre profil Célibataires vérifiés
             </Alert>
           </Grid>
           <Grid size={12}>
             <Typography variant="h3" gutterBottom>
-              Important:{' '}
+              Important :{' '}
               <Link
                 component="button"
                 variant="h3"
@@ -316,9 +316,9 @@ export default function VerifySelf() {
                   }
                 }}
               >
-                Click here for instructions on how to use this page.
+                Cliquez ici pour les instructions d&apos;utilisation de cette page.
               </Link>
-              {' '}Verification Status: 'New{'>'}Added{'>'}Scheduled{'>'}In Process{'>'}Vetted'
+              {' '}Statut de vérification : « Nouveau » → « Ajouté » → « Planifié » → « En cours » → « Vérifié »
             </Typography>
           </Grid>
           <Grid size={12}>
@@ -326,10 +326,10 @@ export default function VerifySelf() {
               <Table>
                 <TableHead>
                   <TableRow>
-                    <TableCell sx={{ fontWeight: 600 }}>Fields Information</TableCell>
-                    <TableCell sx={{ fontWeight: 600 }}>Verification Status</TableCell>
-                    <TableCell sx={{ fontWeight: 600 }}>Reset</TableCell>
-                    <TableCell sx={{ fontWeight: 600 }}>Vetted Result</TableCell>
+                    <TableCell sx={{ fontWeight: 600 }}>Informations des champs</TableCell>
+                    <TableCell sx={{ fontWeight: 600 }}>Statut de vérification</TableCell>
+                    <TableCell sx={{ fontWeight: 600 }}>Réinitialiser</TableCell>
+                    <TableCell sx={{ fontWeight: 600 }}>Résultat vérifié</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -400,7 +400,7 @@ export default function VerifySelf() {
                   size="large"
                   onClick={() => console.log('Add clicked')}
                 >
-                  Add
+                  Ajouter
                 </Button>
                 <Button 
                   variant="contained" 
@@ -408,17 +408,17 @@ export default function VerifySelf() {
                   size="large"
                   onClick={handleOpenAppointmentDialog}
                 >
-                  Schedule
+                  Planifier
                 </Button>
               </Box>
               
               {/* Right side buttons */}
               <Box sx={{ display: 'flex', gap: 2 }}>
                 <Button variant="contained" color="primary" onClick={() => console.log('Save clicked')}>
-                  Save
+                  Enregistrer
                 </Button>
                 <Button variant="outlined" color="secondary" onClick={() => console.log('Exit wo Save clicked')}>
-                  Exit wo Save
+                  Quitter sans enregistrer
                 </Button>
               </Box>
             </Box>
@@ -433,7 +433,7 @@ export default function VerifySelf() {
                 onClick={() => console.log('Reset clicked')}
                 sx={{ ml: 0 }}
               >
-                Reset
+                Réinitialiser
               </Button>
             </Box>
           </Grid>
@@ -452,10 +452,10 @@ export default function VerifySelf() {
         <DialogTitle>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <Typography variant="h3" sx={{ fontWeight: 600 }}>
-              Vetted Singles APPOINTMENT FORM
+              Formulaire de rendez-vous – Célibataires vérifiés
             </Typography>
             <IconButton
-              aria-label="close"
+              aria-label="fermer"
               onClick={handleCloseAppointmentDialog}
               sx={{
                 color: (theme) => theme.palette.grey[500]
@@ -468,12 +468,12 @@ export default function VerifySelf() {
         <DialogContent>
           <Stack spacing={3}>
             <DialogContentText>
-              Please select a date and time for your Zoom call with our verification agent. During the call, we'll review and verify the information you've chosen. Kindly have the required documents ready at your scheduled time.
+              Veuillez choisir une date et une heure pour votre appel Zoom avec notre agent de vérification. Pendant l&apos;appel, nous examinerons et vérifierons les informations que vous avez choisies. Ayez les documents requis à portée de main à l&apos;heure prévue.
             </DialogContentText>
 
             <TextField
               fullWidth
-              label="Your user id"
+              label="Votre identifiant utilisateur"
               value={appointmentData.userId}
               onChange={handleAppointmentDataChange('userId')}
               variant="outlined"
@@ -481,7 +481,7 @@ export default function VerifySelf() {
 
             <TextField
               fullWidth
-              label="Your email"
+              label="Votre e-mail"
               type="email"
               value={appointmentData.email}
               onChange={handleAppointmentDataChange('email')}
@@ -490,7 +490,7 @@ export default function VerifySelf() {
 
             <Box>
               <Typography variant="h5" gutterBottom sx={{ mb: 2 }}>
-                Select Date
+                Choisir la date
               </Typography>
               <TextField
                 fullWidth
@@ -503,13 +503,13 @@ export default function VerifySelf() {
                 sx={{ mb: 2 }}
               />
               <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                Available dates are highlighted in yellow. Unavailable dates are shown in gray.
+                Les dates disponibles sont surlignées en jaune. Les dates indisponibles sont en gris.
               </Typography>
             </Box>
 
             <Box>
               <Typography variant="h5" gutterBottom sx={{ mb: 2 }}>
-                Select Time
+                Choisir l&apos;heure
               </Typography>
               <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.5 }}>
                 {['09:00', '10:00', '11:00', '12:00', '14:00', '15:00', '16:00', '17:00'].map((time) => (
@@ -552,7 +552,7 @@ export default function VerifySelf() {
                   }
                 }}
               >
-                Submit
+                Envoyer
               </Button>
             </Box>
           </Stack>
@@ -570,9 +570,9 @@ export default function VerifySelf() {
       >
         <DialogTitle>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <Typography variant="h3">How Verification Works</Typography>
+            <Typography variant="h3">Comment fonctionne la vérification</Typography>
             <IconButton
-              aria-label="close"
+              aria-label="fermer"
               onClick={handleCloseDialog}
               sx={{
                 color: (theme) => theme.palette.grey[500]
@@ -589,77 +589,77 @@ export default function VerifySelf() {
                 How Verification Works
               </Typography>
               <DialogContentText>
-                You choose which details you want to verify. Once verified, these details will show as "Vetted" on your profile.
+                Vous choisissez les informations que vous souhaitez faire vérifier. Une fois vérifiées, elles apparaîtront comme « Vérifié » sur votre profil.
               </DialogContentText>
             </Box>
 
             <Box>
               <Typography variant="h4" gutterBottom>
-                Why Get Verified?
+                Pourquoi se faire vérifier ?
               </Typography>
               <DialogContentText>
-                When you verify your details, you can request the same information from other singles. The more details you verify, the more information you can request from others.
+                Lorsque vous faites vérifier vos informations, vous pouvez demander les mêmes informations à d&apos;autres célibataires. Plus vous en faites vérifier, plus vous pouvez en demander aux autres.
               </DialogContentText>
             </Box>
 
             <Box>
               <Typography variant="h4" gutterBottom>
-                How Requests Work
+                Comment fonctionnent les demandes
               </Typography>
               <DialogContentText component="div">
                 <Typography variant="body1" paragraph>
-                  When you want to request information from someone:
+                  Lorsque vous voulez demander des informations à quelqu&apos;un :
                 </Typography>
                 <Box component="ol" sx={{ pl: 3, mb: 2 }}>
                   <li>
-                    <Typography variant="body1">Send a request to the person of interest (POI).</Typography>
+                    <Typography variant="body1">Envoyez une demande à la personne concernée.</Typography>
                   </li>
                   <li>
-                    <Typography variant="body1">The POI decides whether to approve your request.</Typography>
+                    <Typography variant="body1">La personne décide d&apos;accepter ou non votre demande.</Typography>
                   </li>
                   <li>
-                    <Typography variant="body1">If approved, the information is verified.</Typography>
+                    <Typography variant="body1">Si elle est acceptée, l&apos;information est vérifiée.</Typography>
                   </li>
                   <li>
-                    <Typography variant="body1">Once verified, it appears under "Requested Info from Others."</Typography>
+                    <Typography variant="body1">Une fois vérifiée, elle apparaît sous « Infos demandées à d&apos;autres ».</Typography>
                   </li>
                 </Box>
                 <Typography variant="body1">
-                  You have full control over what details you want to reveal and what information you want to request from others.
+                  Vous gardez le contrôle total sur les informations que vous souhaitez révéler et celles que vous demandez aux autres.
                 </Typography>
               </DialogContentText>
             </Box>
 
             <Box>
               <Typography variant="h4" gutterBottom>
-                Example
+                Exemple
               </Typography>
               <DialogContentText>
-                If you verify your age and home city, you can then request the age and home city of other singles. If you later verify your education or job, you can request those details as well.
+                Si vous faites vérifier votre âge et votre ville, vous pourrez ensuite demander l&apos;âge et la ville des autres célibataires. Si vous faites plus tard vérifier votre formation ou votre métier, vous pourrez aussi demander ces informations.
               </DialogContentText>
             </Box>
 
             <Box>
               <Typography variant="h4" gutterBottom>
-                Why This Helps
+                Pourquoi c&apos;est utile
               </Typography>
               <DialogContentText component="div">
                 <Box component="ul" sx={{ pl: 3, mb: 2 }}>
                   <li>
-                    <Typography variant="body1">Makes sharing less awkward</Typography>
+                    <Typography variant="body1">Rend le partage moins gênant</Typography>
                   </li>
                   <li>
-                    <Typography variant="body1">Keeps things polite and respectful</Typography>
+                    <Typography variant="body1">Garde les échanges polis et respectueux</Typography>
                   </li>
                   <li>
-                    <Typography variant="body1">Adds trust and accuracy</Typography>
+                    <Typography variant="body1">Renforce la confiance et l&apos;exactitude</Typography>
                   </li>
                   <li>
-                    <Typography variant="body1">Helps avoid surprises</Typography>
+                    <Typography variant="body1">Aide à éviter les mauvaises surprises</Typography>
                   </li>
                 </Box>
                 <Typography variant="body1">
-                  Verification is handled by the platform with permission, instead of direct user requests.
+                  La vérification est gérée par la plateforme avec votre autorisation, et non par des demandes directes entre utilisateurs.
                 </Typography>
               </DialogContentText>
             </Box>
@@ -694,11 +694,11 @@ export default function VerifySelf() {
                 }} 
               />
               <Typography variant="h3" sx={{ fontWeight: 600 }}>
-                Vetted Singles Checkout
+                Paiement – Célibataires vérifiés
               </Typography>
             </Box>
             <IconButton
-              aria-label="close"
+              aria-label="fermer"
               onClick={handleCloseVerificationDialog}
               sx={{
                 color: (theme) => theme.palette.grey[500]
@@ -714,20 +714,20 @@ export default function VerifySelf() {
             <Grid size={12}>
               {/* Verification Header */}
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 3 }}>
-                <Typography variant="h4">Get Verification</Typography>
+                <Typography variant="h4">Obtenir une vérification</Typography>
               </Box>
 
               {/* Total verification tokens balance */}
               <Box sx={{ mb: 3 }}>
                 <Typography variant="body1">
-                  Total verification tokens balance: 0
+                  Solde total de jetons de vérification : 0
                 </Typography>
               </Box>
 
               {/* Choose your verification bundle */}
               <Box sx={{ mb: 4 }}>
                 <Typography variant="h5" gutterBottom>
-                  Choose your verification bundle
+                  Choisissez votre forfait de vérification
                 </Typography>
                 <FormControl component="fieldset" fullWidth>
                   <RadioGroup
@@ -739,7 +739,7 @@ export default function VerifySelf() {
                       control={<Radio />}
                       label={
                         <Box>
-                          <Typography variant="body1">10 verifications tokens</Typography>
+                          <Typography variant="body1">10 jetons de vérification</Typography>
                           <Typography variant="body2" color="text.secondary">
                             Total of ${getPackagePrice('10')}
                           </Typography>
@@ -752,7 +752,7 @@ export default function VerifySelf() {
                       control={<Radio />}
                       label={
                         <Box>
-                          <Typography variant="body1">5 verifications tokens</Typography>
+                          <Typography variant="body1">5 jetons de vérification</Typography>
                           <Typography variant="body2" color="text.secondary">
                             Total of ${getPackagePrice('5')}
                           </Typography>
@@ -765,7 +765,7 @@ export default function VerifySelf() {
                       control={<Radio />}
                       label={
                         <Box>
-                          <Typography variant="body1">2 verifications tokens</Typography>
+                          <Typography variant="body1">2 jetons de vérification</Typography>
                           <Typography variant="body2" color="text.secondary">
                             Total of ${getPackagePrice('2')}
                           </Typography>
@@ -781,7 +781,7 @@ export default function VerifySelf() {
               {/* Pay with Section */}
               <Box>
                 <Typography variant="h5" gutterBottom>
-                  Pay with
+                  Payer avec
                 </Typography>
                 <FormControl component="fieldset" fullWidth>
                   <RadioGroup
@@ -869,7 +869,7 @@ export default function VerifySelf() {
                             flex: 1
                           }}
                         >
-                          <Typography variant="body1">Add new card</Typography>
+                          <Typography variant="body1">Ajouter une nouvelle carte</Typography>
                           <Box sx={{ display: 'flex', gap: 1, ml: 'auto' }}>
                             <Box
                               sx={{
@@ -1092,7 +1092,7 @@ export default function VerifySelf() {
                             </Typography>
                           </Box>
                           <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.75rem', mt: 0.5 }}>
-                            No Interest if paid in full in 6 months. Apply now.{' '}
+                            Sans intérêt si payé en totalité sous 6 mois. Postuler maintenant.{' '}
                             <Link
                               href="#"
                               onClick={(e) => {
@@ -1105,7 +1105,7 @@ export default function VerifySelf() {
                                 color: 'primary.main'
                               }}
                             >
-                              See terms
+                              Voir les conditions
                             </Link>
                           </Typography>
                         </Box>
@@ -1121,11 +1121,11 @@ export default function VerifySelf() {
               {/* Order Summary */}
               <Box sx={{ mb: 3 }}>
                 <Typography variant="h3" gutterBottom sx={{ fontWeight: 700, mb: 2, fontSize: '1.75rem' }}>
-                  Order Summary
+                  Récapitulatif de commande
                 </Typography>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
                   <Typography variant="h5" sx={{ fontWeight: 700, fontSize: '1.5rem' }}>
-                    Order total
+                    Total de la commande
                   </Typography>
                   <Typography variant="h5" sx={{ fontWeight: 700, fontSize: '1.5rem' }}>
                     ${calculateOrderTotal()}
@@ -1137,7 +1137,7 @@ export default function VerifySelf() {
 
               {/* Legal Text */}
               <Typography variant="body2" color="text.secondary" sx={{ mb: 3, fontSize: '0.75rem' }}>
-                By clicking Confirm and pay you agree{' '}
+                En cliquant sur Confirmer et payer, vous acceptez les{' '}
                 <Link
                   href="#"
                   onClick={(e) => {
@@ -1150,9 +1150,9 @@ export default function VerifySelf() {
                     color: 'primary.main'
                   }}
                 >
-                  Vsingles User Agreement
+                  Conditions d&apos;utilisation Vsingles
                 </Link>
-                {' '}and acknowledge our{' '}
+                {' '}et reconnaissez notre{' '}
                 <Link
                   href="#"
                   onClick={(e) => {
@@ -1165,7 +1165,7 @@ export default function VerifySelf() {
                     color: 'primary.main'
                   }}
                 >
-                  Privacy Notice
+                  Notice de confidentialité
                 </Link>
                 .
               </Typography>
@@ -1193,7 +1193,7 @@ export default function VerifySelf() {
                     }
                   }}
                 >
-                  Confirm and pay
+                  Confirmer et payer
                 </Button>
                 <Button
                   variant="outlined"
@@ -1209,7 +1209,7 @@ export default function VerifySelf() {
                     maxWidth: '300px'
                   }}
                 >
-                  Cancel
+                  Annuler
                 </Button>
               </Box>
 
@@ -1217,7 +1217,7 @@ export default function VerifySelf() {
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, justifyContent: 'flex-start' }}>
                 <Typography variant="body2" sx={{ fontSize: '0.875rem', display: 'flex', alignItems: 'center', gap: 0.5 }}>
                   <Box component="span" sx={{ fontSize: '1rem', fontWeight: 600 }}>$</Box>
-                  Purchase protected by{' '}
+                  Achat protégé par la{' '}
                   <Link
                     href="#"
                     onClick={(e) => {
@@ -1231,7 +1231,7 @@ export default function VerifySelf() {
                       fontWeight: 600
                     }}
                   >
-                    Vsingles Money Back Guarantee
+                    Garantie de remboursement Vsingles
                   </Link>
                 </Typography>
               </Box>
@@ -1252,10 +1252,10 @@ export default function VerifySelf() {
         <DialogTitle>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <Typography variant="h3" sx={{ fontWeight: 600 }}>
-              Vetting Appointment Confirmed
+              Rendez-vous de vérification confirmé
             </Typography>
             <IconButton
-              aria-label="close"
+              aria-label="fermer"
               onClick={handleCloseConfirmationDialog}
               sx={{
                 color: (theme) => theme.palette.grey[500]
@@ -1277,7 +1277,7 @@ export default function VerifySelf() {
             </Box>
             
             <DialogContentText>
-              Please refer to your email for the Zoom meeting link and the required documents. Original documents are not retained. Verification is completed during the Zoom call, and only limited verification details are recorded.
+              Consultez votre e-mail pour le lien de la réunion Zoom et la liste des documents requis. Les documents originaux ne sont pas conservés. La vérification est effectuée pendant l&apos;appel Zoom, et seuls des éléments limités sont enregistrés.
             </DialogContentText>
 
             <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>

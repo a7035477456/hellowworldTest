@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <Stack direction="row" sx={{ alignItems: 'center', justifyContent: 'space-between', pt: 3, mt: 'auto' }}>
       <Typography variant="caption">
-        &copy; All rights reserved{' '}
+        &copy; Tous droits réservés{' '}
         <Typography component={Link} href="https://vsingles.club" underline="hover" target="_blank" sx={{ color: 'secondary.main' }}>
           CodedThemes
         </Typography>

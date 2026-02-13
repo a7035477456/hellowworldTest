@@ -26,23 +26,23 @@ export default function AuthFooter() {
     <Stack spacing={2} sx={{ alignItems: 'center', textAlign: 'center' }}>
       <Stack direction="row" spacing={1} alignItems="center" justifyContent="center" flexWrap="wrap" useFlexGap>
         <Typography component={RouterLink} to="/pages/aboutUs" variant="subtitle2" sx={{ color: 'text.secondary', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
-          About us
+          À propos
         </Typography>
         <Typography variant="subtitle2" color="text.secondary">|</Typography>
         <Typography component={RouterLink} to="/pages/termsAndConditions" variant="subtitle2" sx={{ color: 'text.secondary', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
-          Terms &amp; Conditions
+          Conditions générales
         </Typography>
         <Typography variant="subtitle2" color="text.secondary">|</Typography>
         <Typography component={RouterLink} to="/pages/privacyPolicy" variant="subtitle2" sx={{ color: 'text.secondary', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
-          Privacy Policy
+          Politique de confidentialité
         </Typography>
       </Stack>
       <Divider sx={{ width: '100%', maxWidth: 360 }} />
       <Typography variant="h6" sx={{ fontWeight: 700 }}>
-        Vetted Singles
+        Célibataires vérifiés
       </Typography>
       <Typography variant="subtitle2" color="text.secondary">
-        © 2000-2026 vsingles.club, Inc. - Made with ❤️ in Los Angeles
+        © 2000-2026 vsingles.club, Inc. – Fait avec ❤️ à Los Angeles
       </Typography>
       {internalIp && (
         <Box sx={{ alignSelf: 'flex-start', mt: 1 }}>

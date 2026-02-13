@@ -42,7 +42,7 @@ export default function AuthCreatePassword() {
 
   useEffect(() => {
     if (!token || !email) {
-      setError('Invalid or expired link. Please use the link from your registration email.');
+      setError('Lien invalide ou expiré. Utilisez le lien envoyé dans l\'e-mail d\'inscription.');
     }
   }, [token, email]);
 
@@ -83,34 +83,34 @@ export default function AuthCreatePassword() {
     
     // Validation
     if (!token || !email) {
-      setError('Invalid or expired link. Please use the link from your registration email.');
+      setError('Lien invalide ou expiré. Utilisez le lien envoyé dans l\'e-mail d\'inscription.');
       return;
     }
     
     if (!password) {
-      setError('Password is required.');
+      setError('Le mot de passe est requis.');
       return;
     }
     
     if (password !== confirmPassword) {
-      setError('Passwords do not match.');
+      setError('Les mots de passe ne correspondent pas.');
       return;
     }
     
     if (password.length < 6) {
-      setError('Password must be at least 6 characters long.');
+      setError('Le mot de passe doit contenir au moins 6 caractères.');
       return;
     }
     
     if (!phone) {
-      setError('Phone number is required.');
+      setError('Le numéro de téléphone est requis.');
       return;
     }
     
     // Validate phone format (should be (XXX) XXX-XXXX)
     const phoneDigits = phone.replace(/\D/g, '');
     if (phoneDigits.length !== 10) {
-      setError('Please enter a valid 10-digit phone number.');
+      setError('Veuillez entrer un numéro de téléphone valide à 10 chiffres.');
       return;
     }
     
@@ -124,7 +124,7 @@ export default function AuthCreatePassword() {
       navigate(`/pages/phoneVerification?email=${encodeURIComponent(email)}&phone=${encodeURIComponent(phone)}`);
     } catch (err) {
       console.error('Create password error:', err);
-      setError(err.message || 'Failed to create password. Please try again.');
+      setError(err.message || 'Échec de la création du mot de passe. Veuillez réessayer.');
       setIsSubmitting(false);
     }
   };
@@ -139,7 +139,7 @@ export default function AuthCreatePassword() {
       </Stack>
 
       <CustomFormControl fullWidth>
-        <InputLabel htmlFor="outlined-adornment-password-create">Password</InputLabel>
+        <InputLabel htmlFor="outlined-adornment-password-create">Mot de passe</InputLabel>
         <OutlinedInput 
           id="outlined-adornment-password-create" 
           type={showPassword ? 'text' : 'password'}
@@ -150,7 +150,7 @@ export default function AuthCreatePassword() {
           endAdornment={
             <InputAdornment position="end">
               <IconButton
-                aria-label="toggle password visibility"
+                aria-label="afficher ou masquer le mot de passe"
                 onClick={handleClickShowPassword}
                 onMouseDown={handleMouseDownPassword}
                 edge="end"
@@ -160,12 +160,12 @@ export default function AuthCreatePassword() {
               </IconButton>
             </InputAdornment>
           }
-          label="Password"
+          label="Mot de passe"
         />
       </CustomFormControl>
 
       <CustomFormControl fullWidth>
-        <InputLabel htmlFor="outlined-adornment-password-confirm">Confirm Password</InputLabel>
+        <InputLabel htmlFor="outlined-adornment-password-confirm">Confirmer le mot de passe</InputLabel>
         <OutlinedInput 
           id="outlined-adornment-password-confirm" 
           type={showConfirmPassword ? 'text' : 'password'}
@@ -176,7 +176,7 @@ export default function AuthCreatePassword() {
           endAdornment={
             <InputAdornment position="end">
               <IconButton
-                aria-label="toggle password visibility"
+                aria-label="afficher ou masquer le mot de passe"
                 onClick={handleClickShowConfirmPassword}
                 onMouseDown={handleMouseDownPassword}
                 edge="end"
@@ -186,12 +186,12 @@ export default function AuthCreatePassword() {
               </IconButton>
             </InputAdornment>
           }
-          label="Confirm Password"
+          label="Confirmer le mot de passe"
         />
       </CustomFormControl>
 
       <CustomFormControl fullWidth>
-        <InputLabel htmlFor="outlined-adornment-phone">Phone Number</InputLabel>
+        <InputLabel htmlFor="outlined-adornment-phone">Numéro de téléphone</InputLabel>
         <OutlinedInput 
           id="outlined-adornment-phone" 
           type="tel"
@@ -202,7 +202,7 @@ export default function AuthCreatePassword() {
           required
         />
         <Typography variant="caption" sx={{ mt: 0.5, color: 'text.secondary' }}>
-          Please enter a valid phone number.
+          Veuillez entrer un numéro de téléphone valide.
         </Typography>
       </CustomFormControl>
 
@@ -210,9 +210,9 @@ export default function AuthCreatePassword() {
         control={<Checkbox checked={checked} onChange={(event) => setChecked(event.target.checked)} name="checked" color="primary" />}
         label={
           <Typography variant="subtitle1">
-            Agree with &nbsp;
+            J&apos;accepte les &nbsp;
             <Typography variant="subtitle1" component="span" sx={{ color: 'primary.main' }}>
-              Terms & Condition.
+              Conditions générales.
             </Typography>
           </Typography>
         }
@@ -235,7 +235,7 @@ export default function AuthCreatePassword() {
             color="secondary"
             disabled={isSubmitting || !token || !email}
           >
-            {isSubmitting ? 'Sending...' : 'Create Password V9'}
+            {isSubmitting ? 'Envoi en cours…' : 'Créer le mot de passe'}
           </Button>
         </AnimateButton>
       </Box>
