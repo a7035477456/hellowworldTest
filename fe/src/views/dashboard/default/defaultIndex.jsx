@@ -5,7 +5,7 @@ import MainCard from 'ui-component/cards/MainCard';
 
 export default function DashboardDefault() {
   return (
-    <MainCard title="Dashboard">
+    <MainCard title="Bảng điều khiển">
       {/* Dashboard content */}
     </MainCard>
   );

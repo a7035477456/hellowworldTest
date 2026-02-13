@@ -66,7 +66,7 @@ export default function AllSingles() {
             fontSize: downSM ? '1.125rem' : '1.5rem'
           }}
         >
-          All Singles
+          Tất cả độc thân
         </Typography>
       }
       secondary={
@@ -74,7 +74,7 @@ export default function AllSingles() {
           id="input-search-cards"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search"
+          placeholder="Tìm kiếm"
           startAdornment={
             <InputAdornment position="start">
               <IconSearch stroke={1.5} size="16px" />
@@ -99,7 +99,7 @@ export default function AllSingles() {
           }
         }}
       >
-        When you Mark Interested someone, you then can visit the "Interested" page and request vetted information to learn more about them.
+        Khi bạn đánh dấu Quan tâm ai đó, bạn có thể vào trang &quot;Quan tâm&quot; và yêu cầu thông tin đã xác minh để tìm hiểu thêm về họ.
       </Alert>
 
       {/* Singles Discovery Search Block */}
@@ -120,7 +120,7 @@ export default function AllSingles() {
             fontSize: downSM ? '1rem' : undefined
           }}
         >
-          Singles Discovery
+          Khám phá độc thân
         </Typography>
 
         <Grid container spacing={downSM ? 2 : 3}>
@@ -139,7 +139,7 @@ export default function AllSingles() {
             >
               <Box>
                 <Typography variant="body2" color="text.secondary" sx={downSM ? { fontSize: '0.75rem' } : undefined}>
-                  My current location
+                  Vị trí hiện tại của tôi
                 </Typography>
                 <Typography variant="h6" sx={{ color: 'text.primary', mt: 0.5, ...(downSM && { fontSize: '0.875rem' }) }}>
                   {location}
@@ -154,7 +154,7 @@ export default function AllSingles() {
             <Box>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
                 <Typography variant="body2" color="text.secondary" sx={downSM ? { fontSize: '0.75rem' } : undefined}>
-                  Maximum distance
+                  Khoảng cách tối đa
                 </Typography>
                 <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 600, ...(downSM && { fontSize: '0.75rem' }) }}>
                   {maxDistance} km
@@ -196,10 +196,10 @@ export default function AllSingles() {
             >
               <Box>
                 <Typography variant="body2" color="text.secondary" sx={downSM ? { fontSize: '0.75rem' } : undefined}>
-                  Show me
+                  Hiển thị
                 </Typography>
                 <Typography variant="h6" sx={{ color: 'text.primary', mt: 0.5, ...(downSM && { fontSize: '0.875rem' }) }}>
-                  {gender}
+                  {gender === 'Men' ? 'Nam' : gender === 'Women' ? 'Nữ' : gender}
                 </Typography>
               </Box>
               <IconChevronRight stroke={1.5} size={downSM ? 16 : 20} />
@@ -211,7 +211,7 @@ export default function AllSingles() {
             <Box>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
                 <Typography variant="body2" color="text.secondary" sx={downSM ? { fontSize: '0.75rem' } : undefined}>
-                  Age range
+                  Độ tuổi
                 </Typography>
                 <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 600, ...(downSM && { fontSize: '0.75rem' }) }}>
                   {ageRange[0]}-{ageRange[1]}
@@ -249,7 +249,7 @@ export default function AllSingles() {
       
       {singlesError && (
         <Alert severity="error" sx={{ mb: 2 }}>
-          Failed to load singles. Please try again later.
+          Không tải được danh sách. Vui lòng thử lại sau.
         </Alert>
       )}
       
@@ -281,7 +281,7 @@ export default function AllSingles() {
                   <Box sx={{ display: 'flex', justifyContent: 'center', mb: downSM ? 1 : 2 }}>
                     <Avatar
                       src={personIndex_DDDDDDD.profile_image_url && personIndex_DDDDDDD.profile_image_url !== 'user-round.svg' ? personIndex_DDDDDDD.profile_image_url : UserRound}
-                      alt={`Member ${String(personIndex_DDDDDDD.singles_id).padStart(5, '0')}`}
+                      alt={`Thành viên ${String(personIndex_DDDDDDD.singles_id).padStart(5, '0')}`}
                       sx={{
                         width: downSM ? 56 : 80,
                         height: downSM ? 56 : 80
@@ -298,7 +298,7 @@ export default function AllSingles() {
                       ...(downSM && { fontSize: '1rem' })
                     }}
                   >
-                    Member {String(personIndex_DDDDDDD.singles_id).padStart(5, '0')}
+                    Thành viên {String(personIndex_DDDDDDD.singles_id).padStart(5, '0')}
                   </Typography>
                 </CardContent>
 
@@ -314,7 +314,7 @@ export default function AllSingles() {
                       ...(!downSM && { mr: 1 })
                     }}
                   >
-                    Message
+                    Nhắn tin
                   </Button>
                   <Button
                     fullWidth={!downSM}
@@ -324,7 +324,7 @@ export default function AllSingles() {
                     onClick={() => handleMarkInterested(personIndex_DDDDDDD.singles_id)}
                     sx={downSM ? { minWidth: 0, px: 1, fontSize: '0.7rem' } : undefined}
                   >
-                    Mark Interested
+                    Quan tâm
                   </Button>
                 </CardActions>
               </Card>

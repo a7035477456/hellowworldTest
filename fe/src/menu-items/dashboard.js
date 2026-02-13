@@ -8,18 +8,18 @@ const icons = { IconDashboard, IconUsers };
 
 const dashboard = {
   id: 'dashboard',
-  title: 'Singles',
+  title: 'Độc thân',
   type: 'group',
   children: [
     {
       id: 'vettedSingles',
-      title: 'Singles',
+      title: 'Độc thân',
       type: 'collapse',
       icon: icons.IconUsers,
       children: [
         {
           id: 'allSingles',
-          title: 'All Singles',
+          title: 'Tất cả độc thân',
           type: 'item',
           url: '/dashboard/allSingles',
           breadcrumbs: false,
@@ -31,7 +31,7 @@ const dashboard = {
         },
         {
           id: 'vettedSingles',
-          title: 'Vetted Singles',
+          title: 'Độc thân đã xác minh',
           type: 'item',
           url: '/dashboard/vettedSingles',
           breadcrumbs: false
@@ -40,7 +40,7 @@ const dashboard = {
     },
     {
       id: 'interestedSingles',
-      title: 'Interested',
+      title: 'Quan tâm',
       type: 'item',
       url: '/dashboard/interestedSingles',
       icon: icons.IconUsers,

@@ -56,13 +56,13 @@ export default function InterestedSingles() {
 
   return (
     <MainCard
-      title={<Typography sx={{ fontFamily: 'Comic Sans MS', fontSize: '1.5rem' }}>Interested Singles</Typography>}
+      title={<Typography sx={{ fontFamily: 'Comic Sans MS', fontSize: '1.5rem' }}>Độc thân quan tâm</Typography>}
       secondary={
         <OutlinedInput
           id="input-search-cards"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search"
+          placeholder="Tìm kiếm"
           startAdornment={
             <InputAdornment position="start">
               <IconSearch stroke={1.5} size="16px" />
@@ -84,7 +84,7 @@ export default function InterestedSingles() {
           }
         }}
       >
-        When you Mark Interested someone, you then can visit the "Interested" page and request vetted information to learn more about them.
+        Khi bạn đánh dấu Quan tâm ai đó, bạn có thể vào trang &quot;Quan tâm&quot; và yêu cầu thông tin đã xác minh để tìm hiểu thêm về họ.
       </Alert>
 
       {/* Singles Discovery Search Block */}
@@ -103,7 +103,7 @@ export default function InterestedSingles() {
             fontWeight: 600
           }}
         >
-          Singles Discovery
+          Khám phá độc thân
         </Typography>
 
         <Grid container spacing={3}>
@@ -122,7 +122,7 @@ export default function InterestedSingles() {
             >
               <Box>
                 <Typography variant="body2" color="text.secondary">
-                  My current location
+                  Vị trí hiện tại của tôi
                 </Typography>
                 <Typography variant="h6" sx={{ color: 'text.primary', mt: 0.5 }}>
                   {location}
@@ -137,7 +137,7 @@ export default function InterestedSingles() {
             <Box>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
                 <Typography variant="body2" color="text.secondary">
-                  Maximum distance
+                  Khoảng cách tối đa
                 </Typography>
                 <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 600 }}>
                   {maxDistance} km
@@ -179,10 +179,10 @@ export default function InterestedSingles() {
             >
               <Box>
                 <Typography variant="body2" color="text.secondary">
-                  Show me
+                  Hiển thị
                 </Typography>
                 <Typography variant="h6" sx={{ color: 'text.primary', mt: 0.5 }}>
-                  {gender}
+                  {gender === 'Men' ? 'Nam' : gender === 'Women' ? 'Nữ' : gender}
                 </Typography>
               </Box>
               <IconChevronRight stroke={1.5} size={20} />
@@ -194,7 +194,7 @@ export default function InterestedSingles() {
             <Box>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
                 <Typography variant="body2" color="text.secondary">
-                  Age range
+                  Độ tuổi
                 </Typography>
                 <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 600 }}>
                   {ageRange[0]}-{ageRange[1]}
@@ -232,7 +232,7 @@ export default function InterestedSingles() {
 
       {interestedSinglesError && (
         <Alert severity="error" sx={{ mb: 2 }}>
-          Failed to load singles. Please try again later.
+          Không tải được danh sách. Vui lòng thử lại sau.
         </Alert>
       )}
 
@@ -287,13 +287,13 @@ export default function InterestedSingles() {
                           fontWeight: 500
                         }}
                       >
-                        Member {displayId}
+                        Thành viên {displayId}
                       </Typography>
                       {personIndex_DDDDDDD?.vetted_status === true && (
                         <Box
                           component="img"
                           src={VettedCheck}
-                          alt="Vetted"
+                          alt="Đã xác minh"
                           sx={{
                             width: 24,
                             height: 24,
@@ -320,7 +320,7 @@ export default function InterestedSingles() {
                       color="primary"
                       onClick={() => handleMarkInterested(singlesId)}
                     >
-                      Request Vetted Information
+                      Yêu cầu thông tin đã xác minh
                     </Button>
                   </CardActions>
                 </Card>

@@ -42,7 +42,7 @@ export default function AuthCreatePassword() {
 
   useEffect(() => {
     if (!token || !email) {
-      setError('Invalid or expired link. Please use the link from your registration email.');
+      setError('Liên kết không hợp lệ hoặc đã hết hạn. Vui lòng dùng liên kết trong email đăng ký.');
     }
   }, [token, email]);
 
@@ -83,34 +83,34 @@ export default function AuthCreatePassword() {
     
     // Validation
     if (!token || !email) {
-      setError('Invalid or expired link. Please use the link from your registration email.');
+      setError('Liên kết không hợp lệ hoặc đã hết hạn. Vui lòng dùng liên kết trong email đăng ký.');
       return;
     }
     
     if (!password) {
-      setError('Password is required.');
+      setError('Mật khẩu là bắt buộc.');
       return;
     }
     
     if (password !== confirmPassword) {
-      setError('Passwords do not match.');
+      setError('Mật khẩu không khớp.');
       return;
     }
     
     if (password.length < 6) {
-      setError('Password must be at least 6 characters long.');
+      setError('Mật khẩu phải có ít nhất 6 ký tự.');
       return;
     }
     
     if (!phone) {
-      setError('Phone number is required.');
+      setError('Số điện thoại là bắt buộc.');
       return;
     }
     
     // Validate phone format (should be (XXX) XXX-XXXX)
     const phoneDigits = phone.replace(/\D/g, '');
     if (phoneDigits.length !== 10) {
-      setError('Please enter a valid 10-digit phone number.');
+      setError('Vui lòng nhập số điện thoại 10 chữ số hợp lệ.');
       return;
     }
     
@@ -124,7 +124,7 @@ export default function AuthCreatePassword() {
       navigate(`/pages/phoneVerification?email=${encodeURIComponent(email)}&phone=${encodeURIComponent(phone)}`);
     } catch (err) {
       console.error('Create password error:', err);
-      setError(err.message || 'Failed to create password. Please try again.');
+      setError(err.message || 'Tạo mật khẩu thất bại. Vui lòng thử lại.');
       setIsSubmitting(false);
     }
   };
@@ -139,7 +139,7 @@ export default function AuthCreatePassword() {
       </Stack>
 
       <CustomFormControl fullWidth>
-        <InputLabel htmlFor="outlined-adornment-password-create">Password</InputLabel>
+        <InputLabel htmlFor="outlined-adornment-password-create">Mật khẩu</InputLabel>
         <OutlinedInput 
           id="outlined-adornment-password-create" 
           type={showPassword ? 'text' : 'password'}
@@ -150,7 +150,7 @@ export default function AuthCreatePassword() {
           endAdornment={
             <InputAdornment position="end">
               <IconButton
-                aria-label="toggle password visibility"
+                aria-label="ẩn/hiện mật khẩu"
                 onClick={handleClickShowPassword}
                 onMouseDown={handleMouseDownPassword}
                 edge="end"
@@ -160,12 +160,12 @@ export default function AuthCreatePassword() {
               </IconButton>
             </InputAdornment>
           }
-          label="Password"
+          label="Mật khẩu"
         />
       </CustomFormControl>
 
       <CustomFormControl fullWidth>
-        <InputLabel htmlFor="outlined-adornment-password-confirm">Confirm Password</InputLabel>
+        <InputLabel htmlFor="outlined-adornment-password-confirm">Xác nhận mật khẩu</InputLabel>
         <OutlinedInput 
           id="outlined-adornment-password-confirm" 
           type={showConfirmPassword ? 'text' : 'password'}
@@ -176,7 +176,7 @@ export default function AuthCreatePassword() {
           endAdornment={
             <InputAdornment position="end">
               <IconButton
-                aria-label="toggle password visibility"
+                aria-label="ẩn/hiện mật khẩu"
                 onClick={handleClickShowConfirmPassword}
                 onMouseDown={handleMouseDownPassword}
                 edge="end"
@@ -186,12 +186,12 @@ export default function AuthCreatePassword() {
               </IconButton>
             </InputAdornment>
           }
-          label="Confirm Password"
+          label="Xác nhận mật khẩu"
         />
       </CustomFormControl>
 
       <CustomFormControl fullWidth>
-        <InputLabel htmlFor="outlined-adornment-phone">Phone Number</InputLabel>
+        <InputLabel htmlFor="outlined-adornment-phone">Số điện thoại</InputLabel>
         <OutlinedInput 
           id="outlined-adornment-phone" 
           type="tel"
@@ -202,7 +202,7 @@ export default function AuthCreatePassword() {
           required
         />
         <Typography variant="caption" sx={{ mt: 0.5, color: 'text.secondary' }}>
-          Please enter a valid phone number.
+          Vui lòng nhập số điện thoại hợp lệ.
         </Typography>
       </CustomFormControl>
 
@@ -212,7 +212,7 @@ export default function AuthCreatePassword() {
           <Typography variant="subtitle1">
             Agree with &nbsp;
             <Typography variant="subtitle1" component="span" sx={{ color: 'primary.main' }}>
-              Terms & Condition.
+              Điều khoản &amp; Điều kiện.
             </Typography>
           </Typography>
         }
@@ -235,7 +235,7 @@ export default function AuthCreatePassword() {
             color="secondary"
             disabled={isSubmitting || !token || !email}
           >
-            {isSubmitting ? 'Sending...' : 'Create Password V9'}
+            {isSubmitting ? 'Đang gửi...' : 'Tạo mật khẩu'}
           </Button>
         </AnimateButton>
       </Box>

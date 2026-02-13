@@ -26,20 +26,20 @@ export default function AuthFooter() {
     <Stack spacing={2} sx={{ alignItems: 'center', textAlign: 'center' }}>
       <Stack direction="row" spacing={1} alignItems="center" justifyContent="center" flexWrap="wrap" useFlexGap>
         <Typography component={RouterLink} to="/pages/aboutUs" variant="subtitle2" sx={{ color: 'text.secondary', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
-          About us
+          Về chúng tôi
         </Typography>
         <Typography variant="subtitle2" color="text.secondary">|</Typography>
         <Typography component={RouterLink} to="/pages/termsAndConditions" variant="subtitle2" sx={{ color: 'text.secondary', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
-          Terms &amp; Conditions
+          Điều khoản &amp; Điều kiện
         </Typography>
         <Typography variant="subtitle2" color="text.secondary">|</Typography>
         <Typography component={RouterLink} to="/pages/privacyPolicy" variant="subtitle2" sx={{ color: 'text.secondary', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
-          Privacy Policy
+          Chính sách bảo mật
         </Typography>
       </Stack>
       <Divider sx={{ width: '100%', maxWidth: 360 }} />
       <Typography variant="h6" sx={{ fontWeight: 700 }}>
-        Vetted Singles
+        Độc thân đã xác minh
       </Typography>
       <Typography variant="subtitle2" color="text.secondary">
         © 2000-2026 vsingles.club, Inc. - Made with ❤️ in Los Angeles

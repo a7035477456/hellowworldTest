@@ -44,7 +44,7 @@ export default function ServiceNoticeModal({ onExit }) {
             <Logo />
           </Box>
           <Typography variant="h4" sx={{ color: 'secondary.main', fontWeight: 700 }}>
-            Hi, Welcome Back
+            Xin chào, Chào mừng trở lại
           </Typography>
           <Typography
             sx={{
@@ -55,9 +55,8 @@ export default function ServiceNoticeModal({ onExit }) {
               textAlign: 'center'
             }}
           >
-            <strong>Service Notice:</strong> We apologize for the inconvenience, but our servers are currently
-            offline. Our technical team is actively working to restore service. Please try accessing the servers
-            again shortly. (E3)
+            <strong>Thông báo dịch vụ:</strong> Chúng tôi xin lỗi vì sự bất tiện. Hiện tại máy chủ đang tạm ngừng.
+            Đội kỹ thuật đang khắc phục. Vui lòng thử truy cập lại sau. (E3)
           </Typography>
           <Button
             variant="contained"
@@ -72,7 +71,7 @@ export default function ServiceNoticeModal({ onExit }) {
               fontSize: '1rem'
             }}
           >
-            Exit
+            Thoát
           </Button>
         </Stack>
       </Box>

@@ -33,32 +33,32 @@ export default function PrivacyPolicy() {
                   </Link>
                 </Box>
                 <Typography variant="h4" sx={{ fontWeight: 700 }}>
-                  vsingles.club Privacy Policy
+                  Chính sách bảo mật vsingles.club
                 </Typography>
                 <Typography variant="body1" paragraph>
                   This policy outlines our privacy protocols for vsingles.club regarding data gathering, storage, usage, and sharing. It applies to all information collected via our Services (including mobile applications and websites) managed by vsingles.club and its corporate partners. By using the Services, you agree to this Privacy Policy and our Terms and Conditions. We may update this policy; continued use after updates signifies agreement.
                 </Typography>
-                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>1. Data Collection: What and How</Typography>
+                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>1. Thu thập dữ liệu: Nội dung và Cách thức</Typography>
                 <Typography variant="body1" paragraph>
                   We collect personal information to facilitate matchmaking. User-provided data may include names, emails, phone numbers, addresses, birth dates, dating preferences, and notes; our Compatibility Quiz helps generate personality profiles. Photos you upload may be visible. We store communications with support or other members. For subscriptions we process names, addresses, and payment details; you can request removal of payment data. You may volunteer sensitive information (e.g., religion, ethnicity, gender identity); you can update or hide it. We may use biometrics with consent for identity verification or fraud prevention. We automatically collect technical data (IP, browser, ISP, device IDs) and use cookies and web beacons. Essential cookies support security and navigation; analytics cookies help us understand usage. You can disable cookies but some features may not work.
                 </Typography>
-                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>2. Purpose of Data Usage</Typography>
+                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>2. Mục đích sử dụng dữ liệu</Typography>
                 <Typography variant="body1" paragraph>
                   We use information to operate and secure the platform, maintain your profile and show relevant fields to matches, process transactions and offer promotions, verify identities via SMS, conduct anonymized research, and address legal claims and regulatory requirements.
                 </Typography>
-                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>3. Sharing and Disclosure</Typography>
+                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>3. Chia sẻ và Công bố</Typography>
                 <Typography variant="body1" paragraph>
                   We do not sell your contact information to matches. We may share profile details (login status, compatibility scores, photos) with potential matches; with service providers (hosting, payments, support); for legal reasons (subpoenas, safety); for abuse prevention; and in connection with business transfers (merger or asset sale).
                 </Typography>
-                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>4. Security and Global Transfers</Typography>
+                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>4. Bảo mật và Chuyển giao toàn cầu</Typography>
                 <Typography variant="body1" paragraph>
                   We use firewalls, SSL encryption, and physical security. Servers are located in the United States and Germany; data may be transferred across borders. Using the service implies consent to these transfers.
                 </Typography>
-                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>5. Your Rights and Choices</Typography>
+                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>5. Quyền và Lựa chọn của bạn</Typography>
                 <Typography variant="body1" paragraph>
                   You can opt out of promotional emails. You have the right to request a copy of your data or corrections (some changes require verification). Basic members can delete profiles via Data &amp; Settings; premium members or those with unused purchases may need to submit a request. Inactive Basic account data is generally deleted after 2 years; Premium data is kept for membership duration, then Basic rules apply.
                 </Typography>
-                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>6. Jurisdiction-Specific Information</Typography>
+                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>6. Thông tin theo thẩm quyền</Typography>
                 <Typography variant="body1" paragraph>
                   U.S. residents may have specific rights regarding targeted advertising. vsingles.club does not sell user data for cross-contextual behavioral advertising. California (CCPA/CPRA) residents have additional rights; summary below:
                 </Typography>
@@ -66,47 +66,47 @@ export default function PrivacyPolicy() {
                   <Table size="small">
                     <TableHead>
                       <TableRow>
-                        <TableCell><strong>Category</strong></TableCell>
-                        <TableCell><strong>Source</strong></TableCell>
-                        <TableCell><strong>Purpose</strong></TableCell>
+                        <TableCell><strong>Danh mục</strong></TableCell>
+                        <TableCell><strong>Nguồn</strong></TableCell>
+                        <TableCell><strong>Mục đích</strong></TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
                       <TableRow>
-                        <TableCell>Identifiers (Name, IP, Email)</TableCell>
-                        <TableCell>User / Web Tech</TableCell>
-                        <TableCell>Account management, matching, support</TableCell>
+                        <TableCell>Định danh (Tên, IP, Email)</TableCell>
+                        <TableCell>Người dùng / Công nghệ web</TableCell>
+                        <TableCell>Quản lý tài khoản, ghép đôi, hỗ trợ</TableCell>
                       </TableRow>
                       <TableRow>
-                        <TableCell>Sensitive Data (Ethnicity, Religion)</TableCell>
-                        <TableCell>User</TableCell>
-                        <TableCell>Matchmaking and compatibility</TableCell>
+                        <TableCell>Dữ liệu nhạy cảm (Dân tộc, Tôn giáo)</TableCell>
+                        <TableCell>Người dùng</TableCell>
+                        <TableCell>Ghép đôi và tương thích</TableCell>
                       </TableRow>
                       <TableRow>
-                        <TableCell>Commercial Info (Purchase history)</TableCell>
-                        <TableCell>User</TableCell>
-                        <TableCell>Billing and trend analysis</TableCell>
+                        <TableCell>Thông tin thương mại (Lịch sử mua hàng)</TableCell>
+                        <TableCell>Người dùng</TableCell>
+                        <TableCell>Thanh toán và phân tích xu hướng</TableCell>
                       </TableRow>
                       <TableRow>
-                        <TableCell>Network Activity (Site interaction)</TableCell>
-                        <TableCell>Web Tech</TableCell>
-                        <TableCell>Security and site optimization</TableCell>
+                        <TableCell>Hoạt động mạng (Tương tác trang)</TableCell>
+                        <TableCell>Công nghệ web</TableCell>
+                        <TableCell>Bảo mật và tối ưu trang</TableCell>
                       </TableRow>
                     </TableBody>
                   </Table>
                 </Paper>
-                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>7. Contact and Disputes</Typography>
+                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>7. Liên hệ và Tranh chấp</Typography>
                 <Typography variant="body1" paragraph>
                   For privacy concerns or to exercise data rights, contact vsingles.club at privacy@vsingles.club.
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Effective Date: September 8, 2025.
+                  Ngày hiệu lực: 8 tháng 9 năm 2025.
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  © 2025 vsingles.club. All Rights Reserved.
+                  © 2025 vsingles.club. Bảo lưu mọi quyền.
                 </Typography>
                 <Button component={Link} to="/pages/login" variant="contained" color="secondary" sx={{ alignSelf: 'center', mt: 2 }}>
-                  Back to Login
+                  Quay lại đăng nhập
                 </Button>
               </Stack>
             </AuthCardWrapper>

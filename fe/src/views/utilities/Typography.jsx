@@ -14,10 +14,10 @@ import { gridSpacing } from 'store/constant';
 
 export default function Typography() {
   return (
-    <MainCard title="Basic Typography" secondary={<SecondaryAction link="https://next.material-ui.com/system/typography/" />}>
+    <MainCard title="Kiểu chữ cơ bản" secondary={<SecondaryAction link="https://next.material-ui.com/system/typography/" />}>
       <Grid container spacing={gridSpacing}>
         <Grid size={{ xs: 12, sm: 6 }}>
-          <SubCard title="Heading">
+          <SubCard title="Tiêu đề">
             <Stack sx={{ gap: 1 }}>
               <MuiTypography variant="h1" gutterBottom>
                 h1. Heading
@@ -41,7 +41,7 @@ export default function Typography() {
           </SubCard>
         </Grid>
         <Grid size={{ xs: 12, sm: 6 }}>
-          <SubCard title="Sub title">
+          <SubCard title="Tiêu đề phụ">
             <Stack sx={{ gap: 1 }}>
               <MuiTypography variant="subtitle1" gutterBottom>
                 subtitle1. Lorem ipsum dolor sit connecter adieu siccing eliot. Quos blanditiis tenetur
@@ -54,7 +54,7 @@ export default function Typography() {
           </SubCard>
         </Grid>
         <Grid size={{ xs: 12, sm: 6 }}>
-          <SubCard title="Body">
+          <SubCard title="Nội dung">
             <Stack sx={{ gap: 1 }}>
               <MuiTypography variant="body1" gutterBottom>
                 body1. Lorem ipsum dolor sit connecter adieu siccing eliot. Quos blanditiis tenetur unde suscipit, quam beatae rerum
@@ -69,7 +69,7 @@ export default function Typography() {
           </SubCard>
         </Grid>
         <Grid size={{ xs: 12, sm: 6 }}>
-          <SubCard title="Extra">
+          <SubCard title="Khác">
             <Stack sx={{ gap: 1 }}>
               <MuiTypography variant="button" gutterBottom sx={{ display: 'block' }}>
                 button text

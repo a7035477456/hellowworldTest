@@ -27,35 +27,35 @@ export default function AboutUs() {
                   </Link>
                 </Box>
                 <Typography variant="h4" sx={{ fontWeight: 700, alignSelf: 'flex-start' }}>
-                  Our Vision &amp; Heart
+                  Tầm nhìn &amp; Trái tim của chúng tôi
                 </Typography>
                 <Typography variant="body1" paragraph>
-                  At <strong>vsingles.club</strong>, we believe that real love is the most meaningful journey you will ever embark on. As a trailblazing community dedicated to the art of connection, our mission is to help single adults find not just a partner, but their perfect match. By focusing on shared core values and the key dimensions of personality that predict long-term success, we champion deeper connections and more authentic dates.
+                  Tại <strong>vsingles.club</strong>, chúng tôi tin rằng tình yêu đích thực là hành trình ý nghĩa nhất bạn từng trải qua. Là cộng đồng tiên phong dành cho nghệ thuật kết nối, sứ mệnh của chúng tôi là giúp người độc thân tìm không chỉ một đối tác mà còn là tri kỷ. Bằng cách tập trung vào giá trị cốt lõi chung và các chiều kích tính cách dự báo thành công lâu dài, chúng tôi ủng hộ kết nối sâu sắc và những cuộc hẹn chân thành hơn.
                 </Typography>
                 <Typography variant="body1" paragraph>
-                  We are committed to providing a best-in-class experience that evolves alongside technology to ensure a trusted, inclusive, and customer-first environment. Unlike traditional platforms, we have pioneered a unique vetting infrastructure specifically for the dating world—a level of rigorous verification that does not exist on other dating websites. Whether you are seeking a kindred spirit or a life-long partner, we provide a welcoming space for our diverse and dynamic community to flourish.
+                  Chúng tôi cam kết mang lại trải nghiệm tốt nhất, phát triển cùng công nghệ để đảm bảo môi trường đáng tin cậy, toàn diện và lấy khách hàng làm trung tâm. Khác với nền tảng truyền thống, chúng tôi đi tiên phong với hạ tầng xác minh độc đáo dành riêng cho hẹn hò—mức độ xác minh chặt chẽ mà bạn không tìm thấy trên các trang hẹn hò khác. Dù bạn tìm tri âm hay bạn đời, chúng tôi tạo không gian chào đón để cộng đồng đa dạng và năng động của chúng tôi phát triển.
                 </Typography>
                 <Box sx={{ width: '100%', borderTop: 1, borderColor: 'divider', pt: 2, mt: 1 }}>
                   <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>
-                    Why Choose vsingles.club?
+                    Tại sao chọn vsingles.club?
                   </Typography>
                   <Typography variant="body1" paragraph>
-                    We understand that opening your heart requires a foundation of trust. That is why we go beyond the standard profile; <strong>vsingles.club</strong> provides a dedicated vetting service for every member. This process is comprehensive, unique, offering a layer of security and authenticity that you simply won&apos;t find on other dating websites. By prioritizing your peace of mind through our thoughtful screening process, we ensure a safer, more intentional environment where you can focus on what truly matters: finding the right love.
+                    Chúng tôi hiểu rằng mở lòng cần nền tảng tin cậy. Vì vậy chúng tôi vượt xa hồ sơ thông thường; <strong>vsingles.club</strong> cung cấp dịch vụ xác minh riêng cho từng thành viên. Quy trình toàn diện, độc đáo, mang lại lớp bảo mật và xác thực mà bạn không tìm thấy trên các trang hẹn hò khác. Bằng cách ưu tiên sự yên tâm của bạn qua quy trình sàng lọc chu đáo, chúng tôi đảm bảo môi trường an toàn, có chủ đích hơn để bạn tập trung vào điều thực sự quan trọng: tìm đúng tình yêu.
                   </Typography>
                   <Stack component="ul" sx={{ pl: 2.5, m: 0 }}>
                     <Typography component="li" variant="body1" sx={{ mb: 1 }}>
-                      <strong>Authentic Connections:</strong> Built on decades of insight into compatible relationships.
+                      <strong>Kết nối chân thật:</strong> Xây dựng trên hàng thập kỷ hiểu biết về mối quan hệ tương thích.
                     </Typography>
                     <Typography component="li" variant="body1" sx={{ mb: 1 }}>
-                      <strong>Global Community:</strong> Bringing people together across borders and languages.
+                      <strong>Cộng đồng toàn cầu:</strong> Kết nối mọi người vượt biên giới và ngôn ngữ.
                     </Typography>
                     <Typography component="li" variant="body1">
-                      <strong>Safety First:</strong> A refined vetting process designed to protect your heart and your experience.
+                      <strong>An toàn trên hết:</strong> Quy trình xác minh tinh gọn để bảo vệ trái tim và trải nghiệm của bạn.
                     </Typography>
                   </Stack>
                 </Box>
                 <Button component={Link} to="/pages/login" variant="contained" color="secondary" sx={{ alignSelf: 'center', mt: 2 }}>
-                  Back to Login
+                  Quay lại đăng nhập
                 </Button>
               </Stack>
             </AuthCardWrapper>

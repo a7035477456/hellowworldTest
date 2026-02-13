@@ -122,7 +122,7 @@ export default function AuthLogin() {
   return (
     <form onSubmit={handleSubmit}>
       <CustomFormControl fullWidth>
-        <InputLabel htmlFor="outlined-adornment-email-login">Email Address / Username</InputLabel>
+        <InputLabel htmlFor="outlined-adornment-email-login">Địa chỉ email / Tên đăng nhập</InputLabel>
         <OutlinedInput
           id="outlined-adornment-email-login"
           type="email"
@@ -134,7 +134,7 @@ export default function AuthLogin() {
       </CustomFormControl>
 
       <CustomFormControl fullWidth>
-        <InputLabel htmlFor="outlined-adornment-password-login">Password</InputLabel>
+        <InputLabel htmlFor="outlined-adornment-password-login">Mật khẩu</InputLabel>
         <OutlinedInput
           id="outlined-adornment-password-login"
           type={showPassword ? 'text' : 'password'}
@@ -145,7 +145,7 @@ export default function AuthLogin() {
           endAdornment={
             <InputAdornment position="end">
               <IconButton
-                aria-label="toggle password visibility"
+                aria-label="ẩn/hiện mật khẩu"
                 onClick={handleClickShowPassword}
                 onMouseDown={handleMouseDownPassword}
                 edge="end"
@@ -155,7 +155,7 @@ export default function AuthLogin() {
               </IconButton>
             </InputAdornment>
           }
-          label="Password"
+          label="Mật khẩu"
         />
       </CustomFormControl>
 
@@ -163,12 +163,12 @@ export default function AuthLogin() {
         <Grid>
           <FormControlLabel
             control={<Checkbox checked={checked} onChange={(event) => setChecked(event.target.checked)} name="checked" color="primary" />}
-            label="Keep me logged in"
+            label="Giữ đăng nhập"
           />
         </Grid>
         <Grid>
           <Typography variant="subtitle1" component={Link} to="#!" sx={{ textDecoration: 'none', color: 'secondary.main' }}>
-            Forgot Password?
+            Quên mật khẩu?
           </Typography>
         </Grid>
       </Grid>
@@ -182,7 +182,7 @@ export default function AuthLogin() {
             variant="contained"
             disabled={isLoading}
           >
-            {isLoading ? <CircularProgress size={24} color="inherit" /> : 'Sign In'}
+            {isLoading ? <CircularProgress size={24} color="inherit" /> : 'Đăng nhập'}
           </Button>
         </AnimateButton>
       </Box>

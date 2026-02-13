@@ -45,7 +45,7 @@ export default function UpgradePlanCard() {
     >
       <CardContent>
         <Stack sx={{ gap: 2 }}>
-          <Typography variant="h4">Upgrade your plan</Typography>
+          <Typography variant="h4">Nâng cấp gói của bạn</Typography>
           <Typography
             variant="subtitle2"
             sx={{
@@ -53,14 +53,14 @@ export default function UpgradePlanCard() {
               opacity: 0.6
             }}
           >
-            70% discount for 1 years <br />
-            subscriptions.
+            Giảm 70% cho gói <br />
+            đăng ký 1 năm.
           </Typography>
           <Stack direction="row">
             <Link sx={{ textDecoration: 'none' }} href="https://vsingles.club" target="_blank">
               <AnimateButton>
                 <Button variant="contained" color="warning" sx={{ boxShadow: 'none' }}>
-                  Go Premium
+                  Nâng cấp Premium
                 </Button>
               </AnimateButton>
             </Link>

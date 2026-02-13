@@ -34,7 +34,7 @@ export default function LoginFailure() {
                 </Box>
                 <Stack sx={{ alignItems: 'center', justifyContent: 'center', gap: 1 }}>
                   <Typography variant={downMD ? 'h3' : 'h2'} sx={{ color: 'error.main', fontFamily: 'Comic Sans MS' }}>
-                    Login or Password fail
+                    Đăng nhập hoặc mật khẩu không đúng
                   </Typography>
                 </Stack>
                 <Box sx={{ width: 1, display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -46,7 +46,7 @@ export default function LoginFailure() {
                       variant="contained"
                       onClick={() => navigate('/pages/login')}
                     >
-                      Try Login Again
+                      Thử đăng nhập lại
                     </Button>
                   </AnimateButton>
                   <AnimateButton>
@@ -57,7 +57,7 @@ export default function LoginFailure() {
                       variant="contained"
                       onClick={() => navigate('/pages/register')}
                     >
-                      Sign up for account
+                      Đăng ký tài khoản
                     </Button>
                   </AnimateButton>
                 </Box>
