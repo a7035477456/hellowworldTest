@@ -1,6 +1,8 @@
 import { useState } from 'react';
 
 // material-ui
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -30,6 +32,8 @@ import { useGetAllSingles } from '../../../api/allSinglesFe';
 // ==============================|| ALL SINGLES ||============================== //
 
 export default function AllSingles() {
+  const theme = useTheme();
+  const downSM = useMediaQuery(theme.breakpoints.down('sm'));
   const [searchQuery, setSearchQuery] = useState('');
   const [location, setLocation] = useState('22003');
   const [maxDistance, setMaxDistance] = useState(19);
@@ -55,7 +59,16 @@ export default function AllSingles() {
 
   return (
     <MainCard
-      title={<Typography sx={{ fontFamily: 'Comic Sans MS', fontSize: '1.5rem' }}>All Singles</Typography>}
+      title={
+        <Typography
+          sx={{
+            fontFamily: 'Comic Sans MS',
+            fontSize: downSM ? '1.125rem' : '1.5rem'
+          }}
+        >
+          All Singles
+        </Typography>
+      }
       secondary={
         <OutlinedInput
           id="input-search-cards"
@@ -72,10 +85,13 @@ export default function AllSingles() {
       }
     >
       {/* Instructional Message */}
-      <Alert 
-        severity="info" 
-        sx={{ 
-          mb: 3,
+      <Alert
+        severity="info"
+        sx={{
+          mb: downSM ? 2 : 3,
+          py: downSM ? 0.75 : 1.5,
+          px: downSM ? 1.25 : 2,
+          fontSize: downSM ? '0.8125rem' : 'inherit',
           backgroundColor: 'secondary.light',
           color: 'secondary.dark',
           '& .MuiAlert-icon': {
@@ -89,7 +105,8 @@ export default function AllSingles() {
       {/* Singles Discovery Search Block */}
       <SubCard
         sx={{
-          mb: 3,
+          mb: downSM ? 2 : 3,
+          p: downSM ? 1.5 : 2,
           backgroundColor: 'secondary.light',
           border: 'none'
         }}
@@ -98,14 +115,15 @@ export default function AllSingles() {
           variant="h5"
           sx={{
             color: 'secondary.main',
-            mb: 3,
-            fontWeight: 600
+            mb: downSM ? 1.5 : 3,
+            fontWeight: 600,
+            fontSize: downSM ? '1rem' : undefined
           }}
         >
           Singles Discovery
         </Typography>
-        
-        <Grid container spacing={3}>
+
+        <Grid container spacing={downSM ? 2 : 3}>
           {/* Location */}
           <Grid item xs={12} sm={6} md={3}>
             <Box
@@ -120,14 +138,14 @@ export default function AllSingles() {
               }}
             >
               <Box>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" color="text.secondary" sx={downSM ? { fontSize: '0.75rem' } : undefined}>
                   My current location
                 </Typography>
-                <Typography variant="h6" sx={{ color: 'text.primary', mt: 0.5 }}>
+                <Typography variant="h6" sx={{ color: 'text.primary', mt: 0.5, ...(downSM && { fontSize: '0.875rem' }) }}>
                   {location}
                 </Typography>
               </Box>
-              <IconChevronRight stroke={1.5} size={20} />
+              <IconChevronRight stroke={1.5} size={downSM ? 16 : 20} />
             </Box>
           </Grid>
 
@@ -135,10 +153,10 @@ export default function AllSingles() {
           <Grid item xs={12} sm={6} md={3}>
             <Box>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" color="text.secondary" sx={downSM ? { fontSize: '0.75rem' } : undefined}>
                   Maximum distance
                 </Typography>
-                <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 600 }}>
+                <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 600, ...(downSM && { fontSize: '0.75rem' }) }}>
                   {maxDistance} km
                 </Typography>
               </Box>
@@ -177,14 +195,14 @@ export default function AllSingles() {
               }}
             >
               <Box>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" color="text.secondary" sx={downSM ? { fontSize: '0.75rem' } : undefined}>
                   Show me
                 </Typography>
-                <Typography variant="h6" sx={{ color: 'text.primary', mt: 0.5 }}>
+                <Typography variant="h6" sx={{ color: 'text.primary', mt: 0.5, ...(downSM && { fontSize: '0.875rem' }) }}>
                   {gender}
                 </Typography>
               </Box>
-              <IconChevronRight stroke={1.5} size={20} />
+              <IconChevronRight stroke={1.5} size={downSM ? 16 : 20} />
             </Box>
           </Grid>
 
@@ -192,10 +210,10 @@ export default function AllSingles() {
           <Grid item xs={12} sm={6} md={3}>
             <Box>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" color="text.secondary" sx={downSM ? { fontSize: '0.75rem' } : undefined}>
                   Age range
                 </Typography>
-                <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 600 }}>
+                <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 600, ...(downSM && { fontSize: '0.75rem' }) }}>
                   {ageRange[0]}-{ageRange[1]}
                 </Typography>
               </Box>
@@ -236,65 +254,82 @@ export default function AllSingles() {
       )}
       
       {!singlesLoading && !singlesError && (
-        <Grid container spacing={gridSpacing}>
+        <Grid container spacing={downSM ? 1.5 : gridSpacing}>
           {filteredAllSingles_XXXXXXX.map((personIndex_DDDDDDD) => (
-          <Grid key={personIndex_DDDDDDD.singles_id} size={{ xs: 12, sm: 6, md: 4 }}>
-            <Card
-              sx={{
-                height: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-                '&:hover': {
-                  boxShadow: 6
-                }
-              }}
-            >
-              <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
-                  <Avatar
-                    src={personIndex_DDDDDDD.profile_image_url && personIndex_DDDDDDD.profile_image_url !== 'user-round.svg' ? personIndex_DDDDDDD.profile_image_url : UserRound}
-                    alt={`Member ${String(personIndex_DDDDDDD.singles_id).padStart(5, '0')}`}
-                    sx={{
-                      width: 80,
-                      height: 80
-                    }}
-                  />
-                </Box>
-                <Typography 
-                  variant="h4" 
-                  component="div"
-                  sx={{ 
-                    color: 'secondary.main',
-                    textAlign: 'center',
-                    fontWeight: 500
+            <Grid key={personIndex_DDDDDDD.singles_id} size={{ xs: 12, sm: 6, md: 4 }}>
+              <Card
+                sx={{
+                  height: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  '&:hover': {
+                    boxShadow: 6
+                  }
+                }}
+              >
+                <CardContent
+                  sx={{
+                    flexGrow: 1,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    py: downSM ? 1.5 : 2,
+                    px: downSM ? 1.5 : 2
                   }}
                 >
-                  Member {String(personIndex_DDDDDDD.singles_id).padStart(5, '0')}
-                </Typography>
-              </CardContent>
+                  <Box sx={{ display: 'flex', justifyContent: 'center', mb: downSM ? 1 : 2 }}>
+                    <Avatar
+                      src={personIndex_DDDDDDD.profile_image_url && personIndex_DDDDDDD.profile_image_url !== 'user-round.svg' ? personIndex_DDDDDDD.profile_image_url : UserRound}
+                      alt={`Member ${String(personIndex_DDDDDDD.singles_id).padStart(5, '0')}`}
+                      sx={{
+                        width: downSM ? 56 : 80,
+                        height: downSM ? 56 : 80
+                      }}
+                    />
+                  </Box>
+                  <Typography
+                    variant="h4"
+                    component="div"
+                    sx={{
+                      color: 'secondary.main',
+                      textAlign: 'center',
+                      fontWeight: 500,
+                      ...(downSM && { fontSize: '1rem' })
+                    }}
+                  >
+                    Member {String(personIndex_DDDDDDD.singles_id).padStart(5, '0')}
+                  </Typography>
+                </CardContent>
 
-              <CardActions sx={{ p: 2, pt: 0 }}>
-                <Button
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  onClick={() => handleMessage(personIndex_DDDDDDD.singles_id)}
-                  sx={{ mr: 1 }}
-                >
-                  Message
-                </Button>
-                <Button
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  onClick={() => handleMarkInterested(personIndex_DDDDDDD.singles_id)}
-                >
-                  Mark Interested
-                </Button>
-              </CardActions>
-            </Card>
-          </Grid>
-        ))}
+                <CardActions sx={{ p: downSM ? 1 : 2, pt: 0, ...(downSM && { justifyContent: 'center', gap: 0.5 }) }}>
+                  <Button
+                    fullWidth={!downSM}
+                    variant="contained"
+                    color="primary"
+                    size={downSM ? 'small' : 'medium'}
+                    onClick={() => handleMessage(personIndex_DDDDDDD.singles_id)}
+                    sx={{
+                      ...(downSM && { minWidth: 0, px: 1.25, fontSize: '0.75rem', mr: 0.5 }),
+                      ...(!downSM && { mr: 1 })
+                    }}
+                  >
+                    Message
+                  </Button>
+                  <Button
+                    fullWidth={!downSM}
+                    variant="contained"
+                    color="primary"
+                    size={downSM ? 'small' : 'medium'}
+                    onClick={() => handleMarkInterested(personIndex_DDDDDDD.singles_id)}
+                    sx={downSM ? { minWidth: 0, px: 1, fontSize: '0.7rem' } : undefined}
+                  >
+                    Mark Interested
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+          ))}
         </Grid>
       )}
     </MainCard>
