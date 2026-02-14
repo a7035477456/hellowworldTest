@@ -11,13 +11,22 @@ export const registerUser = async (email) => {
     });
 
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      throw new Error(errorData.error || 'Registration failed');
+      const text = await response.text();
+      let errorData = {};
+      try {
+        errorData = JSON.parse(text);
+      } catch (_) {}
+      const message = errorData.error || response.statusText || text;
+      alert("SEND MAIL ERROR: " + response.status + " " + message);
+      throw new Error(errorData.error || text || 'Registration failed');
     }
 
     const data = await response.json();
+    const successMsg = typeof data === 'object' && data !== null ? (data.message || JSON.stringify(data)) : data;
+    alert("SEND MAIL SUCCESS: " + successMsg);
     return data;
   } catch (error) {
+    alert("SEND MAIL ERROR: "+error);
     console.error('Error registering user:', error);
     throw error;
   }

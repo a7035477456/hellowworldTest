@@ -96,6 +96,16 @@ export default function PrivacyPolicy() {
                   </Table>
                 </Paper>
                 <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>7. Contact and Disputes</Typography>
+
+                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>8. SMS Messaging and Data Privacy</Typography>
+                <Typography variant="body1" paragraph>
+                  vsingles.club is committed to protecting your privacy regarding mobile communications. We do not sell, rent, or share your SMS opt-in data or mobile phone numbers with third parties or affiliates for their marketing or promotional purposes.
+                </Typography>
+                <Typography variant="body1" paragraph>
+                  Personal information gathered through the SMS opt-in process will not be shared with third parties or affiliates for marketing or promotional purposes. This excludes text messaging originator opt-in data and consent; this information will strictly not be shared with any third parties.
+                </Typography>
+
+
                 <Typography variant="body1" paragraph>
                   For privacy concerns or to exercise data rights, contact vsingles.club at privacy@vsingles.club.
                 </Typography>

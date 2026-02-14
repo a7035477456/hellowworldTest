@@ -87,9 +87,32 @@ export default function TermsAndConditions() {
                   Binding individual arbitration applies as set forth in the full terms.
                 </Typography>
                 <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>10. Automatic Renewals</Typography>
+
                 <Typography variant="body1" paragraph>
                   Auto-renewal process and how to disable it are described in the full terms.
                 </Typography>
+
+
+                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>11. Mobile Messaging Terms</Typography>
+                <Typography variant="body1" paragraph>
+                  By providing your mobile number, you agree to receive text messages from vsingles.club for account security, identity verification, and service updates.
+                </Typography>
+                <Box component="ul" sx={{ pl: 2.5, m: 0 }}>
+                  <Typography component="li" variant="body2" paragraph>
+                    <strong>Voluntary Consent:</strong> Opting into mobile messaging is voluntary and is not a condition of purchase or a requirement to use the vsingles.club platform.
+                  </Typography>
+                  <Typography component="li" variant="body2" paragraph>
+                    <strong>How to Opt-Out:</strong> You may cancel the SMS service at any time by texting &quot;STOP&quot; to the number from which you received the message. You will receive a final confirmation SMS to verify unsubscription.
+                  </Typography>
+                  <Typography component="li" variant="body2" paragraph>
+                    <strong>Support:</strong> For assistance, reply &quot;HELP&quot; to any message or contact support at privacy@vsingles.club.
+                  </Typography>
+                  <Typography component="li" variant="body2" paragraph>
+                    <strong>Charges:</strong> Message and data rates may apply. Message frequency varies based on your account activity and interactions.
+                  </Typography>
+                </Box>
+
+
                 <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
                   Revision Date: This Agreement was last updated on February 12, 2026.
                 </Typography>
