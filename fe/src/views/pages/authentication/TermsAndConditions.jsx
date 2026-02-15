@@ -29,27 +29,9 @@ export default function TermsAndConditions() {
                 <Typography variant="h4" sx={{ fontWeight: 700 }}>
                   Terms and Conditions of Service
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Print or Save as PDF
-                </Typography>
                 <Typography variant="body1" paragraph>
                   This Agreement between you and <strong>vsingles.club</strong> applies to the vsingles.club website, our mobile applications (iOS and Android), and all related services (collectively, the &quot;Services&quot;). By accessing or using our Services, you acknowledge that you have read, understood, and agree to be bound by these terms (including our Privacy Policy) for the duration of your use. Specific features may have additional rules; we may update this agreement and will post a revised version on this page.
                 </Typography>
-                <Typography variant="subtitle2" sx={{ fontWeight: 700, mt: 2 }}>Summary Table of Sections</Typography>
-                <Box component="ul" sx={{ pl: 2.5, m: 0 }}>
-                  <Typography component="li" variant="body2">1. Eligibility</Typography>
-                  <Typography component="li" variant="body2">2. Use of the Services</Typography>
-                  <Typography component="li" variant="body2">3. Proprietary Rights</Typography>
-                  <Typography component="li" variant="body2">4. User Information</Typography>
-                  <Typography component="li" variant="body2">5. Risk and Safety</Typography>
-                  <Typography component="li" variant="body2">6. Disclaimer of Warranties</Typography>
-                  <Typography component="li" variant="body2">7. Limitation of Liability</Typography>
-                  <Typography component="li" variant="body2">8. Statutory Cancellation Rights (State-Specific)</Typography>
-                  <Typography component="li" variant="body2">9. Arbitration and Class Action Waiver</Typography>
-                  <Typography component="li" variant="body2">10. Automatic Renewals</Typography>
-                  <Typography component="li" variant="body2">10. Privacy &amp; Communication</Typography>
-                  <Typography component="li" variant="body2">18. Revision Date</Typography>
-                </Box>
                 <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>1. Eligibility</Typography>
                 <Typography variant="body1" paragraph>
                   You must be 18 or older and single or legally separated. vsingles.club does not currently perform automated criminal record checks but reserves the right to verify.
@@ -72,52 +54,47 @@ export default function TermsAndConditions() {
                 </Typography>
                 <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>6. Disclaimer of Warranties</Typography>
                 <Typography variant="body1" paragraph>
-                  Services are provided &quot;AS IS&quot;.
+                  Services are provided &quot;<strong>AS IS</strong>&quot;.
                 </Typography>
                 <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>7. Limitation of Liability</Typography>
                 <Typography variant="body1" paragraph>
-                  Total liability is limited to the amount paid for the account or $25.00.
+                  Total liability is limited to the amount paid for the account or <strong>$25.00</strong>.
                 </Typography>
-                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>8. Statutory Cancellation Rights (State-Specific)</Typography>
+                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>8. Statutory Cancellation Rights</Typography>
                 <Typography variant="body1" paragraph>
-                  Residents of AZ, CA, CO, CT, IL, IA, MN, NY, NC, OH, RI, WI may have additional cancellation rights. Cancel via email: subscriptions@vsingles.club.
+                  Residents of AZ, CA, CO, CT, IL, IA, MN, NY, NC, OH, RI, WI may have additional cancellation rights. Cancel via email: <strong>subscriptions@vsingles.club</strong>.
                 </Typography>
                 <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>9. Arbitration and Class Action Waiver</Typography>
                 <Typography variant="body1" paragraph>
                   Binding individual arbitration applies as set forth in the full terms.
                 </Typography>
                 <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>10. Automatic Renewals</Typography>
-
                 <Typography variant="body1" paragraph>
                   Auto-renewal process and how to disable it are described in the full terms.
                 </Typography>
-
-
                 <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>11. Mobile Messaging Terms</Typography>
                 <Typography variant="body1" paragraph>
                   By providing your mobile number, you agree to receive text messages from vsingles.club for account security, identity verification, and service updates.
                 </Typography>
                 <Box component="ul" sx={{ pl: 2.5, m: 0 }}>
-                  <Typography component="li" variant="body2" paragraph>
-                    <strong>Voluntary Consent:</strong> Opting into mobile messaging is voluntary and is not a condition of purchase or a requirement to use the vsingles.club platform.
+                  <Typography component="li" variant="body1" paragraph>
+                    <strong>Voluntary Consent:</strong> Opting into mobile messaging is voluntary. <strong>Consent is not a requirement to create an account or use the vsingles.club service. You may use our platform without opting into SMS marketing or notifications.</strong>
                   </Typography>
-                  <Typography component="li" variant="body2" paragraph>
-                    <strong>How to Opt-Out:</strong> You may cancel the SMS service at any time by texting &quot;STOP&quot; to the number from which you received the message. You will receive a final confirmation SMS to verify unsubscription.
+                  <Typography component="li" variant="body1" paragraph>
+                    <strong>How to Opt-Out:</strong> You may cancel the SMS service at any time by texting &quot;<strong>STOP</strong>&quot; to the number from which you received the message. You will receive a final confirmation SMS to verify unsubscription.
                   </Typography>
-                  <Typography component="li" variant="body2" paragraph>
-                    <strong>Support:</strong> For assistance, reply &quot;HELP&quot; to any message or contact support at privacy@vsingles.club.
+                  <Typography component="li" variant="body1" paragraph>
+                    <strong>Support:</strong> For assistance, reply &quot;<strong>HELP</strong>&quot; to any message or contact support at <strong>privacy@vsingles.club</strong>.
                   </Typography>
-                  <Typography component="li" variant="body2" paragraph>
+                  <Typography component="li" variant="body1" paragraph>
                     <strong>Charges:</strong> Message and data rates may apply. Message frequency varies based on your account activity and interactions.
                   </Typography>
                 </Box>
-
-
                 <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
-                  Revision Date: This Agreement was last updated on February 12, 2026.
+                  Revision Date: February 12, 2026.
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Copyright © 2026 vsingles.club. All rights reserved.
+                  © 2026 vsingles.club. All rights reserved.
                 </Typography>
                 <Button component={Link} to="/pages/login" variant="contained" color="secondary" sx={{ alignSelf: 'center', mt: 2 }}>
                   Back to Login
