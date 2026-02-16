@@ -46,7 +46,7 @@ export function useGetInterestedSingles() {
       const result = {
         // singles_id_to: validId,
         singles_id_to: single_EEEEEEEE.singles_id_to,
-        profile_image_url: single_EEEEEEEE?.profile_image_url || 'user-round.svg',
+        profile_image_url: single_EEEEEEEE?.profile_image_url || 'profile.jpeg',
         vetted_status: single_EEEEEEEE?.vetted_status === true || single_EEEEEEEE?.vetted_status === 'true' || single_EEEEEEEE?.vetted_status === 1
       };
       // console.log('Original item:', single_EEEEEEEE);
