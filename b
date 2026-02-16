@@ -147,7 +147,7 @@ ps aux | grep postgres
   read -s -p "Enter new postgres password: " PGPASSWORD
 
 sudo -u postgres env PGPASSWORD="$PGPASSWORD" pg_basebackup \
-  -h 192.168.222.201 \
+  -h 192.168.222.202 \
   -p 50010 \
   -U replicator \
   -D /mnt/pgdata16/main \
@@ -198,7 +198,7 @@ alias taillog='clear;clearlog;sudo tail -f /var/log/postgresql/postgresql-16-mai
 alias showlog='clear;sudo tail -n 10 /var/log/postgresql/postgresql-16-main.log'
 ############################
 
-alias testrep201='psql "host=192.168.222.201 port=50010 user=replicator dbname=replication"'
+alias testrep202='psql "host=192.168.222.202 port=50010 user=replicator dbname=replication"'
 alias testrep203='psql "host=192.168.222.203 port=50010 user=replicator dbname=replication"'
 alias testprim='sudo -u postgres psql -c "SELECT pid, usesysid, usename, application_name, client_addr FROM pg_stat_replication;"'
 
@@ -234,7 +234,7 @@ alias gitclone2009='git clone git@github.com:a7035477456/2009_corruptLogFiles.gi
 alias dreload='sudo systemctl daemon-reload'
 alias checkpassword='sudo -u postgres psql -p 50010 -d postgres -c "SHOW password_encryption;"'
 
-alias mustverify201='psql -h 192.168.222.201 -p 50010 -U postgres -d postgres -c "select 1;"'
+alias mustverify202='psql -h 192.168.222.202 -p 50010 -U postgres -d postgres -c "select 1;"'
 alias mustverify203='psql -h 192.168.222.203 -p 50010 -U postgres -d postgres -c "select 1;"'
 
 verifyid() {
@@ -293,7 +293,7 @@ alias verifyreplica='sudo -u postgres psql -c "SELECT pid, status, receive_start
 alias verifyprimary='sudo -u postgres psql -c "SELECT pid, usesysid, usename, application_name, client_addr FROM pg_stat_replication;"'
 alias verifydatadir='sudo -u postgres psql -c "show data_directory;"'
 alias dbconnect='psql -h 127.0.0.1 -U postgres -p 50010'
-alias dbconnectfull='psql -h 192.168.222.204 -p 50010 -U postgres -d vsingles'
+alias dbconnectfull='psql -h 192.168.222.202 -p 50010 -U postgres -d vsingles'
 
 alias restoreconfig='sudo cp pg_hba.conf /etc/postgresql/16/main/pg_hba.conf;vifile1;sudo cp postgresql.conf /etc/postgresql/16/main/postgresql.conf;vifile2;sudo cp postgresql.auto.conf /var/lib/postgresql/16/main/postgresql.auto.conf;vifile3;sudo cp standby.signal /var/lib/postgresql/16/main/standby.signal;vifile4'
 
@@ -338,7 +338,7 @@ echo "----.bashrc----"; cat ~/.bashrc'
 alias hitdb='echo "nc x.x.230.x now" ; \
 nc -zv 192.168.230.204 50010 ; \
 echo "nc x.x.222.x now" ; \
-nc -zv 192.168.222.204 50010'
+nc -zv 192.168.222.202 50010'
 ##### tuning ######
 ##### tuning #####
 alias removealltuning="\
@@ -418,8 +418,8 @@ alias findoldtune="sudo find /etc/systemd/system -name '40g-tuning*'"
 #################
 
 alias testpayloadall='testpayloaddb;testpayloadws;testpayloadinner'
-alias testpayloaddb='ping -M do -s 8926 -c 2 192.168.222.204'
-alias testpayloadws='ping -M do -s 8926 -c 2 192.168.222.204'
+alias testpayloaddb='ping -M do -s 8926 -c 2 192.168.222.202'
+alias testpayloadws='ping -M do -s 8926 -c 2 192.168.222.202'
 alias testpayloadinner='ping -M do -s 8926 -c 2 192.168.222.220'
 
 alias setpayload9k='sudo ip link set dev enp130s0 mtu 8954'

@@ -1,6 +1,6 @@
 # HAProxy (xbox2)
 
-Config for HAProxy on **xbox2** (192.168.222.202). Backends: webservers xbox3–xbox7 on port 40000.
+Config for HAProxy on **xbox2** (192.168.222.202). Backend: local webserver (127.0.0.1:40000) plus optional xbox3–xbox7 on port 40000.
 
 ## Deploy
 
