@@ -23,7 +23,7 @@ import { gridSpacing } from 'store/constant';
 
 // assets
 import { IconSearch, IconChevronRight } from '@tabler/icons-react';
-import UserRound from 'assets/images/users/user-round.svg';
+import UserRound from 'assets/images/users/profile.jpeg';
 import VettedCheck from 'assets/images/vettedCheck.jpg';
 import { useGetInterestedSingles } from '../../../api/interestedSinglesFe';
 
@@ -259,7 +259,7 @@ export default function InterestedSingles() {
                     <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
                       <Avatar
                         src={
-                          personIndex_DDDDDDD.profile_image_url && personIndex_DDDDDDD.profile_image_url !== 'user-round.svg'
+                          personIndex_DDDDDDD.profile_image_url && personIndex_DDDDDDD.profile_image_url !== 'profile.jpeg'
                             ? personIndex_DDDDDDD.profile_image_url
                             : UserRound
                         }

@@ -19,7 +19,7 @@ import { withAlpha } from 'utils/colorUtils';
 
 // assets
 import { IconBrandTelegram, IconBuildingStore, IconMailbox, IconPhoto } from '@tabler/icons-react';
-import User1 from 'assets/images/users/user-round.svg';
+import User1 from 'assets/images/users/profile.jpeg';
 
 function ListItemWrapper({ children }) {
   const theme = useTheme();

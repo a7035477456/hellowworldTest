@@ -24,7 +24,7 @@ import { gridSpacing } from 'store/constant';
 
 // assets
 import { IconSearch, IconChevronRight } from '@tabler/icons-react';
-import UserRound from 'assets/images/users/user-round.svg';
+import UserRound from 'assets/images/users/profile.jpeg';
 
 //import { useGetAllSingles } from 'api/allSinglesFe';
 import { useGetAllSingles } from '../../../api/allSinglesFe';
@@ -280,7 +280,7 @@ export default function AllSingles() {
                 >
                   <Box sx={{ display: 'flex', justifyContent: 'center', mb: downSM ? 1 : 2 }}>
                     <Avatar
-                      src={personIndex_DDDDDDD.profile_image_url && personIndex_DDDDDDD.profile_image_url !== 'user-round.svg' ? personIndex_DDDDDDD.profile_image_url : UserRound}
+                      src={personIndex_DDDDDDD.profile_image_url && personIndex_DDDDDDD.profile_image_url !== 'profile.jpeg' ? personIndex_DDDDDDD.profile_image_url : UserRound}
                       alt={`Member ${String(personIndex_DDDDDDD.singles_id).padStart(5, '0')}`}
                       sx={{
                         width: downSM ? 56 : 80,

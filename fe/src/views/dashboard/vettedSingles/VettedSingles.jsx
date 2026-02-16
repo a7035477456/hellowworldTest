@@ -23,7 +23,7 @@ import { gridSpacing } from 'store/constant';
 
 // assets
 import { IconSearch, IconChevronRight } from '@tabler/icons-react';
-import UserRound from 'assets/images/users/user-round.svg';
+import UserRound from 'assets/images/users/profile.jpeg';
 import VettedCheck from 'assets/images/vettedCheck.jpg';
 import { useGetVettedSingles } from '../../../api/vettedSinglesFe';
 
@@ -253,7 +253,7 @@ export default function VettedSingles() {
               <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
                 <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
                   <Avatar
-                    src={vettedPersonIndex_DDDDDDD.profile_image_url && vettedPersonIndex_DDDDDDD.profile_image_url !== 'user-round.svg' ? vettedPersonIndex_DDDDDDD.profile_image_url : UserRound}
+                    src={vettedPersonIndex_DDDDDDD.profile_image_url && vettedPersonIndex_DDDDDDD.profile_image_url !== 'profile.jpeg' ? vettedPersonIndex_DDDDDDD.profile_image_url : UserRound}
                     alt={`Member ${String(vettedPersonIndex_DDDDDDD.vettedSingles_id).padStart(5, '0')}`}
                     sx={{
                       width: 80,
