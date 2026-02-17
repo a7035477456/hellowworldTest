@@ -23,30 +23,30 @@ export default function AuthFooter() {
   }, []);
 
   return (
-    <Stack spacing={2} sx={{ alignItems: 'center', textAlign: 'center' }}>
-      <Stack direction="row" spacing={1} alignItems="center" justifyContent="center" flexWrap="wrap" useFlexGap>
-        <Typography component={RouterLink} to="/pages/aboutUs" variant="subtitle2" sx={{ fontSize: '1.75rem', color: '#673AB7', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
+    <Stack spacing={1} sx={{ alignItems: 'center', textAlign: 'center' }}>
+      <Stack direction="row" spacing={0.5} alignItems="center" justifyContent="center" flexWrap="wrap" useFlexGap>
+        <Typography component={RouterLink} to="/pages/aboutUs" variant="subtitle2" sx={{ fontSize: '0.875rem', color: '#673AB7', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
           About us
         </Typography>
-        <Typography variant="subtitle2" sx={{ fontSize: '1.75rem', color: '#673AB7' }}>|</Typography>
-        <Typography component={RouterLink} to="/pages/termsAndConditions" variant="subtitle2" sx={{ fontSize: '1.75rem', color: '#673AB7', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
+        <Typography variant="subtitle2" sx={{ fontSize: '0.875rem', color: '#673AB7' }}>|</Typography>
+        <Typography component={RouterLink} to="/pages/termsAndConditions" variant="subtitle2" sx={{ fontSize: '0.875rem', color: '#673AB7', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
           Terms &amp; Conditions
         </Typography>
-        <Typography variant="subtitle2" sx={{ fontSize: '1.75rem', color: '#673AB7' }}>|</Typography>
-        <Typography component={RouterLink} to="/pages/privacyPolicy" variant="subtitle2" sx={{ fontSize: '1.75rem', color: '#673AB7', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
+        <Typography variant="subtitle2" sx={{ fontSize: '0.875rem', color: '#673AB7' }}>|</Typography>
+        <Typography component={RouterLink} to="/pages/privacyPolicy" variant="subtitle2" sx={{ fontSize: '0.875rem', color: '#673AB7', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
           Privacy Policy
         </Typography>
       </Stack>
-      <Divider sx={{ width: '100%', maxWidth: 360 }} />
-      <Typography variant="h6" sx={{ fontWeight: 700 }}>
+      <Divider sx={{ width: '100%', maxWidth: 180 }} />
+      <Typography variant="body2" sx={{ fontWeight: 700, fontSize: '0.875rem' }}>
         Vetted Singles
       </Typography>
-      <Typography variant="subtitle2" color="text.secondary">
+      <Typography variant="caption" color="text.secondary" sx={{ fontSize: '0.6875rem' }}>
         © 2000-2026 vsingles.club, Inc. - Made with ❤️ in Los Angeles
       </Typography>
       {internalIp && (
-        <Box sx={{ alignSelf: 'flex-start', mt: 1 }}>
-          <Typography variant="caption" color="text.secondary">
+        <Box sx={{ alignSelf: 'flex-start', mt: 0.5 }}>
+          <Typography variant="caption" color="text.secondary" sx={{ fontSize: '0.625rem' }}>
             {internalIp}
           </Typography>
         </Box>

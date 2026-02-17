@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -14,6 +14,7 @@ import AuthFooter from 'ui-component/cards/AuthFooter';
 // ================================|| ABOUT US - OUR VISION & HEART ||================================ //
 
 export default function AboutUs() {
+  const navigate = useNavigate();
   return (
     <AuthWrapper1>
       <Stack sx={{ justifyContent: 'flex-end', minHeight: '100vh' }}>
@@ -54,8 +55,8 @@ export default function AboutUs() {
                     </Typography>
                   </Stack>
                 </Box>
-                <Button component={Link} to="/pages/login" variant="contained" color="secondary" sx={{ alignSelf: 'center', mt: 2 }}>
-                  Back to Login
+                <Button onClick={() => navigate(-1)} variant="contained" color="secondary" sx={{ alignSelf: 'center', mt: 2 }}>
+                  Close
                 </Button>
               </Stack>
             </AuthCardWrapper>
