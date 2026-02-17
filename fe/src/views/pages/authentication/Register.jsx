@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Divider from '@mui/material/Divider';
@@ -14,8 +15,23 @@ import Logo from 'ui-component/Logo';
 import AuthFooter from 'ui-component/cards/AuthFooter';
 import AuthRegister from '../auth-forms/AuthRegister';
 
+const REGISTER_CACHE_BUST_KEY = 'registerCacheBusted';
+
 export default function Register() {
   const downMD = useMediaQuery((theme) => theme.breakpoints.down('md'));
+  const location = useLocation();
+
+  // One-time cache-busting reload when opening email registration so browser uses fresh code
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const hasBusted = sessionStorage.getItem(REGISTER_CACHE_BUST_KEY);
+    const hasBustParam = new URLSearchParams(location.search).has('_cb');
+    if (!hasBusted && !hasBustParam) {
+      sessionStorage.setItem(REGISTER_CACHE_BUST_KEY, '1');
+      window.location.replace(`${location.pathname}?_cb=${Date.now()}`);
+      return;
+    }
+  }, [location.pathname, location.search]);
 
   return (
     <AuthWrapper1>
