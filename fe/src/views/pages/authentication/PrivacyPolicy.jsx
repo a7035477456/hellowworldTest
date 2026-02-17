@@ -24,10 +24,10 @@ export default function PrivacyPolicy() {
   return (
     <AuthWrapper1>
       <Stack sx={{ justifyContent: 'flex-end', minHeight: '100vh' }}>
-        <Stack sx={{ justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 68px)', py: 3 }}>
-          <Box sx={{ m: { xs: 1, sm: 3 }, mb: 0, maxWidth: 900, width: '100%' }}>
-            <AuthCardWrapper sx={{ maxWidth: { xs: '100%', lg: 900 } }}>
-              <Stack spacing={2} sx={{ alignItems: 'flex-start', textAlign: 'left', maxHeight: '70vh', overflow: 'auto' }}>
+        <Stack sx={{ justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 68px)', py: 1 }}>
+          <Box sx={{ m: { xs: 0.5, sm: 1 }, mb: 0, maxWidth: 900, width: '100%' }}>
+            <AuthCardWrapper tight sx={{ maxWidth: { xs: '100%', lg: 900 } }}>
+              <Stack spacing={1} sx={{ alignItems: 'flex-start', textAlign: 'left', maxHeight: '85vh', overflow: 'auto' }}>
                 <Box>
                   <Link to="/pages/login" aria-label="logo">
                     <Logo />
@@ -118,14 +118,14 @@ export default function PrivacyPolicy() {
                 <Typography variant="body2" color="text.secondary">
                   © 2025 vsingles.club. All Rights Reserved.
                 </Typography>
-                <Button onClick={() => navigate(-1)} variant="contained" color="secondary" sx={{ alignSelf: 'center', mt: 2 }}>
+                <Button onClick={() => navigate(-1)} variant="contained" color="secondary" sx={{ alignSelf: 'center', mt: 1 }}>
                   Close
                 </Button>
               </Stack>
             </AuthCardWrapper>
           </Box>
         </Stack>
-        <Box sx={{ px: 3, my: 3 }}>
+        <Box sx={{ px: 1, my: 1 }}>
           <AuthFooter />
         </Box>
       </Stack>

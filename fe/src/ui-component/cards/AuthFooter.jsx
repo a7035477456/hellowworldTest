@@ -25,15 +25,15 @@ export default function AuthFooter() {
   return (
     <Stack spacing={2} sx={{ alignItems: 'center', textAlign: 'center' }}>
       <Stack direction="row" spacing={1} alignItems="center" justifyContent="center" flexWrap="wrap" useFlexGap>
-        <Typography component={RouterLink} to="/pages/aboutUs" variant="subtitle2" sx={{ color: 'text.secondary', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
+        <Typography component={RouterLink} to="/pages/aboutUs" variant="subtitle2" sx={{ fontSize: '1.75rem', color: '#673AB7', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
           About us
         </Typography>
-        <Typography variant="subtitle2" color="text.secondary">|</Typography>
-        <Typography component={RouterLink} to="/pages/termsAndConditions" variant="subtitle2" sx={{ color: 'text.secondary', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
+        <Typography variant="subtitle2" sx={{ fontSize: '1.75rem', color: '#673AB7' }}>|</Typography>
+        <Typography component={RouterLink} to="/pages/termsAndConditions" variant="subtitle2" sx={{ fontSize: '1.75rem', color: '#673AB7', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
           Terms &amp; Conditions
         </Typography>
-        <Typography variant="subtitle2" color="text.secondary">|</Typography>
-        <Typography component={RouterLink} to="/pages/privacyPolicy" variant="subtitle2" sx={{ color: 'text.secondary', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
+        <Typography variant="subtitle2" sx={{ fontSize: '1.75rem', color: '#673AB7' }}>|</Typography>
+        <Typography component={RouterLink} to="/pages/privacyPolicy" variant="subtitle2" sx={{ fontSize: '1.75rem', color: '#673AB7', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
           Privacy Policy
         </Typography>
       </Stack>
