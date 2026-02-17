@@ -11,7 +11,8 @@ export async function registerUser(req, res) {
     }
 
     const smtpUser = process.env.SMTP_USER;
-    const smtpPass = process.env.SMTP_PASS;
+    // Gmail app passwords are 16 chars; if stored with spaces (e.g. "xxxx xxxx xxxx xxxx"), use without spaces
+    const smtpPass = (process.env.SMTP_PASS || '').replace(/\s+/g, '');
     const isSmtpConfigured = smtpUser && smtpPass &&
       smtpUser !== 'your-email@gmail.com' &&
       smtpPass !== 'your-app-password';

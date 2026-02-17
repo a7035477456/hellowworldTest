@@ -16,9 +16,9 @@ export const registerUser_FFFFFFFF = async (req, res) => {
       return res.status(400).json({ error: 'Email is required' });
     }
 
-    // Check if SMTP is configured
+    // Check if SMTP is configured (Gmail app password: strip spaces if stored as "xxxx xxxx xxxx xxxx")
     const smtpUser = process.env.SMTP_USER;
-    const smtpPass = process.env.SMTP_PASS;
+    const smtpPass = (process.env.SMTP_PASS || '').replace(/\s+/g, '');
     const isDevelopment = process.env.NODE_ENV !== 'production';
     const isSmtpConfigured = smtpUser && smtpPass && 
                              smtpUser !== 'your-email@gmail.com' && 
