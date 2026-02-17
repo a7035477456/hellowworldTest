@@ -189,7 +189,7 @@ export default function AuthCreatePassword() {
         <Typography variant="caption" sx={{ mt: 0.5, color: 'text.secondary' }}>
           Password strength: {Math.round(([pwRequirement_8Chars, pwRequirement_smallLetter, pwRequirement_capitalLetter, pwRequirement_numberOrSymbol].filter(Boolean).length / 4) * 100)}%
         </Typography>
-        <Box sx={{ border: '2px solid', borderColor: 'error.main', borderRadius: 1, p: 1.5, mt: 1 }}>
+        <Box sx={{ p: 1.5, mt: 1 }}>
           <Stack component="ul" sx={{ listStyle: 'none', pl: 0, m: 0, gap: 0.5 }}>
             <Stack component="li" direction="row" alignItems="center" gap={1}>
               {pwRequirement_8Chars ? <CheckCircle sx={{ color: 'success.main', fontSize: 20 }} /> : <RadioButtonUnchecked sx={{ color: 'text.secondary', fontSize: 20 }} />}
@@ -235,6 +235,16 @@ export default function AuthCreatePassword() {
           }
           label="Confirm Password"
         />
+        {confirmPassword && (
+          <Stack direction="row" alignItems="center" gap={1} sx={{ mt: 0.5 }}>
+            {password === confirmPassword ? (
+              <>
+                <CheckCircle sx={{ color: 'success.main', fontSize: 20 }} />
+                <Typography variant="body2" sx={{ color: 'success.main' }}>Passwords match</Typography>
+              </>
+            ) : null}
+          </Stack>
+        )}
       </CustomFormControl>
 
       <CustomFormControl fullWidth>
