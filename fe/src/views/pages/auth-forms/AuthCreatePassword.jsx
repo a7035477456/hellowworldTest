@@ -193,19 +193,19 @@ export default function AuthCreatePassword() {
           <Stack component="ul" sx={{ listStyle: 'none', pl: 0, m: 0, gap: 0.5 }}>
             <Stack component="li" direction="row" alignItems="center" gap={1}>
               {pwRequirement_8Chars ? <CheckCircle sx={{ color: 'success.main', fontSize: 20 }} /> : <RadioButtonUnchecked sx={{ color: 'text.secondary', fontSize: 20 }} />}
-              <Typography variant="body2">At least 8 characters</Typography>
+              <Typography variant="body2" sx={{ color: pwRequirement_8Chars ? 'success.main' : undefined }}>At least 8 characters</Typography>
             </Stack>
             <Stack component="li" direction="row" alignItems="center" gap={1}>
               {pwRequirement_smallLetter ? <CheckCircle sx={{ color: 'success.main', fontSize: 20 }} /> : <RadioButtonUnchecked sx={{ color: 'text.secondary', fontSize: 20 }} />}
-              <Typography variant="body2">At least one small letter</Typography>
+              <Typography variant="body2" sx={{ color: pwRequirement_smallLetter ? 'success.main' : undefined }}>At least one small letter</Typography>
             </Stack>
             <Stack component="li" direction="row" alignItems="center" gap={1}>
               {pwRequirement_capitalLetter ? <CheckCircle sx={{ color: 'success.main', fontSize: 20 }} /> : <RadioButtonUnchecked sx={{ color: 'text.secondary', fontSize: 20 }} />}
-              <Typography variant="body2">At least one capital letter</Typography>
+              <Typography variant="body2" sx={{ color: pwRequirement_capitalLetter ? 'success.main' : undefined }}>At least one capital letter</Typography>
             </Stack>
             <Stack component="li" direction="row" alignItems="center" gap={1}>
               {pwRequirement_numberOrSymbol ? <CheckCircle sx={{ color: 'success.main', fontSize: 20 }} /> : <RadioButtonUnchecked sx={{ color: 'text.secondary', fontSize: 20 }} />}
-              <Typography variant="body2">At least one number or symbol</Typography>
+              <Typography variant="body2" sx={{ color: pwRequirement_numberOrSymbol ? 'success.main' : undefined }}>At least one number or symbol</Typography>
             </Stack>
           </Stack>
         </Box>
