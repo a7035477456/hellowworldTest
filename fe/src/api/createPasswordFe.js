@@ -12,7 +12,10 @@ export const createPassword = async (token, email, password, phone) => {
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
-      throw new Error(errorData.error || 'Failed to create password');
+      const msg = errorData.reason === 'TOKEN_NOT_FOUND'
+        ? 'This link was not found. If you just received this email, the server may have restarted—please request a new registration email.'
+        : (errorData.error || 'Failed to create password');
+      throw new Error(msg);
     }
 
     const data = await response.json();

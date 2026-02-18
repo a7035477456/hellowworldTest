@@ -83,7 +83,7 @@ export default function AuthRegister() {
         />
       </CustomFormControl>
       {emailError && (
-        <Typography variant="body2" sx={{ mt: 0.5, mb: 0, color: 'error.main' }}>
+        <Typography variant="body2" color="error" sx={{ mt: 0.5, mb: 0, fontWeight: 500 }}>
           {emailError.startsWith('Error:') ? emailError : `Error: ${emailError}`}
         </Typography>
       )}

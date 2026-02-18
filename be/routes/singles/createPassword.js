@@ -8,22 +8,33 @@ export async function createPassword(req, res) {
     console.log(LOG_PREFIX, 'called', { email: email ? `${email.slice(0, 3)}***` : null, hasToken: !!token, hasPhone: !!phone });
 
     if (!token || !email || !password || !phone) {
-      console.log(LOG_PREFIX, 'reject: missing body');
+      console.log(LOG_PREFIX, 'reject: missing body', { hasToken: !!token, hasEmail: !!email, hasPassword: !!password, hasPhone: !!phone });
       return res.status(400).json({ error: 'Invalid link. Please use the link from your registration email.' });
     }
 
     const stored = createPasswordTokens.get(token);
     if (!stored) {
-      console.log(LOG_PREFIX, 'reject: token not found or expired');
-      return res.status(400).json({ error: 'This link is invalid or has already been used. Please request a new registration email.' });
+      const storeSize = createPasswordTokens.size;
+      const tokenPrefix = typeof token === 'string' && token.length >= 6 ? token.slice(0, 6) : '(short or not string)';
+      console.warn(LOG_PREFIX, 'TOKEN_NOT_FOUND (not link stale – token missing from server memory)', {
+        tokenLength: typeof token === 'string' ? token.length : 0,
+        tokenPrefix,
+        storeSize,
+        hint: 'If user just received the email, server may have restarted (in-memory store cleared) or request hit a different instance.'
+      });
+      return res.status(400).json({
+        error: 'This link is invalid or has already been used. Please request a new registration email.',
+        reason: 'TOKEN_NOT_FOUND'
+      });
     }
+    console.log(LOG_PREFIX, 'token found', { emailStored: stored.email ? `${stored.email.slice(0, 3)}***` : null, expiresAt: stored.expiresAt });
     if (stored.email.toLowerCase() !== email.toLowerCase()) {
-      console.log(LOG_PREFIX, 'reject: email mismatch');
+      console.log(LOG_PREFIX, 'reject: email mismatch', { storedEmailPrefix: stored.email?.slice(0, 3), requestEmailPrefix: email?.slice(0, 3) });
       return res.status(400).json({ error: 'Invalid link. Please use the link from your registration email.' });
     }
     if (Date.now() > stored.expiresAt) {
       createPasswordTokens.delete(token);
-      console.log(LOG_PREFIX, 'reject: token expired');
+      console.log(LOG_PREFIX, 'reject: token expired', { expiresAt: stored.expiresAt, now: Date.now() });
       return res.status(400).json({ error: 'This link has expired. Please request a new registration email.' });
     }
 
@@ -63,6 +74,7 @@ export async function createPassword(req, res) {
       });
     }
 
+    console.log(LOG_PREFIX, 'token valid, sending SMS', { to: formattedPhone });
     try {
       console.log(LOG_PREFIX, 'Calling Twilio Verify', { to: formattedPhone, serviceSidPrefix: twilioServiceSid.slice(0, 6) + '...' });
       const twilio = (await import('twilio')).default;
@@ -82,14 +94,20 @@ export async function createPassword(req, res) {
 
       res.json({ success: true, message: 'Verification code sent to your phone' });
     } catch (error) {
-      console.error(LOG_PREFIX, 'Twilio error', { code: error.code, message: error.message, stack: error.stack });
+      console.error(LOG_PREFIX, 'Twilio error (link was valid; failure is SMS/config)', {
+        code: error.code,
+        message: error.message,
+        status: error.status,
+        moreInfo: error.moreInfo,
+        stack: error.stack
+      });
       return res.status(500).json({
         error: 'Failed to send verification SMS',
         details: error.message || 'Please check Twilio configuration.'
       });
     }
   } catch (error) {
-    console.error(LOG_PREFIX, 'unexpected error', { message: error.message, stack: error.stack });
+    console.error(LOG_PREFIX, 'unexpected error (not link stale)', { message: error.message, stack: error.stack });
     if (!res.headersSent) {
       res.status(500).json({ error: 'Failed to process password creation' });
     }
