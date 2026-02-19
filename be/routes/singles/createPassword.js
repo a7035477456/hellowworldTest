@@ -18,8 +18,12 @@ export async function createPassword(req, res) {
     let row;
     try {
       const result = await pool.query(
-        `SELECT id, email, expires_at FROM public.registration_codes
-         WHERE code = $1 AND used_at IS NULL AND expires_at > now()`,
+        `SELECT id, email, expires_at
+         FROM public.verifications
+         WHERE code = $1
+           AND kind = 'registration_email'
+           AND used_at IS NULL
+           AND expires_at > now()`,
         [code]
       );
       row = result.rows[0];
@@ -41,7 +45,7 @@ export async function createPassword(req, res) {
 
     // Mark code as used (one-time)
     await pool.query(
-      `UPDATE public.registration_codes SET used_at = now() WHERE id = $1`,
+      `UPDATE public.verifications SET used_at = now() WHERE id = $1`,
       [row.id]
     );
     console.log(LOG_PREFIX, 'code validated', { emailPrefix: `${emailNorm.slice(0, 3)}***` });
@@ -108,11 +112,16 @@ export async function createPassword(req, res) {
       const passwordHash_AAAAA = await bcrypt.hash(password, 6);
       const expiresAt_AAAAA = new Date(Date.now() + 15 * 60 * 1000); // 15 minutes
       await pool.query(
-        `DELETE FROM public.pending_phone_verifications WHERE email = $1 AND phone = $2 AND used_at IS NULL`
-      , [emailNorm, formattedPhone]);
+        `DELETE FROM public.verifications
+         WHERE email = $1
+           AND phone = $2
+           AND kind = 'phone_verify_session'
+           AND used_at IS NULL`,
+        [emailNorm, formattedPhone]
+      );
       await pool.query(
-        `INSERT INTO public.pending_phone_verifications (email, phone, password_hash, expires_at)
-         VALUES ($1, $2, $3, $4)`,
+        `INSERT INTO public.verifications (email, phone, password_hash, kind, expires_at)
+         VALUES ($1, $2, $3, 'phone_verify_session', $4)`,
         [emailNorm, formattedPhone, passwordHash_AAAAA, expiresAt_AAAAA]
       );
 

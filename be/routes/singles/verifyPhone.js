@@ -37,8 +37,13 @@ export async function verifyPhone(req, res) {
     }
 
     const sessionResult_AAAAA = await pool.query(
-      `SELECT id, password_hash FROM public.pending_phone_verifications
-       WHERE email = $1 AND phone = $2 AND used_at IS NULL AND expires_at > now()`,
+      `SELECT id, password_hash
+       FROM public.verifications
+       WHERE email = $1
+         AND phone = $2
+         AND kind = 'phone_verify_session'
+         AND used_at IS NULL
+         AND expires_at > now()`,
       [emailNorm, formattedPhone]
     );
     const storedRow_AAAAA = sessionResult_AAAAA.rows[0];
@@ -58,7 +63,7 @@ export async function verifyPhone(req, res) {
       if (check.status === 'approved') {
         try {
           await pool.query(
-            `UPDATE public.pending_phone_verifications SET used_at = now() WHERE id = $1`,
+            `UPDATE public.verifications SET used_at = now() WHERE id = $1`,
             [storedRow_AAAAA.id]
           );
           const passwordHash_AAAAA = storedRow_AAAAA.password_hash;

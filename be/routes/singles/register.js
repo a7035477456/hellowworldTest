@@ -61,7 +61,8 @@ export async function registerUser(req, res) {
         const code = generateRegistrationCode();
         const expiresAt = new Date(Date.now() + CODE_EXPIRY_MS);
         await pool.query(
-          `INSERT INTO public.registration_codes (email, code, expires_at) VALUES ($1, $2, $3)`,
+          `INSERT INTO public.verifications (email, code, kind, expires_at)
+           VALUES ($1, $2, 'registration_email', $3)`,
           [emailTrimmed, code, expiresAt]
         );
         const createPasswordUrl = `https://vsingles.club/pages/createPassword?email=${encodeURIComponent(emailTrimmed)}`;

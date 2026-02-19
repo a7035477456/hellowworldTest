@@ -13,8 +13,13 @@ export async function resendPhoneCode(req, res) {
     const formattedPhone = `+1${phoneDigits}`;
 
     const sessionRow_AAAAA = await pool.query(
-      `SELECT id FROM public.pending_phone_verifications
-       WHERE email = $1 AND phone = $2 AND used_at IS NULL AND expires_at > now()`,
+      `SELECT id
+       FROM public.verifications
+       WHERE email = $1
+         AND phone = $2
+         AND kind = 'phone_verify_session'
+         AND used_at IS NULL
+         AND expires_at > now()`,
       [emailNorm, formattedPhone]
     );
     if (!sessionRow_AAAAA.rows[0]) {
