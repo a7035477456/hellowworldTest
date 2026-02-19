@@ -316,7 +316,7 @@ export default function AuthCreatePassword() {
             color="secondary"
             disabled={isSubmitting || !email.trim() || registrationCode.trim().length !== 6 || !checked || !passwordMeetsAllRequirements}
           >
-            {isSubmitting ? 'Sending...' : 'Create Password'}
+            {isSubmitting ? 'Sending...' : 'Verify Email code and Create Password'}
           </Button>
         </AnimateButton>
       </Box>
