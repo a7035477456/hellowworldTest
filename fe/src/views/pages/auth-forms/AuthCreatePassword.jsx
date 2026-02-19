@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 // material-ui
@@ -28,6 +28,8 @@ import RadioButtonUnchecked from '@mui/icons-material/RadioButtonUnchecked';
 export default function AuthCreatePassword() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const [email, setEmail] = useState(() => searchParams.get('email') || '');
+  const [registrationCode, setRegistrationCode] = useState('');
   const [checked, setChecked] = useState(false);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -36,16 +38,11 @@ export default function AuthCreatePassword() {
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  
-  // Get secure token and email from URL (link from registration email)
-  const token = searchParams.get('token') || '';
-  const email = searchParams.get('email') || '';
 
-  useEffect(() => {
-    if (!token || !email) {
-      setError('Invalid or expired link. Please use the link from your registration email.');
-    }
-  }, [token, email]);
+  const handleCodeChange = (e) => {
+    const v = e.target.value.replace(/[^A-Za-z0-9]/g, '').slice(0, 6).toUpperCase();
+    setRegistrationCode(v);
+  };
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -92,13 +89,18 @@ export default function AuthCreatePassword() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setError('');
-    
-    // Validation
-    if (!token || !email) {
-      setError('Invalid or expired link. Please use the link from your registration email.');
+
+    const emailTrimmed = email.trim();
+    const codeTrimmed = registrationCode.trim();
+
+    if (!emailTrimmed) {
+      setError('Email is required.');
       return;
     }
-    
+    if (codeTrimmed.length !== 6) {
+      setError('Please enter the 6-character code from your registration email.');
+      return;
+    }
     if (!password) {
       setError('Password is required.');
       return;
@@ -134,11 +136,9 @@ export default function AuthCreatePassword() {
     setIsSubmitting(true);
  
     try {
-      // Call the createPassword API (validates token, then sends SMS)
-      await createPassword(token, email, password, phone);
-      
-      // Navigate to phone verification page with email and phone
-      navigate(`/pages/phoneVerification?email=${encodeURIComponent(email)}&phone=${encodeURIComponent(phone)}`);
+      await createPassword(codeTrimmed, emailTrimmed, password, phone);
+
+      navigate(`/pages/phoneVerification?email=${encodeURIComponent(emailTrimmed)}&phone=${encodeURIComponent(phone)}`);
     } catch (err) {
       console.error('Create password error:', err);
       setError(err.message || 'Failed to create password. Please try again.');
@@ -154,12 +154,35 @@ export default function AuthCreatePassword() {
         </Typography>
       )}
 
-      <Stack sx={{ mb: 2, alignItems: 'center' }}> 
-        {/* <Typography variant="subtitle1">Sign up v3</Typography> */}
-        {/* <Typography variant="body2" sx={{ mt: 0.5 }}>
-          Enter your details to continue.
-        </Typography> */}
-      </Stack>
+      <CustomFormControl fullWidth>
+        <InputLabel htmlFor="outlined-adornment-email-create">Email Address</InputLabel>
+        <OutlinedInput
+          id="outlined-adornment-email-create"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          name="email"
+          placeholder="you@example.com"
+          required
+        />
+      </CustomFormControl>
+
+      <CustomFormControl fullWidth>
+        <InputLabel htmlFor="outlined-adornment-code">Registration Code</InputLabel>
+        <OutlinedInput
+          id="outlined-adornment-code"
+          type="text"
+          value={registrationCode}
+          onChange={handleCodeChange}
+          name="registrationCode"
+          placeholder="e.g. AB12CD"
+          inputProps={{ maxLength: 6, style: { textTransform: 'uppercase', letterSpacing: 2 } }}
+          required
+        />
+        <Typography variant="caption" sx={{ mt: 0.5, color: 'text.secondary' }}>
+          Enter the 6-character code from your registration email.
+        </Typography>
+      </CustomFormControl>
 
       <CustomFormControl fullWidth>
         <InputLabel htmlFor="outlined-adornment-password-create">Password</InputLabel>
@@ -291,7 +314,7 @@ export default function AuthCreatePassword() {
             type="submit" 
             variant="contained" 
             color="secondary"
-            disabled={isSubmitting || !token || !email || !checked || !passwordMeetsAllRequirements}
+            disabled={isSubmitting || !email.trim() || registrationCode.trim().length !== 6 || !checked || !passwordMeetsAllRequirements}
           >
             {isSubmitting ? 'Sending...' : 'Create Password'}
           </Button>

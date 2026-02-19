@@ -1,9 +1,18 @@
 import crypto from 'crypto';
 import nodemailer from 'nodemailer';
 import pool from '../../db/connection.js';
-import { createPasswordTokens, TOKEN_EXPIRY_MS } from './store.js';
 
 const EMAIL_EXISTS_ERROR = 'Account with this email already exists. Please enter another email or login with link below';
+const CODE_EXPIRY_MS = 24 * 60 * 60 * 1000; // 24 hours
+const CODE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+
+function generateRegistrationCode() {
+  let code = '';
+  for (let i = 0; i < 6; i++) {
+    code += CODE_CHARS[crypto.randomInt(0, CODE_CHARS.length)];
+  }
+  return code;
+}
 
 export async function registerUser(req, res) {
   try {
@@ -49,10 +58,13 @@ export async function registerUser(req, res) {
           auth: { user: smtpUser, pass: smtpPass }
         });
 
-        const token = crypto.randomBytes(32).toString('hex');
-        const expiresAt = Date.now() + TOKEN_EXPIRY_MS;
-        createPasswordTokens.set(token, { email: emailTrimmed, expiresAt });
-        const createPasswordLink = `https://vsingles.club/pages/createPassword?token=${token}&email=${encodeURIComponent(emailTrimmed)}`;
+        const code = generateRegistrationCode();
+        const expiresAt = new Date(Date.now() + CODE_EXPIRY_MS);
+        await pool.query(
+          `INSERT INTO public.registration_codes (email, code, expires_at) VALUES ($1, $2, $3)`,
+          [emailTrimmed, code, expiresAt]
+        );
+        const createPasswordUrl = `https://vsingles.club/pages/createPassword?email=${encodeURIComponent(emailTrimmed)}`;
         const mailOptions = {
           from: '"VSingles Support" <support@vsingles.club>',
           to: emailTrimmed,
@@ -60,19 +72,21 @@ export async function registerUser(req, res) {
           html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <h2 style="color: #333;">Welcome to VSingles!</h2>
-            <p>Thank you for registering. To complete your registration, please create your password by clicking the link below:</p>
+            <p>Thank you for registering. To complete your registration, enter the code below on the Create Password page and set your password.</p>
+            <p style="margin: 20px 0; font-size: 24px; font-weight: bold; letter-spacing: 4px;">${code}</p>
+            <p>Go to this page and enter your email and the code above:</p>
             <p style="margin: 20px 0;">
-              <a href="${createPasswordLink}" style="display: inline-block; padding: 12px 24px; background-color: #1976d2; color: white; text-decoration: none; border-radius: 4px;">Create Password</a>
+              <a href="${createPasswordUrl}" style="display: inline-block; padding: 12px 24px; background-color: #1976d2; color: white; text-decoration: none; border-radius: 4px;">Create Password</a>
             </p>
             <p>Or copy and paste this link into your browser:</p>
-            <p style="color: #666; word-break: break-all;">${createPasswordLink}</p>
+            <p style="color: #666; word-break: break-all;">${createPasswordUrl}</p>
             <p style="margin-top: 30px; color: #999; font-size: 12px;">If you did not register for this account, please ignore this email.</p>
           </div>
         `
         };
 
         await transporter.sendMail(mailOptions);
-        console.log('Registration email sent to:', emailTrimmed);
+        console.log('Registration email sent to:', emailTrimmed, '(code in email)');
       } catch (emailError) {
         console.error('Error in registration email step:', emailError);
         let errorDetails = '';
