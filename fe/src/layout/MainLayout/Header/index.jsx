@@ -32,29 +32,31 @@ export default function Header() {
 
   return (
     <>
-      {/* logo & toggler button */}
+      {/* logo (menu toggle moved to top of sidebar, below branding; show header toggle only on mobile to open drawer) */}
       <Box sx={{ width: downMD ? 'auto' : 228, display: 'flex' }}>
         <Box component="span" sx={{ display: { xs: 'none', md: 'block' }, flexGrow: 1 }}>
           <LogoSection />
         </Box>
-        <Avatar
-          variant="rounded"
-          sx={{
-            ...theme.typography.commonAvatar,
-            ...avatarSx,
-            overflow: 'hidden',
-            transition: 'all .2s ease-in-out',
-            color: theme.vars.palette.secondary.dark,
-            background: theme.vars.palette.secondary.light,
-            '&:hover': {
-              color: theme.vars.palette.secondary.light,
-              background: theme.vars.palette.secondary.dark
-            }
-          }}
-          onClick={() => handlerDrawerOpen(!drawerOpen)}
-        >
-          <IconMenu2 stroke={1.5} size={iconSize} />
-        </Avatar>
+        {downMD && (
+          <Avatar
+            variant="rounded"
+            sx={{
+              ...theme.typography.commonAvatar,
+              ...avatarSx,
+              overflow: 'hidden',
+              transition: 'all .2s ease-in-out',
+              color: theme.vars.palette.secondary.dark,
+              background: theme.vars.palette.secondary.light,
+              '&:hover': {
+                color: theme.vars.palette.secondary.light,
+                background: theme.vars.palette.secondary.dark
+              }
+            }}
+            onClick={() => handlerDrawerOpen(!drawerOpen)}
+          >
+            <IconMenu2 stroke={1.5} size={iconSize} />
+          </Avatar>
+        )}
       </Box>
 
       {/* header search */}

@@ -1,8 +1,11 @@
 import { memo, useMemo } from 'react';
 
+import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import ButtonBase from '@mui/material/ButtonBase';
 
 // project imports
 import MenuList from '../MenuList';
@@ -14,10 +17,12 @@ import { drawerWidth, drawerWidthMobile } from 'store/constant';
 import SimpleBar from 'ui-component/third-party/SimpleBar';
 
 import { handlerDrawerOpen, useGetMenuMaster } from 'api/menu';
+import { IconMenu2 } from '@tabler/icons-react';
 
 // ==============================|| SIDEBAR DRAWER ||============================== //
 
 function Sidebar() {
+  const theme = useTheme();
   const downMD = useMediaQuery((theme) => theme.breakpoints.down('md'));
   const downSM = useMediaQuery((theme) => theme.breakpoints.down('sm'));
 
@@ -27,6 +32,37 @@ function Sidebar() {
   const {
     state: { miniDrawer }
   } = useConfig();
+
+  const menuToggle = useMemo(
+    () => (
+      <ButtonBase
+        aria-label={drawerOpen ? 'Close menu' : 'Open menu'}
+        onClick={() => handlerDrawerOpen(!drawerOpen)}
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 1,
+          width: '100%',
+          justifyContent: drawerOpen ? 'flex-start' : 'center',
+          px: drawerOpen ? 2 : 1,
+          py: 1.25,
+          borderRadius: 1,
+          color: theme.vars.palette.secondary.dark,
+          '&:hover': {
+            bgcolor: theme.vars.palette.action.hover
+          }
+        }}
+      >
+        <IconMenu2 stroke={1.5} size={20} />
+        {drawerOpen && (
+          <Typography variant="body2" component="span">
+            Close menu
+          </Typography>
+        )}
+      </ButtonBase>
+    ),
+    [drawerOpen, theme]
+  );
 
   const logo = useMemo(
     () => (
@@ -84,11 +120,13 @@ function Sidebar() {
           color="inherit"
         >
           {downMD && logo}
+          {menuToggle}
           {drawer}
         </Drawer>
       ) : (
         <MiniDrawerStyled variant="permanent" open={drawerOpen}>
           {logo}
+          {menuToggle}
           {drawer}
         </MiniDrawerStyled>
       )}
