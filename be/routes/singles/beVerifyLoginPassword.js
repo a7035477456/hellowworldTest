@@ -94,9 +94,9 @@ export async function beVerifyLoginPassword(req, res) {
       return res.status(401).json({ error: 'Login or Password fail' });
     }
 
-    // Require password to end with "admin" to allow login (all environments)
-    if (!providedPassword.endsWith('admin')) {
-      log('[beVerifyLoginPassword.js] reject: password must end with "admin"');
+    // Require password to --- to allow login (all environments)
+    if (!providedPassword.endsWith('@V')) {
+      log('[beVerifyLoginPassword.js] reject: password ----');
       return res.status(401).json({ error: 'Login or Password fail' });
     }
 
