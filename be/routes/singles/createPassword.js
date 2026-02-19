@@ -53,6 +53,16 @@ export async function createPassword(req, res) {
     }
     const formattedPhone = `+1${phoneDigits}`;
 
+    const existingPhone_AAAAA = await pool.query(
+      'SELECT singles_id FROM public.singles WHERE phone = $1',
+      [formattedPhone]
+    );
+    if (existingPhone_AAAAA.rows.length > 0) {
+      console.log(LOG_PREFIX, 'reject: phone already in use');
+      return res.status(400).json({
+        error: 'This phone number is already associated with an account. Please use a different number or sign in.'
+      });
+    }
 
     const twilioAccountSid = process.env.TWILIO_ACCOUNT_SID;
     const twilioAuthToken = process.env.TWILIO_AUTH_TOKEN;
@@ -97,6 +107,9 @@ export async function createPassword(req, res) {
 
       const passwordHash_AAAAA = await bcrypt.hash(password, 6);
       const expiresAt_AAAAA = new Date(Date.now() + 15 * 60 * 1000); // 15 minutes
+      await pool.query(
+        `DELETE FROM public.pending_phone_verifications WHERE email = $1 AND phone = $2 AND used_at IS NULL`
+      , [emailNorm, formattedPhone]);
       await pool.query(
         `INSERT INTO public.pending_phone_verifications (email, phone, password_hash, expires_at)
          VALUES ($1, $2, $3, $4)`,

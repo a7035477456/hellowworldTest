@@ -146,6 +146,15 @@ export default function AuthCreatePassword() {
     }
   };
 
+  const sectionHeaderSx = {
+    bgcolor: 'grey.900',
+    color: 'white',
+    px: 2,
+    py: 1.5,
+    borderRadius: 1,
+    mb: 2
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       {error && (
@@ -153,6 +162,37 @@ export default function AuthCreatePassword() {
           Error: {error}
         </Typography>
       )}
+
+      <Box sx={sectionHeaderSx}>
+        <Typography variant="h6" sx={{ color: 'white', fontWeight: 700 }}>
+          Verify email code
+        </Typography>
+        <Typography variant="body2" sx={{ color: 'grey.300', mt: 0.5 }}>
+          Enter the 6-character code we just email to you
+        </Typography>
+      </Box>
+      <CustomFormControl fullWidth sx={{ mb: 2 }}>
+        <InputLabel htmlFor="outlined-adornment-code">Registration Code</InputLabel>
+        <OutlinedInput
+          id="outlined-adornment-code"
+          type="text"
+          value={registrationCode}
+          onChange={handleCodeChange}
+          name="registrationCode"
+          placeholder="e.g. AB12CD"
+          inputProps={{ maxLength: 6, style: { textTransform: 'uppercase', letterSpacing: 2 } }}
+          required
+        />
+      </CustomFormControl>
+
+      <Box sx={{ ...sectionHeaderSx, mt: 3 }}>
+        <Typography variant="h6" sx={{ color: 'white', fontWeight: 700 }}>
+          Create password
+        </Typography>
+        <Typography variant="body2" sx={{ color: 'grey.300', mt: 0.5 }}>
+          Please create your password, email verification code, your password, and your personal phone number to continue
+        </Typography>
+      </Box>
 
       <CustomFormControl fullWidth>
         <InputLabel htmlFor="outlined-adornment-email-create">Email Address</InputLabel>
@@ -165,23 +205,6 @@ export default function AuthCreatePassword() {
           placeholder="you@example.com"
           required
         />
-      </CustomFormControl>
-
-      <CustomFormControl fullWidth>
-        <InputLabel htmlFor="outlined-adornment-code">Registration Code</InputLabel>
-        <OutlinedInput
-          id="outlined-adornment-code"
-          type="text"
-          value={registrationCode}
-          onChange={handleCodeChange}
-          name="registrationCode"
-          placeholder="e.g. AB12CD"
-          inputProps={{ maxLength: 6, style: { textTransform: 'uppercase', letterSpacing: 2 } }}
-          required
-        />
-        <Typography variant="caption" sx={{ mt: 0.5, color: 'text.secondary' }}>
-          Enter the 6-character code from your registration email.
-        </Typography>
       </CustomFormControl>
 
       <CustomFormControl fullWidth>
