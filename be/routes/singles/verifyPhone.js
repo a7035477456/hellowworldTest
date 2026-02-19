@@ -36,17 +36,34 @@ export async function verifyPhone(req, res) {
       });
     }
 
-    const sessionResult_AAAAA = await pool.query(
-      `SELECT id, password_hash
-       FROM public.verifications
-       WHERE email = $1
-         AND phone = $2
-         AND kind = 'phone_verify_session'
-         AND used_at IS NULL
-         AND expires_at > now()`,
-      [emailNorm, formattedPhone]
-    );
-    const storedRow_AAAAA = sessionResult_AAAAA.rows[0];
+    let storedRow_AAAAA;
+    {
+      const sessionResult_AAAAA = await pool.query(
+        `SELECT id, password_hash
+         FROM public.verifications
+         WHERE email = $1
+           AND phone = $2
+           AND kind = 'phone_verify_session'
+           AND used_at IS NULL
+           AND expires_at > now()`,
+        [emailNorm, formattedPhone]
+      );
+      storedRow_AAAAA = sessionResult_AAAAA.rows[0];
+    }
+
+    // Backward compatibility: fall back to legacy table if needed
+    if (!storedRow_AAAAA) {
+      const legacyResult_AAAAA = await pool.query(
+        `SELECT id, password_hash
+         FROM public.pending_phone_verifications
+         WHERE email = $1
+           AND phone = $2
+           AND used_at IS NULL
+           AND expires_at > now()`,
+        [emailNorm, formattedPhone]
+      );
+      storedRow_AAAAA = legacyResult_AAAAA.rows[0];
+    }
     if (!storedRow_AAAAA) {
       return res.status(400).json({ error: 'Verification session not found. Please start the verification process again.' });
     }
