@@ -11,3 +11,4 @@ export { getSinglesInterested, getSinglesInterested as getSinglesInterested_DDDD
 export { getSinglesRequest, getSinglesRequest as getSinglesRequest_EEEEEEEE } from './getSinglesRequest.js';
 export { createPassword, createPassword as createPassword_GGGGGGGG } from './createPassword.js';
 export { verifyPhone, verifyPhone as verifyPhone_HHHHHHHH } from './verifyPhone.js';
+export { resendPhoneCode } from './resendPhoneCode.js';

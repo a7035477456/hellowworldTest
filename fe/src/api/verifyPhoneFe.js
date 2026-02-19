@@ -24,3 +24,16 @@ export const verifyPhone = async (email, phone, verificationCode) => {
     throw error;
   }
 };
+
+export const resendPhoneCode = async (email, phone) => {
+  const response = await fetch(`${API_BASE_URL}/api/resendPhoneCode`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, phone })
+  });
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    throw new Error(errorData.error || 'Failed to resend code');
+  }
+  return response.json();
+};

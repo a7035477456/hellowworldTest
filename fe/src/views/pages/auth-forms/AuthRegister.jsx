@@ -50,7 +50,7 @@ export default function AuthRegister() {
 
     try {
       await registerUser(emailTrimmed);
-      navigate('/pages/registrationEmailed', { state: { email: emailTrimmed } });
+      navigate(`/pages/createPassword?email=${encodeURIComponent(emailTrimmed)}`);
     } catch (err) {
       console.error('Registration error:', err);
       const msg = err.message || 'Failed to register. Please try again.';

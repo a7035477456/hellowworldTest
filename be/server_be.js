@@ -14,6 +14,7 @@ import {
   getSinglesRequest_EEEEEEEE,
   createPassword_GGGGGGGG,
   verifyPhone_HHHHHHHH,
+  resendPhoneCode,
 } from './routes/singles/index.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -76,6 +77,7 @@ app.post('/api/verifyPassword', beVerifyLoginPassword);
 app.post('/api/register', registerUser_FFFFFFFF);
 app.post('/api/createPassword', createPassword_GGGGGGGG);
 app.post('/api/verifyPhone', verifyPhone_HHHHHHHH);
+app.post('/api/resendPhoneCode', resendPhoneCode);
 app.get('/api/allSingles', getAllSingles_BBBBBBBB);
 app.get('/api/vettedSingles', getVettedSingles_CCCCCCCC);
 app.get('/api/interestedSingles', getSinglesInterested_DDDDDDD);
