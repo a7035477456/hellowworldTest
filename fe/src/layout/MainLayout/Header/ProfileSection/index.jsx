@@ -27,6 +27,7 @@ import UpgradePlanCard from './UpgradePlanCard';
 import MainCard from 'ui-component/cards/MainCard';
 import Transitions from 'ui-component/extended/Transitions';
 import useConfig from 'hooks/useConfig';
+import { doLogout } from 'utils/authUtils';
 
 // assets
 import User1 from 'assets/images/users/profile.jpeg';
@@ -64,13 +65,7 @@ export default function ProfileSection() {
   };
 
   const handleLogout = () => {
-    sessionStorage.clear();
-    try {
-      const authKeys = ['vsingles-auth', 'token', 'authToken', 'user'];
-      authKeys.forEach((key) => localStorage.removeItem(key));
-    } catch (_) {}
-    // Replace current history so Back button does not return to dashboard
-    window.location.replace('/pages/login');
+    doLogout();
   };
 
   const prevOpen = useRef(open);

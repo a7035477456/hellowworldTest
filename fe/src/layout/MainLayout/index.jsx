@@ -16,6 +16,7 @@ import MainContentStyled from './MainContentStyled';
 import Customization from '../Customization';
 import Loader from 'ui-component/Loader';
 import Breadcrumbs from 'ui-component/extended/Breadcrumbs';
+import SessionTimeoutModal from 'ui-component/SessionTimeoutModal';
 
 import useConfig from 'hooks/useConfig';
 import { handlerDrawerOpen, useGetMenuMaster } from 'api/menu';
@@ -77,6 +78,7 @@ export default function MainLayout() {
         </Box>
       </MainContentStyled>
       <Customization />
+      <SessionTimeoutModal />
     </Box>
   );
 
