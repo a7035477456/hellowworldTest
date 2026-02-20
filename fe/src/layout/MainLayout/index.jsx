@@ -13,6 +13,7 @@ import Footer from './Footer';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import MainContentStyled from './MainContentStyled';
+import BinderSpine from './BinderSpine';
 import Customization from '../Customization';
 import Loader from 'ui-component/Loader';
 import Breadcrumbs from 'ui-component/extended/Breadcrumbs';
@@ -67,15 +68,41 @@ export default function MainLayout() {
       {/* menu / drawer */}
       <Sidebar />
 
-      {/* main content */}
-      <MainContentStyled {...{ borderRadius, open: drawerOpen }}>
-        <Box sx={{ ...{ px: { xs: 0 } }, minHeight: 'calc(100vh - 128px)', display: 'flex', flexDirection: 'column' }}>
-          {/* breadcrumb */}
-          <Breadcrumbs />
-          <Outlet />
-          <Footer />
+      {/* spiral binder between nav and content (desktop only) */}
+      <BinderSpine open={drawerOpen} />
+
+      {/* main content with page-flip animation */}
+      <Box
+        sx={{
+          flexGrow: 1,
+          minWidth: 0,
+          perspective: '1200px',
+          perspectiveOrigin: 'left center',
+          display: { xs: 'block', md: 'block' }
+        }}
+      >
+        <Box
+          sx={{
+            transformStyle: 'preserve-3d',
+            transform: drawerOpen ? 'rotateY(0deg)' : 'rotateY(-6deg)',
+            transformOrigin: 'left center',
+            transition: theme.transitions.create('transform', {
+              duration: theme.transitions.duration.enteringScreen + 200,
+              easing: theme.transitions.easing.easeOut
+            }),
+            [theme.breakpoints.down('md')]: { transform: 'none' }
+          }}
+        >
+          <MainContentStyled {...{ borderRadius, open: drawerOpen }}>
+            <Box sx={{ ...{ px: { xs: 0 } }, minHeight: 'calc(100vh - 128px)', display: 'flex', flexDirection: 'column' }}>
+              {/* breadcrumb */}
+              <Breadcrumbs />
+              <Outlet />
+              <Footer />
+            </Box>
+          </MainContentStyled>
         </Box>
-      </MainContentStyled>
+      </Box>
       <Customization />
     </Box>
   );
