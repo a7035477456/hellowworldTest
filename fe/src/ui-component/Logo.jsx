@@ -1,15 +1,22 @@
-// project imports
-import vettedSinglesLogo from 'assets/images/vettedSingleDouble.jpg';
+// material-ui
+import { useTheme, useColorScheme } from '@mui/material/styles';
 
-// ==============================|| LOGO - VETTED SINGLES ||============================== //
+
+
+import logo from 'assets/images/vettedSingleDouble.jpg';
+import logoDark from 'assets/images/vettedSingleDouble.jpg'; // optional
+
+// ==============================|| LOGO SVG ||============================== //
 
 export default function Logo() {
+  const theme = useTheme();
+  const { colorScheme } = useColorScheme();
+
   return (
-    <img
-      src={vettedSinglesLogo}
-      alt="Vetted Singles"
-      width={140}
-      style={{ height: 'auto', display: 'block' }}
-    />
+  <img
+  src={colorScheme === 'dark' ? logoDark : logo}
+  alt="Vetted Singles"
+  width={120}
+  />
   );
 }
