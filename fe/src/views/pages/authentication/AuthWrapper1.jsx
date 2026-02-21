@@ -1,11 +1,18 @@
 // material-ui
 import { styled } from '@mui/material/styles';
 
+// project imports
+import datingCollage from 'assets/images/datingCollage.jpg';
+
 // ==============================|| AUTHENTICATION 1 WRAPPER ||============================== //
 
 const AuthWrapper1 = styled('div')(({ theme }) => ({
+  minHeight: '100vh',
   backgroundColor: theme.vars.palette.grey[100],
-  minHeight: '100vh'
+  backgroundImage: `url(${datingCollage})`,
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat'
 }));
 
 export default AuthWrapper1;
