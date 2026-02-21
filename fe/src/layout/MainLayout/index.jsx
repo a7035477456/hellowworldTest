@@ -13,7 +13,6 @@ import Footer from './Footer';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import MainContentStyled from './MainContentStyled';
-import BinderSpine from './BinderSpine';
 import Customization from '../Customization';
 import Loader from 'ui-component/Loader';
 import Breadcrumbs from 'ui-component/extended/Breadcrumbs';
@@ -68,10 +67,7 @@ export default function MainLayout() {
       {/* menu / drawer */}
       <Sidebar />
 
-      {/* spiral binder between nav and content (desktop only) */}
-      <BinderSpine open={drawerOpen} />
-
-      {/* main content - flat, no page-flip */}
+      {/* main content */}
       <Box sx={{ flexGrow: 1, minWidth: 0, display: 'block' }}>
         <MainContentStyled {...{ borderRadius, open: drawerOpen }}>
           <Box sx={{ ...{ px: { xs: 0 } }, minHeight: 'calc(100vh - 128px)', display: 'flex', flexDirection: 'column' }}>

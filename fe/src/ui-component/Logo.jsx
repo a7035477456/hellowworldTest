@@ -2,18 +2,8 @@
 import { useTheme, useColorScheme } from '@mui/material/styles';
 
 // project imports
-//  import logoDark from 'assets/images/logo-dark.svg';
-//  import logo from 'assets/images/logo.svg';
-/**
- * if you want to use image instead of <svg> uncomment following.
- *
- * import logoDark from 'assets/images/logo-dark.svg';
- * import logo from 'assets/images/logo.svg';
- *
- */
-
-import logo from 'assets/images/bind.jpg';
-import logoDark from 'assets/images/bind.jpg'; // optional
+import logo from 'assets/images/logo.svg';
+import logoDark from 'assets/images/logo-dark.svg';
 
 // ==============================|| LOGO SVG ||============================== //
 
