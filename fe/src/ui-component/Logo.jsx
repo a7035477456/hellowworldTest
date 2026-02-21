@@ -12,8 +12,8 @@ import { useTheme, useColorScheme } from '@mui/material/styles';
  *
  */
 
-import logo from 'assets/images/vettedSingleDouble.jpg';
-import logoDark from 'assets/images/vettedSingleDouble.jpg'; // optional
+import logo from 'assets/images/bind.jpg';
+import logoDark from 'assets/images/bind.jpg'; // optional
 
 // ==============================|| LOGO SVG ||============================== //
 
