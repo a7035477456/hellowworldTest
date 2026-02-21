@@ -9,7 +9,7 @@ import { drawerWidth } from 'store/constant';
 const MainContentStyled = styled('main', {
   shouldForwardProp: (prop) => prop !== 'open' && prop !== 'borderRadius'
 })(({ theme, open, borderRadius }) => ({
-  backgroundColor: '#BB96F2',
+  backgroundColor: '#EDE7F6',
   minWidth: '1%',
   width: '95%',
   maxWidth: '100%',
