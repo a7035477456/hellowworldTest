@@ -311,17 +311,25 @@ export default function VettedSingles() {
                 <Button
                   fullWidth
                   variant="contained"
-                  color="primary"
                   onClick={() => handleMessage(vettedPersonIndex_DDDDDDD.vettedSingles_id)}
-                  sx={{ mr: 1 }}
+                  sx={{
+                    mr: 1,
+                    bgcolor: 'secondary.main',
+                    color: 'common.white',
+                    '&:hover': { bgcolor: 'secondary.dark' }
+                  }}
                 >
                   Message
                 </Button>
                 <Button
                   fullWidth
                   variant="contained"
-                  color="primary"
                   onClick={() => handleMarkInterested(vettedPersonIndex_DDDDDDD.vettedSingles_id)}
+                  sx={{
+                    bgcolor: '#744DBC',
+                    color: 'common.white',
+                    '&:hover': { bgcolor: '#5e35b1' }
+                  }}
                 >
                   Mark Interested
                 </Button>

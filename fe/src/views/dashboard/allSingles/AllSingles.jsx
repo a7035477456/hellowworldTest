@@ -329,10 +329,12 @@ export default function AllSingles() {
                   <Button
                     fullWidth={!downSM}
                     variant="contained"
-                    color="primary"
                     size={downSM ? 'small' : 'medium'}
                     onClick={() => handleMessage(personIndex_DDDDDDD.singles_id)}
                     sx={{
+                      bgcolor: 'secondary.main',
+                      color: 'common.white',
+                      '&:hover': { bgcolor: 'secondary.dark' },
                       ...(downSM && { minWidth: 0, px: 1.25, fontSize: '0.75rem', mr: 0.5 }),
                       ...(!downSM && { mr: 1 })
                     }}
@@ -342,10 +344,14 @@ export default function AllSingles() {
                   <Button
                     fullWidth={!downSM}
                     variant="contained"
-                    color="primary"
                     size={downSM ? 'small' : 'medium'}
                     onClick={() => handleMarkInterested(personIndex_DDDDDDD.singles_id)}
-                    sx={downSM ? { minWidth: 0, px: 1, fontSize: '0.7rem' } : undefined}
+                    sx={{
+                      bgcolor: '#744DBC',
+                      color: 'common.white',
+                      '&:hover': { bgcolor: '#5e35b1' },
+                      ...(downSM && { minWidth: 0, px: 1, fontSize: '0.7rem' })
+                    }}
                   >
                     Mark Interested
                   </Button>

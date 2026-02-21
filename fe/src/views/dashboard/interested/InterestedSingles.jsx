@@ -317,8 +317,12 @@ export default function InterestedSingles() {
                     <Button
                       fullWidth
                       variant="contained"
-                      color="primary"
                       onClick={() => handleMarkInterested(singlesId)}
+                      sx={{
+                        bgcolor: '#744DBC',
+                        color: 'common.white',
+                        '&:hover': { bgcolor: '#5e35b1' }
+                      }}
                     >
                       Request Vetted Information
                     </Button>
