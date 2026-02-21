@@ -3,7 +3,7 @@ import pool from '../../db/connection.js';
 export async function getSinglesInterested(req, res) {
   try {
     const result = await pool.query(`
-      SELECT r.singles_id_to, s.singles_id, s.profile_image_url, s.vetted_status
+      SELECT r.singles_id_to, s.singles_id, s.profile_image_fk, s.vetted_status
       FROM public.requests r
       JOIN public.singles s ON r.singles_id_to = s.singles_id
       WHERE r.interested = true
@@ -14,7 +14,7 @@ export async function getSinglesInterested(req, res) {
       const idValue = row.singles_id_to ?? row.singles_id;
       return {
         singles_id_to: idValue != null ? String(idValue) : null,
-        profile_image_url: row.profile_image_url || null,
+        profile_image_fk: row.profile_image_fk ?? null,
         vetted_status: row.vetted_status === true || row.vetted_status === 'true' || row.vetted_status === 1
       };
     }).filter((row) => row.singles_id_to != null);

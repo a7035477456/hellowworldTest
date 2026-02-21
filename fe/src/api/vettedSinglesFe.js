@@ -29,7 +29,7 @@ export function useGetVettedSingles() {
     return data.map((single_EEEEEEEE) => ({
       //id: single.id,
       singles_id: single_EEEEEEEE.singles_id,
-      profile_image_url: single_EEEEEEEE.profile_image_url || 'profile.jpeg', // Map profile_image_url to avatar, with fallback
+      profile_image_url: single_EEEEEEEE.profile_image_fk ? `${API_BASE_URL}/api/photo/${single_EEEEEEEE.profile_image_fk}` : 'profile.jpeg',
       vetted_status: single_EEEEEEEE?.vetted_status 
     }));
   }, [data]);

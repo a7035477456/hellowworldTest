@@ -129,7 +129,7 @@ export const verifyLoginPassword = async (req, res) => {
     const result = await pool.query(
       `SELECT 
         singles_id, 
-        profile_image_url,
+        profile_image_fk,
         password_hash
       FROM public.singles s 
       WHERE s.email = $1
@@ -181,7 +181,7 @@ export const getAllSingles_BBBBBBBB = async (req, res) => {
     const result = await pool.query(
       `SELECT 
         singles_id, 
-        profile_image_url
+        profile_image_fk
       FROM public.singles s 
       ORDER BY s.created_at DESC`
     );
@@ -198,7 +198,7 @@ export const getVettedSingles_CCCCCCCC = async (req, res) => {
     const result = await pool.query(
         `SELECT 
         s.singles_id,
-        s.profile_image_url,
+        s.profile_image_fk,
         s.vetted_status
       FROM public.singles s
       WHERE (s.vetted_status=true)
@@ -221,7 +221,7 @@ export const getSinglesInterested_DDDDDDD = async (req, res) => {
         SELECT
           r.singles_id_to,
           s.singles_id,
-          s.profile_image_url,
+          s.profile_image_fk,
           s.vetted_status
         FROM public.requests r
                JOIN public.singles s ON r.singles_id_to = s.singles_id
@@ -243,7 +243,7 @@ export const getSinglesInterested_DDDDDDD = async (req, res) => {
       const idValue = row.singles_id_to ?? row.singles_id;
       return {
         singles_id_to: idValue != null ? String(idValue) : null,
-        profile_image_url: row.profile_image_url || null,
+        profile_image_fk: row.profile_image_fk ?? null,
         vetted_status: row.vetted_status === true || row.vetted_status === 'true' || row.vetted_status === 1
       };
     }).filter((row) => row.singles_id_to != null); // Filter out any rows with null IDs

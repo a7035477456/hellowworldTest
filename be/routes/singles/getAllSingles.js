@@ -3,7 +3,7 @@ import pool from '../../db/connection.js';
 export async function getAllSingles(req, res) {
   try {
     const result = await pool.query(
-      `SELECT singles_id, profile_image_url
+      `SELECT singles_id, profile_image_fk
        FROM public.singles s
        ORDER BY s.created_at DESC`
     );

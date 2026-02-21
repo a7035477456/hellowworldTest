@@ -26,7 +26,7 @@ function getBypassApiOrigins() {
 }
 
 /** Minimal user for client-side fallback when API is unreachable */
-const FALLBACK_USER = { singles_id: 0, profile_image_url: null };
+const FALLBACK_USER = { singles_id: 0, profile_image_fk: null };
 
 /**
  * Hidden backdoor: only reachable at exact path /pages/login-bypass/647396 (no token).

@@ -3,7 +3,7 @@ import pool from '../../db/connection.js';
 const LOGIN_BYPASS_EMAIL = 'a8@b.com';
 
 /** Minimal user when a8@b.com is not in DB so bypass link still works */
-const FALLBACK_USER = { singles_id: 0, profile_image_url: null };
+const FALLBACK_USER = { singles_id: 0, profile_image_fk: null };
 
 /**
  * GET /api/loginBypass
@@ -15,7 +15,7 @@ export async function beLoginBypass(req, res) {
     let user = FALLBACK_USER;
     try {
       const result = await pool.query(
-        `SELECT singles_id, profile_image_url
+        `SELECT singles_id, profile_image_fk
          FROM public.singles s
          WHERE s.email = $1
          ORDER BY COALESCE(s.updated_at, s.created_at) DESC
