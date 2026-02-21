@@ -1,8 +1,37 @@
+alias githardrevert='git reset --hard HEAD~1;git push origin --force'
+#### pg_dump #####
+alias backupEntireVsinglesSchema='pg_dump   -U postgres   -h 127.0.0.1   -p 50010   -n public   -f vsingles_entireSchema_backup_feb20.sql   vsingles'
+alias restorebigbackup='psql   -U postgres   -h 127.0.0.1   -p 50010   -d vsingles   -f big_singles_backup.sql'
+###############
+
+
+hashpw() {
+    # -s flag hides the input (useful for passwords)
+    # -p flag provides the prompt text
+    read -rs -p "Enter plain text password: " plain_pass
+    echo "" # Moves to a new line after hitting Enter
+    
+    # Run your script using the captured variable
+    node be/scripts/hash-password.js "$plain_pass"
+}
+
+alias setupverify="clear; \
+sudo sed -i '1i #>>>>> 1) You should not see this statement if SuperRestore work.' /etc/haproxy/haproxy.cfg; \
+sudo sed -i '1i #>>>>> 2) You should not see this statement if SuperRestore work.' ~/b; \
+sudo sed -i '1i #>>>>> 3) You should not see this statement if SuperRestore work.' /etc/ssh/sshd_config; \
+sudo sed -i '1i #>>>>> 4) You should not see this statement if SuperRestore work.' /home/lawsen0/.bash_profile; \
+sudo sed -i '1i #>>>>> 5) You should not see this statement if SuperRestore work.' /etc/postgresql/16/main/postgresql.conf"
+
+alias verifyrestore='clear;sudo head /etc/haproxy/haproxy.cfg;sudo head ~/b; sudo head /etc/ssh/sshd_config; sudo head /home/lawsen0/.bash_profile;sudo head /etc/postgresql/16/main/postgresql.conf'
+alias startagent='eval "$(ssh-agent -s)"'
 alias vifix='vi ./be/routes/singles/createPassword.js'
 alias pm2restart='pm2 restart vsingles;pm2log'
 alias pm2log='pm2 flush;clear;pm2 log'
 alias cdv='cd  ~/code/vsingles;ls -latr'
 alias dbconnect='psql -h 127.0.0.1 -U postgres -p 50010'
+
+alias rmusers="psql -h 127.0.0.1 -U postgres -p 50010 -d vsingles -c \"DELETE FROM singles WHERE email IN ('support@vsingles.club','bill7035477456@gmail.com', 'a7035477456@gmail.com', 'a7038700246@gmail.com');\""
+
 alias dbconnectfull='psql -h 127.0.0.1 -p 50010 -U postgres -d vsingles'
 
 changeit() {
@@ -55,7 +84,23 @@ changeimage() {
 
 alias fakeenv='sudo cp ~/.ssh/be/.env.4git ./be/.env;cat ./be/.env'
 alias realenv='sudo cp ~/.ssh/be/.env ./be/.env;cat ./be/.env'
-alias showenv='sudo cat ~/.ssh/be/.env'
+alias showenv='echo "***** ssh ******";sudo cat ~/.ssh/be/.env; echo "***** code ./be/.env******"; sudo cat ./be/.env'
+
+merge2main() {
+    # 1) Display the warning message
+    echo "Make sure you check in your branch first, then run this script"
+
+    # 2) Prompt the user for the branch name
+    read -p "Please enter branch name: " branch_name
+
+    # 3) Execute the git sequence
+    echo "Merging $branch_name into main..."
+
+    git checkout main && \
+    git pull origin main && \
+    git merge "$branch_name" && \
+    git push origin main
+}
 
 alias hatestreload='haproxy -c -f /etc/haproxy/haproxy.cfg; sudo systemctl reload haproxy;sudo systemctl status haproxy'
 ######### test pg #######################################################
@@ -65,8 +110,31 @@ updatepassword() {
     -c "UPDATE users SET password = '${newpassword}' WHERE last_name='CEO';"
 }
 getusers(){
-  #psql -h 127.0.0.1 -p 50010 -U postgres -d vsingles -c "SELECT * FROM users;"
-  psql -h 127.0.0.1 -p 50010 -U postgres -d vsingles -c "select * FROM user_summary;"
+  psql -h 127.0.0.1 -p 50010 -U postgres -d vsingles -c "select * FROM singles_brief;"
+}
+clonepassword(){
+  psql -h 127.0.0.1 -p 50010 -U postgres -d vsingles -c "UPDATE singles SET password_hash = (SELECT password_hash FROM singles WHERE email = 'a7038700246@gmail.com') WHERE email LIKE '%@b.com';"
+}
+
+getveri(){
+  psql -h 127.0.0.1 -p 50010 -U postgres -d vsingles -c "select * from verifications;"
+}
+
+rmveri(){
+  psql -h 127.0.0.1 -p 50010 -U postgres -d vsingles -c "delete from verifications where email='bill7035477456@gmail.com';"
+}
+
+getemail(){
+  psql -h 127.0.0.1 -p 50010 -U postgres -d vsingles -c "select * from registration_codes;"
+}
+rmemail(){
+  psql -h 127.0.0.1 -p 50010 -U postgres -d vsingles -c "delete from registration_codes where email='bill7035477456@gmail.com';"
+}
+getphone(){
+  psql -h 127.0.0.1 -p 50010 -U postgres -d vsingles -c "select * from pending_phone_verifications;"
+}
+rmphone(){
+  psql -h 127.0.0.1 -p 50010 -U postgres -d vsingles -c "delete from pending_phone_verifications where phone='+17035477456';"
 }
 getimages(){
   psql -h 127.0.0.1 -p 50010 -U postgres -d vsingles -c "select singles_id, profile_image_url FROM singles;"
@@ -538,7 +606,7 @@ alias ga='git add .'
 alias gba='git branch -a'
 alias gs='git status'
 alias gp='git push'
-alias gfp='git fetch;git pull;gba;gb'
+alias gfp='git fetch;git pull;realenv;gba;gb'
 alias gc='git commit -m "whatever"'
 alias gst='git stash'
 alias gl='git log'
@@ -590,16 +658,9 @@ alias cleancompileresetrunbeprod='beclean;cdsavedir && cd ./be && npm i && pm2 k
 
 #----- USE THIS----
 alias testpg='netstat -an | grep LISTEN | grep 50010'
-# Mac: netstat output can differ; lsof is reliable for port-in-use check
-alias testpgmac='lsof -i :50010 >/dev/null 2>&1'
 
 check_pg() {
-    if [ "$(uname)" = "Darwin" ]; then
-        testpgmac
-    else
-        testpg > /dev/null 2>&1
-    fi
-    if [ $? -eq 0 ]; then
+    if testpg > /dev/null 2>&1; then
         echo "✅ Postgres is active. Proceeding..."
         return 0
     else
@@ -612,10 +673,9 @@ check_pg() {
 alias febedev='check_pg && (savedir; realenv;pm2 flush; cleancompilebuildfedev; cleancompileresetrunbedev)'
 alias bedev='check_pg && (savedir; realenv; pm2 flush; cleancompileresetrunbedev)'
 alias febeprod='check_pg && (savedir; realenv; pm2 flush; cleancompilebuildfeprod;cleancompileresetrunbeprod)'
-alias runprod='check_pg && (savedir; realenv; pm2 flush; pm2 kill && rm -rf ~/.pm2 && pm2 list && npm run pm2:start && pm2 save)'
+alias runprod='check_pg && (savedir; realenv; pm2 flush; pm2 kill && rm -rf ~/.pm2 && pm2 list && cd ./be && npm run pm2:start && pm2 save)'
 
-# Mac: build fe from fe dir (feclean uses sudo and can hang; we build explicitly), use build:mac for local API URL, copy env from ~/.ssh/be/.env
-alias febemac='check_pg && (savedir; realenv; pm2 flush; cdsavedir && cd ./fe && npm i && npm run build:mac && ls ./dist && cdsavedir && cd ./be && (test -f ~/.ssh/be/.env && cp ~/.ssh/be/.env . || true) && rm -rf node_modules package-lock.json && npm i && kill40000 && pm2 kill && rm -rf ~/.pm2 && pm2 list && npm run pm2:start && pm2 save && openurl)'
+alias febemac='check_pg && (savedir;realenv; pm2 flush; feclean && npm i && npm run build && ls ./dist && beclean && cp ~/.ssh/.env . && npm i && kill40000; cdsavedir && cd ./be && pm2 kill && rm -rf ~/.pm2 && pm2 list && npm run pm2:start && pm2 save && openurl)'
 
 #========= PROD ============
 alias cleancompilebuildfeprod='feclean;cdsavedir && cd ./fe && npm i && npm run buildprod'
@@ -656,71 +716,103 @@ archive() {
     fi
 
     mkdir -p "$target"
-    sudo cp -a /etc/fstab "$target"
-    sudo cp -a -R ~/b "$target"
-    sudo cp -a -R ~/.ssh/ "$target"
-    sudo cp -a -R ~/buildnvme "$target"
-    sudo cp -a /etc/ssh/sshd_config "$target"
-    sudo cp -a /etc/haproxy/haproxy.cfg "$target"
-    sudo cp -a /etc/haproxy/cloudflare-ips-v6.txt "$target"
-    sudo cp -a /etc/haproxy/cloudflare-ips-v4.txt "$target"
-    sudo cp -a /etc/haproxy/cloudflare-allowlist.md "$target"
-    sudo cp -a /etc/haproxy/certs/site.pem "$target"
 
-    sudo cp -a /etc/postgresql/16/main/postgresql.conf "$target"
-    sudo cp -a /mnt/nvme/pgdata16/pg_hba.conf "$target"
-    sudo cp -a /mnt/nvme/pgdata16/postgresql.auto.conf "$target"
-    sudo cp -a /mnt/nvme/pgdata16/standby.signal "$target"
-    sudo cp -a /mnt/nvme/pgdata16/pg_ident.conf "$target"
-    sudo cp -a /etc/systemd/system/postgresql@16-main.service "$target"
+    # All files from your lists using absolute paths
+    local items=(
+        "/etc/fstab"
+        "/etc/ssh/sshd_config"
+        "/etc/haproxy/haproxy.cfg"
+        "/etc/haproxy/cloudflare-ips-v6.txt"
+        "/etc/haproxy/cloudflare-ips-v4.txt"
+        "/etc/haproxy/cloudflare-allowlist.md"
+        "/etc/haproxy/certs/site.pem"
+        "/etc/postgresql/16/main/postgresql.conf"
+        "/mnt/nvme/pgdata16/pg_hba.conf"
+        "/mnt/nvme/pgdata16/postgresql.auto.conf"
+        "/mnt/nvme/pgdata16/standby.signal"
+        "/mnt/nvme/pgdata16/pg_ident.conf"
+        "/etc/systemd/system/postgresql@16-main.service"
+        "/etc/security/limits.conf"
+        "/etc/sysctl.conf"
+        "/etc/netplan/50-cloud-init.yaml"
+        "/etc/systemd/system/haproxy.service.d/override.conf"
+        "/etc/systemd/system/haproxy.service"
+        "/etc/nginx/sites-available/protected"
+        "/etc/nginx/nginx.conf"
+        "/usr/local/bin/setupufw"
+        "/etc/ufw/user.rules"
+        "/etc/ufw/user6.rules"
+        "/etc/ufw/before.rules"
+        "/hone/lawsen0/code/vsingles/CRON/cleanup_verifications.sql"
+        "/home/lawsen0/.pm2/dump.pm2"
+        "/home/lawsen0/.bash_profile"
+        "/home/lawsen0/.profile"
+        "/home/lawsen0/.bashrc"
+        "/home/lawsen0/tuning/tuning.sh"
+        "/etc/systemd/system/40g-tuning.service"
+        "/var/lib/postgresql/16/main/postgresql.auto.conf"
+        "/var/lib/postgresql/16/main/standby.signal"
+        # Arrow items from your request
+        "/home/lawsen0/b"
+        "/home/lawsen0/buildnvme"
+        "/home/lawsen0/.ssh"
+        "/home/lawsen0/code/vsingles/SQL_DUMP/vsingles_entireSchema_backup_feb20.sql"
+    )
 
-    sudo cp -a /etc/security/limits.conf "$target"
-    sudo cp -a /etc/sysctl.conf "$target"
-    sudo cp -a /etc/netplan/50-cloud-init.yaml "$target"
-    sudo cp -a /etc/systemd/system/haproxy.service.d/override.conf "$target"
-    sudo cp -a /etc/systemd/system/haproxy.service "$target"
-    sudo cp -a /etc/nginx/sites-available/protected "$target"
-    sudo cp -a /etc/nginx/nginx.conf "$target"
-    sudo cp -a /usr/local/bin/setupufw "$target"
-    sudo cp -a /etc/ufw/user.rules "$target"
-    sudo cp -a /etc/ufw/user6.rules "$target"
-    sudo cp -a /etc/ufw/before.rules "$target"
-    sudo cp -a /home/lawsen0/.pm2/dump.pm2 "$target"
-    sudo cp -a /home/lawsen0/.bash_profile "$target"
-    sudo cp -a /home/lawsen0/.profile "$target"
-    sudo cp -a /home/lawsen0/.bashrc "$target"
-    sudo cp -a /home/lawsen0/tuning/tuning.sh "$target"
-    sudo cp -a /etc/systemd/system/40g-tuning.service "$target"
-    sudo cp -a /etc/postgresql/16/main/postgresql.conf "$target"
-    sudo cp -a /etc/postgresql/16/main/pg_hba.conf "$target"
-    sudo cp -a /var/lib/postgresql/16/main/postgresql.auto.conf "$target"
-    sudo cp -a /var/lib/postgresql/16/main/standby.signal "$target"
-    # fix ownership so git can read/push
+    for item in "${items[@]}"; do
+        if [ -e "$item" ]; then
+            # Recreates the full path inside the $target folder
+            sudo cp -a --parents "$item" "$target"
+        fi
+    done
+
+    # Fix ownership so git can handle the files in your repo
     sudo chown -R "$USER":"$(id -gn)" "$target"
-
-    echo "Archived files to $target"
+    echo "Archived full tree to $target"
 }
-
-alias gitall='git add . -f && git commit -m "update" && git push'
-alias go='cd ~/2009_corruptLogFiles/xbox0;ls -latr'
-alias chmodall='sudo chown -R $USER:$USER . && sudo find . -type f -exec chmod 644 {} \; && sudo find . -type d -exec chmod 755 {} \;'
 
 superarchive() {
   local today
-  # Format: lowercase month + day + _ + hour + am/pm
   today=$(date +'%b%d_%I%p' | tr '[:upper:]' '[:lower:]')
 
   cd ~ &&
   sudo rm -rf ~/2009_corruptLogFiles &&
   clone2009 &&
   go &&
-  cp ~/b . &&
-  mkdir .ssh &&
-  cp -r ~/.ssh .
-  archive "$today" &&
+  archive "$today" && 
   chmodall &&
-  gitall
+  gitall &&
   ls -latr
+}
+
+superrestore() {
+    local current_dir=$(pwd)
+    
+    # Validation: Ensure you are in a valid xbox timestamp folder
+    local valid_pattern="\/2009_corruptLogFiles\/xbox[0-9]\/[a-z]{3}[0-9]{2}_[0-9]{2}(am|pm)$"
+
+    if [[ ! "$current_dir" =~ $valid_pattern ]]; then
+        echo "ERROR: Restore BLOCKED. You are in: $current_dir"
+        echo "You must 'cd' into a timestamp folder first."
+        return 1
+    fi
+
+    echo "--- STARTING RESTORE AUDIT (DRY RUN) ---"
+    # -n (no-clobber) + -v (verbose) shows the mapping without overwriting
+    sudo cp -anv "$current_dir"/* / 
+
+    echo ""
+    echo "--- END OF AUDIT ---"
+    read -p "Do you want to proceed with the LIVE restore? (y/n): " confirm
+
+    if [[ "$confirm" == "y" ]]; then
+        echo "Executing LIVE restore..."
+        # -a (archive/permissions) + -v (verbose) for the real deal
+        sudo cp -av "$current_dir"/* /
+        echo "Restore complete."
+    else
+        echo "Restore cancelled by user."
+    fi
 }
 
 
