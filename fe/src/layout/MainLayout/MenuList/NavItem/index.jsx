@@ -86,18 +86,19 @@ export default function NavItem({ item, level, isParents = false, setSelectedID 
           ...(downSM && drawerOpen && { py: 0.25, minHeight: 'auto' }),
           ...((!drawerOpen || level !== 1) && {
             py: level === 1 ? 0 : 1,
-            '&:hover': { bgcolor: isSelected ? '#e8f0fe' : 'transparent' },
+            '&:hover': { bgcolor: isSelected ? 'transparent' : 'transparent' },
             '&.Mui-selected': {
-              '&:hover': { bgcolor: '#e8f0fe' },
+              '&:hover': { bgcolor: 'transparent' },
               bgcolor: 'transparent'
             }
           }),
-          // Gemini-style selected: dark blue text on light blue background
+          // Selected: purple highlight border
           ...(isSelected && {
-            bgcolor: '#e8f0fe',
-            color: '#1967d2',
-            '&:hover': { bgcolor: '#e8f0fe' },
-            '& .MuiListItemIcon-root': { color: '#1967d2' }
+            border: '2px solid #744DBC',
+            bgcolor: 'transparent',
+            color: '#744DBC',
+            '&:hover': { bgcolor: 'transparent', border: '2px solid #744DBC' },
+            '& .MuiListItemIcon-root': { color: '#744DBC' }
           })
         }}
         selected={isSelected}
@@ -107,7 +108,7 @@ export default function NavItem({ item, level, isParents = false, setSelectedID 
           <ListItemIcon
             sx={{
               minWidth: downSM && drawerOpen ? (level === 1 ? 28 : 14) : level === 1 ? 36 : 18,
-              color: isSelected ? '#1967d2' : 'text.primary',
+              color: isSelected ? '#744DBC' : 'text.primary',
               ...(!drawerOpen &&
                 level === 1 && {
                   borderRadius: `${borderRadius}px`,
@@ -115,10 +116,10 @@ export default function NavItem({ item, level, isParents = false, setSelectedID 
                   height: 46,
                   alignItems: 'center',
                   justifyContent: 'center',
-                  '&:hover': { bgcolor: isSelected ? '#e8f0fe' : 'secondary.light' },
+                  '&:hover': { bgcolor: isSelected ? 'transparent' : 'secondary.light' },
                   ...(isSelected && {
-                    bgcolor: '#e8f0fe',
-                    '&:hover': { bgcolor: '#e8f0fe' }
+                    bgcolor: 'transparent',
+                    '&:hover': { bgcolor: 'transparent' }
                   })
                 })
             }}
@@ -141,7 +142,7 @@ export default function NavItem({ item, level, isParents = false, setSelectedID 
                     maxWidth: '100%',
                     color: 'inherit',
                     ...(item.customStyle && item.customStyle),
-                    ...(isSelected && { color: '#1967d2', fontWeight: 500 })
+                    ...(isSelected && { color: '#744DBC', fontWeight: 500 })
                   }}
                 >
                   {item.title}
