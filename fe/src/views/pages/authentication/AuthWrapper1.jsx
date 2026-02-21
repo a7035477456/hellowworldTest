@@ -10,7 +10,7 @@ const AuthWrapper1 = styled('div')(({ theme }) => ({
   minHeight: '100vh',
   backgroundColor: theme.vars.palette.grey[100],
   backgroundImage: `url(${datingCollage})`,
-  backgroundSize: 'cover',
+  backgroundSize: '75%',
   backgroundPosition: 'center',
   backgroundRepeat: 'no-repeat'
 }));

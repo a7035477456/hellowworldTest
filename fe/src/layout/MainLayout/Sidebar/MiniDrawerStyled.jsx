@@ -5,12 +5,14 @@ import Drawer from '@mui/material/Drawer';
 // project imports
 import { drawerWidth } from 'store/constant';
 
+const sidebarBg = '#D4C4F0';
+
 function openedMixin(theme) {
   return {
     width: drawerWidth,
     borderRight: 'none',
     zIndex: 1099,
-    background: theme.vars.palette.background.default,
+    background: sidebarBg,
     overflowX: 'hidden',
     boxShadow: 'none',
     transition: theme.transitions.create('width', {
@@ -24,7 +26,7 @@ function closedMixin(theme) {
   return {
     borderRight: 'none',
     zIndex: 1099,
-    background: theme.vars.palette.background.default,
+    background: sidebarBg,
     overflowX: 'hidden',
     width: 72,
     transition: theme.transitions.create('width', {

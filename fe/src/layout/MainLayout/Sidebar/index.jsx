@@ -84,7 +84,7 @@ function Sidebar() {
         : { paddingLeft: '16px', paddingRight: '16px', marginTop: '0px' };
     }
 
-    const navPanelBg = { bgcolor: '#EDE8F6' };
+    const navPanelBg = { bgcolor: '#D4C4F0' };
 
     return (
       <>
@@ -121,7 +121,7 @@ function Sidebar() {
                 mt: downMD ? 0 : 11,
                 zIndex: 1099,
                 width: downSM ? drawerWidthMobile : drawerWidth,
-                bgcolor: 'background.default',
+                bgcolor: '#D4C4F0',
                 color: 'text.primary',
                 borderRight: 'none'
               }

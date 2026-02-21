@@ -189,14 +189,14 @@ export default function AllSingles() {
                 max={100}
                 step={1}
                 sx={{
-                  color: 'error.main',
+                  color: '#FF6B35',
                   '& .MuiSlider-thumb': {
                     backgroundColor: 'common.white',
                     border: '2px solid',
-                    borderColor: 'error.main'
+                    borderColor: '#FF6B35'
                   },
                   '& .MuiSlider-track': {
-                    backgroundColor: 'error.main'
+                    backgroundColor: '#FF6B35'
                   }
                 }}
               />
@@ -247,14 +247,14 @@ export default function AllSingles() {
                 step={1}
                 valueLabelDisplay="auto"
                 sx={{
-                  color: 'error.main',
+                  color: '#FF6B35',
                   '& .MuiSlider-thumb': {
                     backgroundColor: 'common.white',
                     border: '2px solid',
-                    borderColor: 'error.main'
+                    borderColor: '#FF6B35'
                   },
                   '& .MuiSlider-track': {
-                    backgroundColor: 'error.main'
+                    backgroundColor: '#FF6B35'
                   }
                 }}
               />
@@ -284,7 +284,8 @@ export default function AllSingles() {
                   height: '100%',
                   display: 'flex',
                   flexDirection: 'column',
-                  backgroundColor: '#BB96F2',
+                  backgroundColor: '#EDE7F6',
+                  border: '1px solid #EDE7F6',
                   '&:hover': {
                     boxShadow: 6
                   }
@@ -332,9 +333,9 @@ export default function AllSingles() {
                     size={downSM ? 'small' : 'medium'}
                     onClick={() => handleMessage(personIndex_DDDDDDD.singles_id)}
                     sx={{
-                      bgcolor: 'secondary.main',
-                      color: 'common.white',
-                      '&:hover': { bgcolor: 'secondary.dark' },
+                      bgcolor: '#EDE7F6',
+                      color: 'secondary.dark',
+                      '&:hover': { bgcolor: '#D4C4F0' },
                       ...(downSM && { minWidth: 0, px: 1.25, fontSize: '0.75rem', mr: 0.5 }),
                       ...(!downSM && { mr: 1 })
                     }}
@@ -347,9 +348,9 @@ export default function AllSingles() {
                     size={downSM ? 'small' : 'medium'}
                     onClick={() => handleMarkInterested(personIndex_DDDDDDD.singles_id)}
                     sx={{
-                      bgcolor: '#744DBC',
-                      color: 'common.white',
-                      '&:hover': { bgcolor: '#5e35b1' },
+                      bgcolor: '#EDE7F6',
+                      color: 'secondary.dark',
+                      '&:hover': { bgcolor: '#D4C4F0' },
                       ...(downSM && { minWidth: 0, px: 1, fontSize: '0.7rem' })
                     }}
                   >

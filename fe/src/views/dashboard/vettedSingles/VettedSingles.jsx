@@ -242,6 +242,8 @@ export default function VettedSingles() {
           <Grid key={vettedPersonIndex_DDDDDDD.singles_id} size={{ xs: 12, sm: 6, md: 4 }}>
             <Card
               sx={{
+                backgroundColor: '#EDE7F6',
+                border: '1px solid #EDE7F6',
                 height: '100%',
                 display: 'flex',
                 flexDirection: 'column',
@@ -314,9 +316,9 @@ export default function VettedSingles() {
                   onClick={() => handleMessage(vettedPersonIndex_DDDDDDD.vettedSingles_id)}
                   sx={{
                     mr: 1,
-                    bgcolor: 'secondary.main',
-                    color: 'common.white',
-                    '&:hover': { bgcolor: 'secondary.dark' }
+                    bgcolor: '#EDE7F6',
+                    color: 'secondary.dark',
+                    '&:hover': { bgcolor: '#D4C4F0' }
                   }}
                 >
                   Message
@@ -326,9 +328,9 @@ export default function VettedSingles() {
                   variant="contained"
                   onClick={() => handleMarkInterested(vettedPersonIndex_DDDDDDD.vettedSingles_id)}
                   sx={{
-                    bgcolor: '#744DBC',
-                    color: 'common.white',
-                    '&:hover': { bgcolor: '#5e35b1' }
+                    bgcolor: '#EDE7F6',
+                    color: 'secondary.dark',
+                    '&:hover': { bgcolor: '#D4C4F0' }
                   }}
                 >
                   Mark Interested

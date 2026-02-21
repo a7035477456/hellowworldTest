@@ -319,9 +319,9 @@ export default function InterestedSingles() {
                       variant="contained"
                       onClick={() => handleMarkInterested(singlesId)}
                       sx={{
-                        bgcolor: '#744DBC',
+                        bgcolor: '#2196F3',
                         color: 'common.white',
-                        '&:hover': { bgcolor: '#5e35b1' }
+                        '&:hover': { bgcolor: '#1976D2' }
                       }}
                     >
                       Request Vetted Information
