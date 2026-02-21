@@ -7,7 +7,6 @@
  * Or from be/: node scripts/insertPhotoFromUrl.js
  */
 import '../loadEnv.js';
-import pool from '../db/connection.js';
 import readline from 'readline';
 
 const rl_AAAAA = readline.createInterface({ input: process.stdin, output: process.stdout });
@@ -27,6 +26,7 @@ function toContentType_AAAAA(header_AAAAA) {
 }
 
 async function main_AAAAA() {
+  // Prompt for both inputs first so connection logs don't overwrite the prompts
   const pkInput_AAAAA = await ask_AAAAA('public.photos table PK number input: ');
   const photosId_AAAAA = parseInt(pkInput_AAAAA, 10);
   if (Number.isNaN(photosId_AAAAA) || photosId_AAAAA < 1) {
@@ -44,6 +44,9 @@ async function main_AAAAA() {
   }
 
   rl_AAAAA.close();
+
+  // Load DB only after prompts so "Connected to PostgreSQL" etc. don't mix with prompts
+  const { default: pool } = await import('../db/connection.js');
 
   let buffer_AAAAA;
   let contentType_AAAAA = 'image/jpeg';
