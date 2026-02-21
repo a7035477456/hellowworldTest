@@ -318,7 +318,6 @@ export default function VerifySelf() {
               >
                 Click here for instructions on how to use this page.
               </Link>
-              {' '}Verification Status: 'New{'>'}Added{'>'}Scheduled{'>'}In Process{'>'}Vetted'
             </Typography>
           </Grid>
           <Grid size={12}>
