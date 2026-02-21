@@ -4,7 +4,7 @@ export const DEFAULT_THEME_MODE = 'system';
 export const CSS_VAR_PREFIX = '';
 
 const config = {
-  fontFamily: `'Comic Sans MS', cursive`,
+  fontFamily: `'Snell Roundhand', 'Snell Roundhand Script', cursive`,
   borderRadius: 8
 };
 

@@ -74,6 +74,7 @@ export default function AllSingles() {
       <Alert
         severity="info"
         sx={{
+          margin: '2px',
           mb: downSM ? 2 : 3,
           py: downSM ? 0.75 : 1.5,
           px: downSM ? 1.25 : 2,

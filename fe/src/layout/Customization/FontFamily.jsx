@@ -24,6 +24,11 @@ export default function FontFamilyPage() {
 
   const fonts = [
     {
+      id: 'snellRoundhand',
+      value: `'Snell Roundhand', 'Snell Roundhand Script', cursive`,
+      label: 'Snell Roundhand'
+    },
+    {
       id: 'comicSans',
       value: `'Comic Sans MS', cursive`,
       label: 'Comic Sans MS'

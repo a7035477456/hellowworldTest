@@ -24,7 +24,7 @@ const dashboard = {
           url: '/dashboard/allSingles',
           breadcrumbs: false,
           customStyle: {
-            fontFamily: 'Comic Sans MS',
+            fontFamily: "'Snell Roundhand', 'Snell Roundhand Script', cursive",
             color: '#744DBC',
             fontWeight: 600
           }
@@ -46,7 +46,7 @@ const dashboard = {
       icon: icons.IconUsers,
       breadcrumbs: false,
       customStyle: {
-        fontFamily: 'Comic Sans MS',
+        fontFamily: "'Snell Roundhand', 'Snell Roundhand Script', cursive",
         color: '#744DBC',
         fontWeight: 600
       }

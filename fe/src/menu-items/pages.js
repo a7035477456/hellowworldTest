@@ -44,7 +44,7 @@ const pages = {
       icon: icons.IconTypography,
       breadcrumbs: false,
       customStyle: {
-        fontFamily: 'Comic Sans MS',
+        fontFamily: "'Snell Roundhand', 'Snell Roundhand Script', cursive",
         color: '#744DBC',
         fontWeight: 600
       }
@@ -57,7 +57,7 @@ const pages = {
       icon: icons.IconTypography,
       breadcrumbs: false,
       customStyle: {
-        fontFamily: 'Comic Sans MS',
+        fontFamily: "'Snell Roundhand', 'Snell Roundhand Script', cursive",
         color: '#744DBC',
         fontWeight: 600
       }
@@ -70,7 +70,7 @@ const pages = {
       icon: icons.IconTypography,
       breadcrumbs: false,
       customStyle: {
-        fontFamily: 'Comic Sans MS',
+        fontFamily: "'Snell Roundhand', 'Snell Roundhand Script', cursive",
         color: '#744DBC',
         fontWeight: 600
       }
