@@ -70,11 +70,11 @@ function Sidebar() {
 
   const logo = useMemo(
     () => (
-      <Box sx={{ display: 'flex', p: downSM ? 1 : 2 }}>
-        <LogoSection />
+      <Box sx={{ display: 'flex', alignItems: 'center', p: downSM ? 1 : 2, minWidth: 0 }}>
+        <LogoSection variant={drawerOpen ? 'full' : 'icon'} />
       </Box>
     ),
-    [downSM]
+    [downSM, drawerOpen]
   );
 
   const drawer = useMemo(() => {
