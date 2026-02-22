@@ -4,7 +4,7 @@ export const DEFAULT_THEME_MODE = 'system';
 export const CSS_VAR_PREFIX = '';
 
 const config = {
-  fontFamily: `'Comic Sans MS', cursive`,
+  fontFamily: `'Comic Neue', 'Comic Sans MS', cursive`,
   borderRadius: 8
 };
 

@@ -19,7 +19,7 @@ const dashboard = {
       icon: icons.IconUsers,
       breadcrumbs: false,
       customStyle: {
-        fontFamily: 'Comic Sans MS',
+        fontFamily: "'Comic Neue', 'Comic Sans MS', cursive",
         color: '#744DBC',
         fontWeight: 600
       }
@@ -40,7 +40,7 @@ const dashboard = {
       icon: icons.IconUsers,
       breadcrumbs: false,
       customStyle: {
-        fontFamily: 'Comic Sans MS',
+        fontFamily: "'Comic Neue', 'Comic Sans MS', cursive",
         color: '#744DBC',
         fontWeight: 600
       }

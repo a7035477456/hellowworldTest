@@ -5,7 +5,7 @@ import Drawer from '@mui/material/Drawer';
 // project imports
 import { drawerWidth } from 'store/constant';
 
-const sidebarBg = '#D4C4F0';
+const sidebarBg = '#EDE7F6';
 
 function openedMixin(theme) {
   return {

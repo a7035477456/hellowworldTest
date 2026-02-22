@@ -17,8 +17,8 @@ import SimpleBar from 'ui-component/third-party/SimpleBar';
 
 import { handlerDrawerOpen, useGetMenuMaster } from 'api/menu';
 
-import closemenuImg from 'assets/images/closemenu.jpg';
-import openmenuImg from 'assets/images/openmenu.jpg';
+import closemenuImg from 'assets/images/closemenu.png';
+import openmenuImg from 'assets/images/openmenu.png';
 
 // ==============================|| SIDEBAR DRAWER ||============================== //
 
@@ -85,7 +85,7 @@ function Sidebar() {
         : { paddingLeft: '16px', paddingRight: '16px', marginTop: '0px' };
     }
 
-    const navPanelBg = { bgcolor: '#D4C4F0' };
+    const navPanelBg = { bgcolor: '#EDE7F6' };
 
     return (
       <>
@@ -122,7 +122,7 @@ function Sidebar() {
                 mt: downMD ? 0 : 11,
                 zIndex: 1099,
                 width: downSM ? drawerWidthMobile : drawerWidth,
-                bgcolor: '#D4C4F0',
+                bgcolor: '#EDE7F6',
                 color: 'text.primary',
                 borderRight: 'none'
               }
