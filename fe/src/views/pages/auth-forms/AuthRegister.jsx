@@ -99,7 +99,7 @@ export default function AuthRegister() {
           sx={{ p: 0, mr: 1, mt: 0.25 }}
         />
         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-          Agree: by providing your email you agree to receive email from vsingles.club for account security, identity verification, and service updates. Consent is not a condition of purchase.{' '}
+        I agree to receive automated text messages from Vetted Singles for account security, identity verification, and service updates at the phone number provided. Consent is not a condition of purchase. Message and data rates may apply. Message frequency varies. Reply HELP for help or STOP to cancel.{' '}
           <Typography component="a" href="/pages/privacyPolicy" target="_blank" rel="noopener noreferrer" variant="body2" sx={{ color: 'primary.main', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
             Privacy Policy
           </Typography>
