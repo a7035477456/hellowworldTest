@@ -19,6 +19,7 @@ import Breadcrumbs from 'ui-component/extended/Breadcrumbs';
 
 import useConfig from 'hooks/useConfig';
 import { handlerDrawerOpen, useGetMenuMaster } from 'api/menu';
+import ZoomBar from './ZoomBar';
 
 // ==============================|| MAIN LAYOUT ||============================== //
 
@@ -28,7 +29,8 @@ export default function MainLayout() {
   const downSM = useMediaQuery(theme.breakpoints.down('sm'));
 
   const {
-    state: { borderRadius, miniDrawer }
+    state: { borderRadius, miniDrawer, pageZoom },
+    setField
   } = useConfig();
   const { menuMaster, menuMasterLoading } = useGetMenuMaster();
   const drawerOpen = menuMaster?.isDashboardDrawerOpened;
@@ -45,39 +47,53 @@ export default function MainLayout() {
 
   if (menuMasterLoading) return <Loader />;
 
+  const zoomFactor = (pageZoom ?? 100) / 100;
+  const isZoomDefault = zoomFactor === 1;
+
   const innerLayout = (
-    <Box
-      sx={{
-        display: 'flex',
-        ...(downSM && {
-          width: '200%',
-          minHeight: '200vh',
-          transform: 'scale(0.5)',
-          transformOrigin: '0 0'
-        })
-      }}
-    >
-      {/* header */}
-      <AppBar enableColorOnDark position="fixed" color="inherit" elevation={0} sx={{ bgcolor: 'background.default' }}>
-        <Toolbar sx={{ p: 2 }}>
-          <Header />
-        </Toolbar>
-      </AppBar>
+    <Box sx={{ position: 'relative' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          // Page zoom (desktop only): transform scale works in all browsers
+          ...(downSM && {
+            width: '200%',
+            minHeight: '200vh',
+            transform: 'scale(0.5)',
+            transformOrigin: '0 0'
+          }),
+          ...(!downSM &&
+            !isZoomDefault && {
+              width: `${100 / zoomFactor}%`,
+              minHeight: `${100 / zoomFactor}vh`,
+              transform: `scale(${zoomFactor})`,
+              transformOrigin: '0 0'
+            })
+        }}
+      >
+        {/* header */}
+        <AppBar enableColorOnDark position="fixed" color="inherit" elevation={0} sx={{ bgcolor: 'background.default' }}>
+          <Toolbar sx={{ p: 2 }}>
+            <Header />
+          </Toolbar>
+        </AppBar>
 
-      {/* menu / drawer */}
-      <Sidebar />
+        {/* menu / drawer */}
+        <Sidebar />
 
-      {/* main content */}
-      <Box sx={{ flexGrow: 1, minWidth: 0, display: 'block' }}>
-        <MainContentStyled {...{ borderRadius, open: drawerOpen }}>
-          <Box sx={{ ...{ px: { xs: 0 } }, minHeight: 'calc(100vh - 128px)', display: 'flex', flexDirection: 'column' }}>
-            <Breadcrumbs />
-            <Outlet />
-            <Footer />
-          </Box>
-        </MainContentStyled>
+        {/* main content */}
+        <Box sx={{ flexGrow: 1, minWidth: 0, display: 'block' }}>
+          <MainContentStyled {...{ borderRadius, open: drawerOpen }}>
+            <Box sx={{ ...{ px: { xs: 0 } }, minHeight: 'calc(100vh - 128px)', display: 'flex', flexDirection: 'column' }}>
+              <Breadcrumbs />
+              <Outlet />
+              <Footer />
+            </Box>
+          </MainContentStyled>
+        </Box>
+        <Customization />
       </Box>
-      <Customization />
+      <ZoomBar value={pageZoom ?? 100} onChange={(v) => setField('pageZoom', v)} />
     </Box>
   );
 
