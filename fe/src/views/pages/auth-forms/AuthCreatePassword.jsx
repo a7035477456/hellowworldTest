@@ -152,19 +152,30 @@ export default function AuthCreatePassword() {
     px: 2,
     py: 1.5,
     borderRadius: 1,
-    mb: 2
+    mb: 2,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    textAlign: 'center'
   };
+
+  const isPhoneError =
+    !!error &&
+    (error.includes('Phone number') ||
+      error.includes('phone number') ||
+      error.includes('10-digit') ||
+      /already associated|different number|sign in/i.test(error));
 
   return (
     <form onSubmit={handleSubmit}>
-      {error && (
+      {error && !isPhoneError && (
         <Typography variant="subtitle1" sx={{ color: 'error.main', fontWeight: 700, textAlign: 'center', mb: 2 }}>
           Error: {error}
         </Typography>
       )}
 
       <Box sx={sectionHeaderSx}>
-        <Typography variant="h6" sx={{ color: 'white', fontWeight: 700 }}>
+        <Typography variant="h6" sx={{ color: 'white', fontWeight: 700, fontSize: '2.5rem' }}>
           Verify email code
         </Typography>
         <Typography variant="body2" sx={{ color: '#f3e5f5', mt: 0.5 }}>
@@ -186,11 +197,11 @@ export default function AuthCreatePassword() {
       </CustomFormControl>
 
       <Box sx={{ ...sectionHeaderSx, mt: 3 }}>
-        <Typography variant="h6" sx={{ color: 'white', fontWeight: 700 }}>
+        <Typography variant="h6" sx={{ color: 'white', fontWeight: 700, fontSize: '2.5rem' }}>
           Create password
         </Typography>
         <Typography variant="body2" sx={{ color: '#f3e5f5', mt: 0.5 }}>
-          Please create your password, email verification code, your password, and your personal phone number to continue
+          Please create your password, and enter your personal phone number to continue
         </Typography>
       </Box>
 
@@ -293,7 +304,12 @@ export default function AuthCreatePassword() {
         )}
       </CustomFormControl>
 
-      <CustomFormControl fullWidth>
+      {isPhoneError && (
+        <Typography variant="subtitle1" sx={{ color: 'error.main', fontWeight: 700, textAlign: 'center', mb: 1.5 }}>
+          Error: {error}
+        </Typography>
+      )}
+      <CustomFormControl fullWidth error={isPhoneError}>
         <InputLabel htmlFor="outlined-adornment-phone">Phone Number</InputLabel>
         <OutlinedInput 
           id="outlined-adornment-phone" 
@@ -340,7 +356,7 @@ export default function AuthCreatePassword() {
             color="secondary"
             disabled={isSubmitting || !email.trim() || registrationCode.trim().length !== 6 || !checked || !passwordMeetsAllRequirements}
           >
-            {isSubmitting ? 'Sending...' : 'Verify Email code and Create Password'}
+            {isSubmitting ? 'Sending...' : 'Verify and Create Password'}
           </Button>
         </AnimateButton>
       </Box>
