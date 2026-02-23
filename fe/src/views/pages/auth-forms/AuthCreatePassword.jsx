@@ -164,7 +164,8 @@ export default function AuthCreatePassword() {
     (error.includes('Phone number') ||
       error.includes('phone number') ||
       error.includes('10-digit') ||
-      /already associated|different number|sign in/i.test(error));
+      error.includes('mobile number') ||
+      /already associated|different number|sign in|Google Voice|Landline|could not verify this phone/i.test(error));
 
   const isCodeError =
     !!error &&

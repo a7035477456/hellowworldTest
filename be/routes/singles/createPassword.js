@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
 import pool from '../../db/connection.js';
+import { validatePhoneLineType } from './twilioLookup.js';
 
 const LOG_PREFIX = '[createPassword]';
 
@@ -96,11 +97,18 @@ export async function createPassword(req, res) {
       });
     }
 
+    const twilio = (await import('twilio')).default;
+    const client = twilio(twilioAccountSid, twilioAuthToken);
+
+    const lineTypeResult = await validatePhoneLineType(client, formattedPhone);
+    if (!lineTypeResult.ok) {
+      console.log(LOG_PREFIX, 'reject: line type not allowed', { type: lineTypeResult.type, carrier: lineTypeResult.carrierName });
+      return res.status(400).json({ error: lineTypeResult.error });
+    }
+
     console.log(LOG_PREFIX, 'code valid, sending SMS', { to: formattedPhone });
     try {
       console.log(LOG_PREFIX, 'Calling Twilio Verify', { to: formattedPhone, serviceSidPrefix: twilioServiceSid.slice(0, 6) + '...' });
-      const twilio = (await import('twilio')).default;
-      const client = twilio(twilioAccountSid, twilioAuthToken);
 
       await client.verify.v2.services(twilioServiceSid).verifications.create({
         to: formattedPhone,
