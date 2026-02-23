@@ -151,7 +151,7 @@ export default function NavItem({ item, level, isParents = false, setSelectedID 
                     maxWidth: '100%',
                     color: 'inherit',
                     ...(item.customStyle && item.customStyle),
-                    ...(isSelected && { color: '#744DBC', fontWeight: 500 })
+                    ...(isSelected && { color: '#744DBC', fontWeight: item.customStyle?.fontWeight ?? 500 })
                   }}
                 >
                   {item.title}

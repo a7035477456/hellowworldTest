@@ -30,7 +30,12 @@ const dashboard = {
       type: 'item',
       url: '/dashboard/vettedSingles',
       icon: icons.IconUsers,
-      breadcrumbs: false
+      breadcrumbs: false,
+      customStyle: {
+        fontFamily: "'Comic Neue', 'Comic Sans MS', cursive",
+        color: '#744DBC',
+        fontWeight: 600
+      }
     },
     {
       id: 'interestedSingles',
