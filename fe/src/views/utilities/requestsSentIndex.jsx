@@ -5,7 +5,7 @@ import MainCard from 'ui-component/cards/MainCard';
 
 export default function RequestsSent() {
   return (
-    <MainCard title="Outgoing Requests">  
+    <MainCard title="Vetting Req Out">  
       {/* Blank page - content to be added later */}
     </MainCard>
   );

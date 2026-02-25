@@ -51,7 +51,7 @@ const pages = {
     },
     {
       id: 'util-requests-about-me',
-      title: 'Incomming Requests',
+      title: 'Vetting Req In',
       type: 'item',
       url: '/dashboard/request-about-me',
       iconSrc: checkMenuImg,
@@ -64,7 +64,7 @@ const pages = {
     },
     {
       id: 'util-requests-sent',
-      title: "Outgoing Requests",         
+      title: "Vetting Req Out",         
       type: 'item',
       url: '/dashboard/request-ive-sent',
       iconSrc: checkMenuImg,
