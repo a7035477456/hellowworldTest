@@ -21,6 +21,8 @@ import useConfig from 'hooks/useConfig';
 import { handlerDrawerOpen, useGetMenuMaster } from 'api/menu';
 import ZoomBar from './ZoomBar';
 
+import backgroundTop from 'assets/images/backgroundtop.png';
+
 // ==============================|| MAIN LAYOUT ||============================== //
 
 export default function MainLayout() {
@@ -73,7 +75,15 @@ export default function MainLayout() {
       >
         {/* header */}
         <AppBar enableColorOnDark position="fixed" color="inherit" elevation={0} sx={{ bgcolor: 'background.default' }}>
-          <Toolbar sx={{ p: 2 }}>
+          <Toolbar
+            sx={{
+              p: 2,
+              backgroundImage: `url(${backgroundTop})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          >
             <Header />
           </Toolbar>
         </AppBar>
