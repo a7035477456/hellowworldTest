@@ -71,8 +71,6 @@ export default function NavItem({ item, level, isParents = false, setSelectedID 
   }
 
   const itemHandler = () => {
-    if (downMD) handlerDrawerOpen(false);
-
     if (isParents && setSelectedID) {
       setSelectedID();
     }
